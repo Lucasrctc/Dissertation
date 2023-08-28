@@ -459,7 +459,14 @@ Once the wavefunction is found, all the physical and chemical properties of a sy
 Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size.
 Therefore, different approximations must be introduced.
 One approach is to adopt the \gls{tdvp} \shortcite{kramer};
-there, a trial wavefunction is optimized with respect to time-dependent parameters with the aim of obtaining a stationary action \shortcite{kramer}.
+there, a trial wavefunction is optimized with respect to time-dependent parameters with the aim of obtaining a stationary action \shortcite{kramer}. A visualization is provided in figure \ref{fig:TDVP}.
+
+\begin{figure}[ht!]
+	\centering
+  \includegraphics[width=\linewidth]{img/variation_figure.pdf}
+  \caption{Visualization of the variational algorithm}
+  \label{fig:TDVP}
+\end{figure}
 
 The simplest type of trial wavefunction is a \gls{hf} one \shortcite{szabo,mcweeny}:
 a single Slater determinant of molecular orbitals (one per electron) that satisfies the Pauli exclusion principle.
