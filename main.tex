@@ -907,18 +907,18 @@ Applying this to decompose $\bm u_\lambda$:
 	= \bigotimes_{\uo 0 \oo 0} u_{\lambda_{\uo 0 \oo 0}}
 	\end{split}
 \end{equation}
-
-Where we have:
-
+%
+Assuming $\elec = 2$ and $\orb = 4$ for a 2-electron system where each electron has 2 orbitals,  we find, from \shortcite{fukutome}:
+%
 \begin{align*}
 	\bm u_{\lambda_{\uo 0 \oo 0}} 
 	&= \begin{bmatrix}\bm C(\lambda_{\uo 0 \oo 0}) & \bm -\bm S^\dagger(\lambda_{\uo 0 \oo 0}) \\ \bm S(\lambda_{\uo 0 \oo 0}) & \tilde {\bm C}(\lambda_{\uo 0 \oo 0})\end{bmatrix} \in \mathbb{\bm C}^{2\times 2}
 \end{align*}
-
+%
  Since 
-$\bm u_{\lambda_\ind 0} \in \mathbb{C}^{2\times2}$, it is a single-qubit operator, and each of 
-$\bm C(\lambda)$, $\bm S(\lambda)$, $\tilde {\bm C}(\lambda)$
-have to be a complex number, as is $\lambda$. After some calculation, their values are:
+$\bm u_{\lambda_\ind 0} \in \mathbb{C}^{2\times2}$, it is a single-qubit operator. This means each of its elements
+$\bm C(\lambda)$, $\bm S(\lambda)$, $\tilde {\bm C}(\lambda) \in \mathbb{C}$ , and $\lambda_\ind 0 \in \mathbb{C}$. After some calculation, their values are:
+%
 \begin{align*}
 	S(\lambda_\ind 0) 
 	&= \sum_{k=0}^\infty \frac{(-1)^k}{(2k + 1)!}\lambda_\ind 0({\lambda_\ind 0}^\dagger{\lambda_\ind 0})^k \\
@@ -937,7 +937,7 @@ have to be a complex number, as is $\lambda$. After some calculation, their valu
 \end{align*}
 \begin{align*}
 	C(\lambda_\ind 0) 
-	&= I_n + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0^\dagger{\lambda_\ind 0})^k \\
+	&= I_1 + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0^\dagger{\lambda_\ind 0})^k \\
 	&= 1 + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0^*{\lambda_\ind 0})^k \\
 	&= \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(\abs{\lambda_\ind 0}^2)^k \\
 	&= \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}\abs{\lambda_\ind 0}^{2k} \\
@@ -945,24 +945,15 @@ have to be a complex number, as is $\lambda$. After some calculation, their valu
 \end{align*}
 \begin{align*}
 	\tilde C({\lambda_\ind 0}) 
-	&= I_{(N-n)} + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0{\lambda_\ind 0}^\dagger)^k \\
+	&= I_{(2-1)} + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0{\lambda_\ind 0}^\dagger)^k \\
 	&= 1 + \sum_{k=1}^\infty \frac{(-1)^k}{(2k)!}(\lambda_\ind 0{\lambda_\ind 0}^*)^k \\
 	&= \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}\abs{\lambda_\ind 0}^{2k} \\
 	&= \co {\abs{\lambda_\ind 0}} 
 \end{align*}
-
-Theorem 4.1 from \cite{nielsen} that states that a single qubit unitary gate $U$ can be written as $U = \exp(i\alpha) R_z(\beta)R_y(\gamma)R_z(\delta)$ in terms of 4 real variables $\alpha, \beta, \gamma, \delta$.
-We can now apply the theorem to decompose this unitary matrix:
-
-\begin{align*}
-	\bm u_{\lambda_\ind 0}
-	&= \begin{bmatrix}
-		\co{\abs{\lambda_\ind 0}} & -\left(\frac{{\lambda_\ind 0}^*}{\lambda_\ind 0}\right)^{\frac 1 2}\s{\abs{\lambda_\ind 0}} \\
-		\left(\frac{{\lambda_\ind 0}}{{\lambda_\ind 0}^*}\right)^{\frac 1 2}\s{\abs{\lambda_\ind 0}} &  \co{\abs{\lambda_\ind 0}}
-	\end{bmatrix}\\
-	&= e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta) 
-\end{align*}
-
+%
+Theorem 4.1 from \cite{nielsen} states that a single-qubit unitary gate $U$ can be written as $U = \exp(i\alpha) \bm R_z(\beta)\bm R_y(\gamma)\bm R_z(\delta)$ in terms of 4 real variables $\alpha, \beta, \gamma, \delta$.
+We can now apply the theorem to decompose this unitary matrix into an exponential and three rotations:
+%
 \begin{align*}
 	\bm u_{\lambda_\ind 0}
 	&= \begin{bmatrix}
@@ -981,19 +972,21 @@ We can now apply the theorem to decompose this unitary matrix:
 		e^{i\left(\alpha - \frac \beta 2 + \frac \delta 2 \right)}\co{\frac \gamma 2} & -e^{i\left(\alpha - \frac \beta 2 + \frac \delta 2 \right)}\s{\frac \gamma 2} \\
 		e^{i\left(\alpha - \frac \beta 2 + \frac \delta 2 \right)}\s{\frac \gamma 2} &  e^{i\left(\alpha - \frac \beta 2 + \frac \delta 2 \right)}\co{\frac \gamma 2}
 	\end{bmatrix}\\
-	&= e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta) 
+	&= e^{i\alpha}\bm R_z(\beta)\bm R_y(\gamma)\bm R_z(\delta) 
 \end{align*}
-
+%
 Solving for $\alpha, \beta, \gamma, \delta$ in terms of $\rho_\ind 0 = \abs{\lambda_\ind 0}, \omega_\ind 0 = \arg \lambda_\ind 0$, we get 
+%
 ${\alpha = 0}$; 
 ${\beta = \omega_\ind 0}$; 
 ${\gamma = 2\rho_\ind 0}$;
 ${\delta = -\omega_\ind 0}$. Finally:
+%
 \begin{equation}
 	\begin{split}
 	\label{eq:urotation}
 	\bm u_{\lambda_\ind 0}
-	&= R_z(\omega_\ind 0)R_y(2\rho_\ind 0)R_z(-\omega_\ind 0) \\
+	&= \bm R_z(\omega_\ind 0)\bm R_y(2\rho_\ind 0)\bm R_z(-\omega_\ind 0) \\
 	&= \begin{bmatrix}
 		e^{-i\frac {\omega_\ind 0} 2} & 0 \\
 		0 &  e^{i\frac {\omega_\ind 0} 2}
@@ -1008,15 +1001,16 @@ ${\delta = -\omega_\ind 0}$. Finally:
 	\end{bmatrix} 
 	\end{split}
 \end{equation}
-
-Notice now $\det \bm u_{\lambda_\ind 0} = 1$, and $\bm u_{\lambda_\ind 0} \in SU(2)$.
-
-We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the pauli matrices:
+%
+Notice now that $\det \bm u_{\lambda_\ind 0} = 1$, and $\bm u_{\lambda_\ind 0}$ belongs to the special unitary group $\bm u_{\lambda_\ind 0} \in SU(2)$.
+%
+We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the Pauli matrices ($I, X, Y, Z$):
 \begin{align*}
 	\bm u_{\lambda_\ind 0}
-	&= R_z(\omega_\ind 0)R_y(2\rho_\ind 0)R_z(-\omega_\ind 0) \\
+	&= \bm R_z(\omega_\ind 0)\bm R_y(2\rho_\ind 0)\bm R_z(-\omega_\ind 0) \\
 	& = \paren{\co{\frac {\omega_\ind 0} 2}I - i\s{\frac {\omega_\ind 0} 2}Z}
-	\paren{\co{\rho_\ind 0}I - i\s{\rho_\ind 0}Y}
+	\cdot \paren{\co{\rho_\ind 0}I - i\s{\rho_\ind 0}Y}\\
+	& \quad \cdot
 	\paren{\co{\frac {\omega_\ind 0} 2}I + i\s{\frac {\omega_\ind 0} 2}Z} \\
 	& = 
 	\left(
@@ -1027,8 +1021,8 @@ We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the pauli matrices:
 	&\quad \left.
 		- \s{\frac {\omega_\ind 0} 2} \s {\rho_\ind 0} ZY
 	\right)
-	\paren{\co{\frac {\omega_\ind 0} 2}I + i\s{\frac {\omega_\ind 0} 2}Z} \\
-	\intertext{As $ZY = -iX$:}
+	\cdot \paren{\co{\frac {\omega_\ind 0} 2}I + i\s{\frac {\omega_\ind 0} 2}Z} \\
+	\intertext{Substituting $ZY = -iX$:}
 	& = 
 	\left(
 		\co{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} I 
@@ -1042,14 +1036,16 @@ We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the pauli matrices:
 	& = 
 		\cosq{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} I 
 		- i\cosq{\frac {\omega_\ind 0} 2} \s {\rho_\ind 0} Y 
+	\\
+	& \quad 
 		- i\s{\frac {\omega_\ind 0} 2} \co{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} Z 
-	\\
-	& \quad 
 		+ i\s{\frac {\omega_\ind 0} 2} \co{\frac {\omega_\ind 0} 2} \s {\rho_\ind 0} X 
-		+ i \s{\frac {\omega_\ind 0} 2} \co{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} Z
 	\\
 	& \quad 
+		+ i \s{\frac {\omega_\ind 0} 2} \co{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} Z
 		+ \s{\frac {\omega_\ind 0} 2} \co{\frac {\omega_\ind 0} 2} \s {\rho_\ind 0} YZ
+	\\
+	& \quad 
 		+ \ssq{\frac {\omega_\ind 0} 2} \co {\rho_\ind 0} I
 		- \ssq{\frac {\omega_\ind 0} 2} \s {\rho_\ind 0} XZ
 	\intertext{Grouping up similar terms and substituting $YZ = iX$:}
@@ -1095,15 +1091,16 @@ We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the pauli matrices:
 		- i \s {\rho_\ind 0} \co{\omega_\ind 0} Y 
 		+ i \s {\rho_\ind 0} \s{\omega_\ind 0} X
 \end{align*}
-
-For simplicity's sake, we will consider a system with two electrons and 2 virtual orbitals. That is, $\elec=2$ and $\orb=4$. 
+%
 Now, applying $\bm u_\lambda$ to a vacuum, we get:
+%
 \begin{equation}
 	\begin{split}
 		\label{eq:psirw}
 	\ket \Psi 
-	&= \bm u_{\lambda_\ind 0} \bm u_{\lambda_\ind 1} \ket 0 \\
-	&= \bm u_{\lambda_\ind 0} \bm u_{\lambda_\ind 1} \ket {\psi_{\oo 0} \psi_{\oo 1} } \\
+	&= \bm u_{\lambda_\ind 0} \otimes \bm u_{\lambda_\ind 1} \ket 0 \\
+	&= \bm u_{\lambda_\ind 0} \otimes \bm u_{\lambda_\ind 1} \ket {\psi_{\oo 0} \psi_{\oo 1} } \\
+	&= \bm u_{\lambda_\ind 0} \ket {\psi_{\oo 0}} \otimes \bm u_{\lambda_\ind 1} \ket{\psi_{\oo 1} } \\
 	&= \ket {\co {\rho_\ind 0} \psi_{\oo 0} + e^{i\omega_\ind 0}\s {\rho_\ind 0} \psi_{\uo 0}} \otimes
 	\ket {\co {\rho_\ind 1} \psi_{\oo 1} + e^{i\omega_\ind 1}\s {\rho_\ind 1} \psi_{\uo 1}} \\
 	&= \co {\rho_\ind 0 }\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
@@ -1112,7 +1109,8 @@ Now, applying $\bm u_\lambda$ to a vacuum, we get:
 	+ e^{i\omega_\ind 0 }e^{i\omega_\ind 1}\s {\rho_\ind 0 }\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 	\end{split}
 \end{equation}
-Where $\bm u_{\lambda_{\ind 0}}$ acts on $\uparrow$ spin orbitals and $\bm u_{\lambda_{\ind 1}}$ acts on $\downarrow$ spin orbitals
+%
+Note here that our wavefunction $\ket \Psi$ is a function of four real variables $\omega_\ind 0, \omega_\ind 1, \rho_\ind 0, \rho_\ind 1$. It can also be written as a tensor product of two single-qubit operators, where $\bm u_{\lambda_{\ind 0}}$ acts on $\uparrow$ spin orbitals and $\bm u_{\lambda_{\ind 1}}$ acts on $\downarrow$ spin orbitals.
 
 %-------------------------------------------------------------------------------------
 
@@ -1123,16 +1121,146 @@ As seen in \cite{benjamin}, we can obtain the Lagrangian of our sistem as:
 \[
 	L = \frac{\sandwich{\Psi(t)}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi(t)}}{\braket{\Psi(t)}{\Psi(t)}}
 \]
-
-We start by taking the derivatives of $\ket \Psi$ with respect to $\rho_\ind 0 ,\omega_\ind 0$ and $\rho_\ind 1 , \omega_\ind 1$.
+% TODO: link this to the relevant section
+Our wavefunction $\Psi$ is normalized, which means $\braket{\Psi(t)}{\Psi(t)} = 1$. We now also rewrite the variables of $\ket{\Psi}$ as 
+$\lambda_1 = \omega_\ind 1; \lambda_2 = \omega_\ind 0; \lambda_3 = \rho_\ind 1; \lambda_4 = \rho_\ind 0$.
+The order of the numbering of the new lambda variables is important and shall be discussed later. %Link here to R6R5...
+This means we can develop the Lagrangian into:
+\begin{equation}
+	\begin{split}
+		\label{eq:lagrangian}
+		L &= \sandwich{\Psi}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi} \\
+		  &= \frac{i}{2}\bra{\Psi}{\kpp t} - \frac{i}{2}{\bpp{t}}\ket{\Psi} - \sandwich{\Psi}{\hat H}{\Psi} \\
+		  &= 	
+			\sum_j \frac{i}{2}\bra{\Psi}{\kpp {\lambda_j}} \dot \lambda_j
+		- 	\sum_j \frac{i}{2}{\bpp{\lambda_j}}\ket{\Psi}\dot{\lambda_j}
+		- \sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation}
+%
+We now take the derivative of \ref{eq:lagrangian} with regards to $\lambda_k$ for $k \in \{1, 2, 3, 4\}$:
+%
+\begin{equation*}
+	\begin{split}
+	\pd{\lambda_k} L &= 	
+	\phantom{-}\sum_j \frac{i}{2}\bra{\Psi}{\kppd {\lambda_k}{\lambda_j}} \dot \lambda_j
+	+	\sum_j \frac{i}{2}\bpp{\lambda_k}{\kpp {\lambda_j}} \dot \lambda_j \\
+	&\quad -\sum_j \frac{i}{2}{\bppd{\lambda_k}{\lambda_j}}\ket{\Psi}\dot{\lambda_j}
+	- 	\sum_j \frac{i}{2}{\bpp{\lambda_j}}\kpp{\lambda_k}\dot{\lambda_j}\\
+	&\quad -\pd{\lambda_k} \sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation*}
+%
+And take the derivative of \ref{eq:lagrangian} with regards to $\dot{\lambda_k} = \dd{t} \lambda_k$ for $k \in \{1, 2, 3, 4\}$:
+%
+\begin{equation*}
+	\begin{split}
+		\label{euler-lagrange}
+		\pd{\dot{\lambda_k}} L &=
+		\frac{i}{2}\bra{\Psi}{\kpp {\lambda_k}}
+	- 	\frac{i}{2}{\bpp{\lambda_k}}\ket{\Psi}
+	\end{split}
+\end{equation*}
+%
+Now, since the Euler-Lagrange equation gives us $\pd{\lambda_k} L = \ddt \pd{\dot {\lambda_k}} L$, we take the derivative of the expression above with regards to time:
+%
+\begin{equation*}
+	\begin{split}
+		\ddt \pd{\dot{\lambda_k}} L &=
+		\sum_j \frac{i}{2}\bpp{\lambda_j}{\kpp {\lambda_k}} \dot \lambda_j
+	+	\sum_j \frac{i}{2}\bra{\Psi}{\kppd {\lambda_j}{\lambda_k}} \dot \lambda_j \\
+    	&- 	\sum_j \frac{i}{2}{\bppd{\lambda_j}{\lambda_k}}\ket{\Psi}\dot{\lambda_j}
+	- 	\sum_j \frac{i}{2}{\bpp{\lambda_k}}\kpp{\lambda_j}\dot{\lambda_j}
+	\end{split}
+\end{equation*}
+%
+We can now develop the Euler-Lagrange equation, and the only terms that do not cancel out are as follows:
+%
+\begin{equation*}
+	\begin{split}
+		\ddt \pd{\dot{\lambda_k}} L 
+	&=	\pd{\lambda_k} L
+	\\
+	 	\sum_j i \bpp{\lambda_k} \kpp{\lambda_j}\dot{\lambda_j}
+	-	\sum_j i \bpp{\lambda_j} \kpp{\lambda_k}\dot{\lambda_j}
+	&= 	\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation*}
+%
+This equation can be put into matrix form:
+%
+\begin{equation}
+	\begin{split}
+		\label{eq:matrixderiv}
+		&i \left [ \bpp{\lambda_k} \kpp{\lambda_q} 
+			- \bpp{\lambda_q} \kpp{\lambda_k} \right ]_{kq}
+		\cdot 	\left[ \dot \lambda_q \right]_q
+		=	\left[\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi}\right]_k 
+	\\% -----------------------Second Equation Line---------------------------------------
+		\span i
+		\begin{pmatrix}
+			0 
+			&  \bpp{\lambda_1} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_1} 
+			&  \bpp{\lambda_1} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_1} 
+			&  \bpp{\lambda_1} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_1} 
+		\\% --------------------------Second Matrix Line------------------------------
+			 \bpp{\lambda_2} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_2} 
+			& 0
+			& \bpp{\lambda_2} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_2} 
+			& \bpp{\lambda_2} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_2} 
+		\\% --------------------------Third  Matrix Line------------------------------
+			 \bpp{\lambda_3} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_3} 
+			& \bpp{\lambda_3} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_3} 
+			& 0
+			& \bpp{\lambda_3} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_3} 
+		\\% --------------------------Fourth Matrix Line------------------------------
+			 \bpp{\lambda_4} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_4} 
+			& \bpp{\lambda_4} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_4} 
+			& \bpp{\lambda_4} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_4} 
+			& 0
+		\end{pmatrix} 
+	\\
+		&\times
+		\begin{pmatrix}
+			\dot \lambda_1 \\
+			\dot \lambda_2 \\
+			\dot \lambda_3 \\
+			\dot \lambda_4 
+		\end{pmatrix} 
+		=
+		\begin{pmatrix}
+			\pd {\lambda_1} \sandwich{\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_2} \sandwich{\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_3} \sandwich{\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_4} \sandwich{\Psi}{\hat H}{\Psi}\\
+		\end{pmatrix} 
+	\\
+		&\sum_q M_{kq} \dot \lambda_q = V_k
+	\end{split}
+\end{equation}
+%
+Where:
+%
+\begin{equation*}
+	\begin{split}
+	M_{kq} 
+	&= 
+	 	i \bpp{\lambda_k} \kpp{\lambda_q} - i \bpp{\lambda_q} \kpp{\lambda_k} 
+	\\
+	V_k 
+	&= 	\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi} \\
+	\end{split}
+\end{equation*}
+%
+We can now turn back to the previous set of variables for $\ket{\Psi}$ to calculate the elements of $\bm M$. First we calculate the values of the derivatives of $\ket \Psi$ with respect to $\rho_\ind 0 ,\omega_\ind 0$ and $\rho_\ind 1 , \omega_\ind 1$.
+%
 \begin{align*}
 	\ket \Psi 
 	&= \co {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	+ e^{i\omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
 	&\quad + e^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ e^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
-\end{align*}
-\begin{align*}
+	\\
 	\pd {\rho_\ind 0 } \ket \Psi 
 	&= -\s {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	- e^{i\omega_\ind 1}\s {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
@@ -1157,478 +1285,9 @@ We start by taking the derivatives of $\ket \Psi$ with respect to $\rho_\ind 0 ,
 	&\quad + e^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ ie^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
-
-We can now start developing the Lagrangian:
-\[
-	L = \frac{\sandwich{\Psi}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi}}{\braket{\Psi}{\Psi}}
-\]
-	Since $\Psi$ is normalized, $\braket{\Psi}{\Psi} = 1$. Then:
-\begin{equation}
-\begin{split}
-	\label{eq:lagrangian}
-	L &= \frac{i}{2}\bra{\Psi}{\kpp t} - \frac{i}{2}{\bpp{t}}\ket{\Psi} - \sandwich{\Psi}{\hat H}{\Psi} \\
-	&=	\frac{i}{2}\bra{\Psi}\paren{\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0}\dot \omega_\ind 0 
-	+	\kpp {\rho_\ind 1 }\dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1}\dot \omega_\ind 1} \\
-	& \quad 
-	- 	\paren{\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1}\frac{i}{2}\ket{\Psi}
-	- \sandwich{\Psi}{\hat H}{\Psi}
-\end{split}
-\end{equation}
-Afterwards, since the Euler-Lagrange equation gives us 
-\begin{align}
-	\label{eq:euler-lagrange}
-	\pd{x} L = \ddt \pd{\dot x} L
-\end{align}
-we need to take several derivatives of $L$ obtained in \ref{eq:lagrangian} in terms of 
-$\omega_\ind 0, \rho_\ind 0,
-\omega_\ind 1, \rho_\ind 1$.
-Taking derivatives of \ref{eq:lagrangian} with regard to ${\omega_\ind 0}$:
-\begin{align*}
-	\pd {\omega_\ind 0}L &=
-		\frac{i}{2}\bpp {\omega_\ind 0}\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0} \dot \omega_\ind 0 
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} \\
-	& \quad 
-	+	\frac{i}{2}\bra{\Psi}\paren{
-		\kppd {\omega_\ind 0} {\rho_\ind 0 }   	\dot \rho_\ind 0  
-	+	\kppn {\omega_\ind 0} {2}  			\dot \omega_\ind 0 
-	+	\kppd {\omega_\ind 0} {\rho_\ind 1 }   	\dot \rho_\ind 1  
-	+	\kppd {\omega_\ind 0} {\omega_\ind 1} 	\dot \omega_\ind 1} \\
-	& \quad 
-	- 	\paren{
-		\bppd{\omega_\ind 0} {\rho_\ind 0 }	\dot \rho_\ind 0 
-	+ 	\bppn{\omega_\ind 0} {2}			\dot \omega_\ind 0
-	+ 	\bppd{\omega_\ind 0} {\rho_\ind 1 }	\dot \rho_\ind 1 
-	+ 	\bppd{\omega_\ind 0} {\omega_\ind 1}	\dot \omega_\ind 1
-	}\frac{i}{2}\ket{\Psi} \\
-	& \quad 
-	- 	\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\frac{i}{2}\kpp{\omega_\ind 0} \\
-	&\quad - \pd{\omega_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} 
-\end{align*}
-And with regards to ${\dot \omega_\ind 0}$:
-\begin{align*}
-	\pd {\dot \omega_\ind 0}L &= 
-	  \frac{i}{2}{\bra\Psi}{\kpp{\omega_\ind 0}}
-	- \frac{i}{2}{\bpp{\omega_\ind 0}}{\ket\Psi}
-\end{align*}
-We now take the derivative of the expression above with regards to time:
-\begin{align*}
-	\ddt \pd {\dot \omega_\ind 0}L &= 
-	\frac{i}{2}\paren{
-	\bpp{\rho_\ind 0 } \kpp{\omega_\ind 0} \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 0} \kpp{\omega_\ind 0} \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 1 } \kpp{\omega_\ind 0} \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 1} \kpp{\omega_\ind 0} \dot \omega_\ind 1 
-} \\
-&\quad + \frac{i}{2} \bra\Psi \paren{
-		\kppd{\rho_\ind 0 }{\omega_\ind 0} \dot \rho_\ind 0 
-	+	\kppd{\omega_\ind 0}{\omega_\ind 0} \dot \omega_\ind 0
-	+	\kppd{\rho_\ind 1 }{\omega_\ind 0} \dot \rho_\ind 1 
-	+	\kppd{\omega_\ind 1}{\omega_\ind 0} \dot \omega_\ind 1
-} \\
-&\quad - \frac{i}{2} \paren{
-		\bppd{\rho_\ind 0 }{\omega_\ind 0} \dot \rho_\ind 0 
-	+	\bppd{\omega_\ind 0}{\omega_\ind 0} \dot \omega_\ind 0
-	+	\bppd{\rho_\ind 1 }{\omega_\ind 0} \dot \rho_\ind 1 
-	+	\bppd{\omega_\ind 1}{\omega_\ind 0} \dot \omega_\ind 1
-} \ket\Psi \\
-&\quad - \frac{i}{2} \paren{
-	\bpp{\omega_\ind 0} \kpp{\rho_\ind 0 } \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 0} \kpp{\omega_\ind 0} \dot \omega_\ind 0 
-	+ \bpp{\omega_\ind 0} \kpp{\rho_\ind 1 } \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 0} \kpp{\omega_\ind 1} \dot \omega_\ind 1 
-} 
-\end{align*}
-Now, since the Euler-Lagrange equation gives us $\pd{\omega_\ind 0} L = \ddt \pd{\dot \omega_\ind 0} L$, we can substitute the expressions obtained above and simplify our equation:
-\begin{align*}
-	\pd{\omega_\ind 0} L &= \ddt \pd{\dot \omega_\ind 0} L
-	\\ 
-		i\bpp {\omega_\ind 0}\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\omega_\ind 0}
-	%---------------------------------------------------------------
-	&= \pd{\omega_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} 
-\end{align*}
-Moving on to the next variable, we'll be taking derivatives of \ref{eq:lagrangian} with regard to ${\rho_\ind 0}$:
-\begin{align*}
-	\pd {\rho_\ind 0 }L &=
-		\frac{i}{2}\bpp {\rho_\ind 0 }\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0} \dot \omega_\ind 0 
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} \\
-	& \quad 
-	+	\frac{i}{2}\bra{\Psi}\paren{
-		\kppn {\rho_\ind 0 } {2}  			\dot \rho_\ind 0  
-	+	\kppd {\rho_\ind 0 } {\omega_\ind 0}   	\dot \omega_\ind 0 
-	+	\kppd {\rho_\ind 0 } {\rho_\ind 1 }   	\dot \rho_\ind 1  
-	+	\kppd {\rho_\ind 0 } {\omega_\ind 1} 	\dot \omega_\ind 1} \\
-	& \quad 
-	- 	\paren{
-	  	\bppn{\rho_\ind 0 } {2}			\dot \rho_\ind 0 
-	+	\bppd{\rho_\ind 0 } {\omega_\ind 0}	\dot \omega_\ind 0
-	+ 	\bppd{\rho_\ind 0 } {\rho_\ind 1 }	\dot \rho_\ind 1 
-	+ 	\bppd{\rho_\ind 0 } {\omega_\ind 1}	\dot \omega_\ind 1
-	}\frac{i}{2}\ket{\Psi} \\
-	& \quad 
-	- 	\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\frac{i}{2}\kpp{\rho_\ind 0 } \\
-	&\quad - \pd{\rho_\ind 0 }\sandwich{\Psi}{\hat H}{\Psi} 
-\end{align*}
-And with regards to ${\dot \rho_\ind 0}$:
-\begin{align*}
-	\pd {\dot \rho_\ind 0 }L &= 
-	  \frac{i}{2}{\bra\Psi}{\kpp{\rho_\ind 0 }}
-	- \frac{i}{2}{\bpp{\rho_\ind 0 }}{\ket\Psi}
-\end{align*}
-We now take the derivative of the expression above with regards to time:
-\begin{align*}
-	\ddt \pd {\dot \rho_\ind 0 }L &= 
-	\frac{i}{2}\paren{
-	\bpp{\rho_\ind 0 } \kpp{\rho_\ind 0 } \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 0} \kpp{\rho_\ind 0 } \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 1 } \kpp{\rho_\ind 0 } \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 1} \kpp{\rho_\ind 0 } \dot \omega_\ind 1 
-} \\
-&\quad + \frac{i}{2} \bra\Psi \paren{
-		\kppd{\rho_\ind 0 }{\rho_\ind 0 } \dot \rho_\ind 0 
-	+	\kppd{\omega_\ind 0}{\rho_\ind 0 } \dot \omega_\ind 0
-	+	\kppd{\rho_\ind 1 }{\rho_\ind 0 } \dot \rho_\ind 1 
-	+	\kppd{\omega_\ind 1}{\rho_\ind 0 } \dot \omega_\ind 1
-} \\
-&\quad - \frac{i}{2} \paren{
-		\bppd{\rho_\ind 0 }{\rho_\ind 0 } \dot \rho_\ind 0 
-	+	\bppd{\omega_\ind 0}{\rho_\ind 0 } \dot \omega_\ind 0
-	+	\bppd{\rho_\ind 1 }{\rho_\ind 0 } \dot \rho_\ind 1 
-	+	\bppd{\omega_\ind 1}{\rho_\ind 0 } \dot \omega_\ind 1
-} \ket\Psi \\
-&\quad - \frac{i}{2} \paren{
-	\bpp{\rho_\ind 0 } \kpp{\rho_\ind 0 } \dot \rho_\ind 0  
-	+ \bpp{\rho_\ind 0 } \kpp{\omega_\ind 0} \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 0 } \kpp{\rho_\ind 1 } \dot \rho_\ind 1  
-	+ \bpp{\rho_\ind 0 } \kpp{\omega_\ind 1} \dot \omega_\ind 1 
-} 
-\end{align*}
-Now, since the Euler-Lagrange equation gives us $\pd{\rho_\ind 0 } L = \ddt \pd{\dot \rho_\ind 0 } L$, we can substitute the expressions obtained above and simplify our equation:
-\begin{align*}
-	\pd{\rho_\ind 0 } L &= \ddt \pd{\dot \rho_\ind 0 } L
-	\\ 
-		i\bpp {\rho_\ind 0 }\paren{
-		\kpp {\omega_\ind 0}\dot \omega_\ind 0
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-		\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\rho_\ind 0 }
-	%---------------------------------------------------------------
-	&= \pd{\rho_\ind 0 }\sandwich{\Psi}{\hat H}{\Psi}
-\end{align*}
-For the next variable, we'll be taking derivatives of \ref{eq:lagrangian} with regard to ${\omega_\ind 1}$:
-\begin{align*}
-	\pd {\omega_\ind 1}L &=
-		\frac{i}{2}\bpp {\omega_\ind 1}\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0} \dot \omega_\ind 0 
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} \\
-	& \quad 
-	+	\frac{i}{2}\bra{\Psi}\paren{
-		\kppd {\omega_\ind 1} {\rho_\ind 0 }   	\dot \rho_\ind 0  
-	+	\kppd {\omega_\ind 1} {\omega_\ind 0}	\dot \omega_\ind 0 
-	+	\kppd {\omega_\ind 1} {\rho_\ind 1 }   	\dot \rho_\ind 1  
-	+	\kppn {\omega_\ind 1} 2		 	\dot \omega_\ind 1} \\
-	& \quad 
-	- 	\paren{
-		\bppd{\omega_\ind 1} {\rho_\ind 0 }	\dot \rho_\ind 0 
-	+ 	\bppd{\omega_\ind 1} {\omega_\ind 0}	\dot \omega_\ind 0
-	+ 	\bppd{\omega_\ind 1} {\rho_\ind 1 }	\dot \rho_\ind 1 
-	+ 	\bppn{\omega_\ind 1} 2			\dot \omega_\ind 1
-	}\frac{i}{2}\ket{\Psi} \\
-	& \quad 
-	- 	\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\frac{i}{2}\kpp{\omega_\ind 1} \\
-	&\quad - \pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi}
-\end{align*}
-And with regards to ${\dot \omega_\ind 1}$:
-\begin{align*}
-	\pd {\dot \omega_\ind 1}L &= 
-	  \frac{i}{2}{\bra\Psi}{\kpp{\omega_\ind 1}}
-	- \frac{i}{2}{\bpp{\omega_\ind 1}}{\ket\Psi}
-\end{align*}
-We now take the derivative of the expression above with regards to time:
-\begin{align*}
-	\ddt \pd {\dot \omega_\ind 1}L &= 
-	\frac{i}{2}\paren{
-	\bpp{\rho_\ind 0 } \kpp{\omega_\ind 1} \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 0} \kpp{\omega_\ind 1} \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 1 } \kpp{\omega_\ind 1} \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 1} \kpp{\omega_\ind 1} \dot \omega_\ind 1 
-} \\
-&\quad + \frac{i}{2} \bra\Psi \paren{
-		\kppd{\rho_\ind 0 }{\omega_\ind 1} \dot \rho_\ind 0 
-	+	\kppd{\omega_\ind 0}{\omega_\ind 1} \dot \omega_\ind 0
-	+	\kppd{\rho_\ind 1 }{\omega_\ind 1} \dot \rho_\ind 1 
-	+	\kppd{\omega_\ind 1}{\omega_\ind 1} \dot \omega_\ind 1
-} \\
-&\quad - \frac{i}{2} \paren{
-		\bppd{\rho_\ind 0 }{\omega_\ind 1} \dot \rho_\ind 0 
-	+	\bppd{\omega_\ind 0}{\omega_\ind 1} \dot \omega_\ind 0
-	+	\bppd{\rho_\ind 1 }{\omega_\ind 1} \dot \rho_\ind 1 
-	+	\bppd{\omega_\ind 1}{\omega_\ind 1} \dot \omega_\ind 1
-} \ket\Psi \\
-&\quad - \frac{i}{2} \paren{
-	\bpp{\omega_\ind 1} \kpp{\rho_\ind 0 } \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 1} \kpp{\omega_\ind 0} \dot \omega_\ind 0 
-	+ \bpp{\omega_\ind 1} \kpp{\rho_\ind 1 } \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 1} \kpp{\omega_\ind 1} \dot \omega_\ind 1 
-}
-\end{align*}
-Now, since the Euler-Lagrange equation gives us $\pd{\omega_\ind 1} L = \ddt \pd{\dot \omega_\ind 1} L$, we can substitute the expressions obtained above and simplify our equation:
-\begin{align*}
-	\pd{\omega_\ind 1} L &= \ddt \pd{\dot \omega_\ind 1} L
-	\\ 
-		i\bpp {\omega_\ind 1}\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0} \dot \omega_\ind 0
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1 }
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	}\kpp{\omega_\ind 1}
-	%---------------------------------------------------------------
-	&= \pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} 
-\end{align*}
-For the next variable, we'll be taking derivatives of \ref{eq:lagrangian} with regard to ${\rho_\ind 1}$:
-\begin{align*}
-	\pd {\rho_\ind 1 }L &=
-		\frac{i}{2}\bpp {\rho_\ind 1 }\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0} \dot \omega_\ind 0 
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} \\
-	& \quad 
-	+	\frac{i}{2}\bra{\Psi}\paren{
-		\kppd {\rho_\ind 1 } {\rho_\ind 0 }   	\dot \rho_\ind 0  
-	+	\kppd {\rho_\ind 1 } {\omega_\ind 0}   	\dot \omega_\ind 0 
-	+	\kppn {\rho_\ind 1 } {2}  			\dot \rho_\ind 1  
-	+	\kppd {\rho_\ind 1 } {\omega_\ind 1} 	\dot \omega_\ind 1} \\
-	& \quad 
-	- 	\paren{
-	 	\bppd{\rho_\ind 1 } {\rho_\ind 0 }	\dot \rho_\ind 0 
-	+	\bppd{\rho_\ind 1 } {\omega_\ind 0}	\dot \omega_\ind 0
-	+  	\bppn{\rho_\ind 1 } {2}			\dot \rho_\ind 1 
-	+ 	\bppd{\rho_\ind 1 } {\omega_\ind 1}	\dot \omega_\ind 1
-	}\frac{i}{2}\ket{\Psi} \\
-	& \quad 
-	- 	\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\frac{i}{2}\kpp{\rho_\ind 1 } \\
-	&\quad - \pd{\rho_\ind 1 }\sandwich{\Psi}{\hat H}{\Psi}
-\end{align*}
-And with regards to ${\dot \rho_\ind 1}$:
-\begin{align*}
-	\pd {\dot \rho_\ind 1 }L &= 
-	  \frac{i}{2}{\bra\Psi}{\kpp{\rho_\ind 1 }}
-	- \frac{i}{2}{\bpp{\rho_\ind 1 }}{\ket\Psi}
-\end{align*}
-We now take the derivative of the expression above with regards to time:
-\begin{align*}
-	\ddt \pd {\dot \rho_\ind 1 }L &= 
-	\frac{i}{2}\paren{
-	\bpp{\rho_\ind 0 } \kpp{\rho_\ind 1 } \dot \rho_\ind 0  
-	+ \bpp{\omega_\ind 0} \kpp{\rho_\ind 1 } \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 1 } \kpp{\rho_\ind 1 } \dot \rho_\ind 1  
-	+ \bpp{\omega_\ind 1} \kpp{\rho_\ind 1 } \dot \omega_\ind 1 
-} \\
-&\quad + \frac{i}{2} \bra\Psi \paren{
-		\kppd{\rho_\ind 0 }{\rho_\ind 1 } \dot \rho_\ind 0 
-	+	\kppd{\omega_\ind 0}{\rho_\ind 1 } \dot \omega_\ind 0
-	+	\kppd{\rho_\ind 1 }{\rho_\ind 1 } \dot \rho_\ind 1 
-	+	\kppd{\omega_\ind 1}{\rho_\ind 1 } \dot \omega_\ind 1
-} \\
-&\quad - \frac{i}{2} \paren{
-		\bppd{\rho_\ind 0 }{\rho_\ind 1 } \dot \rho_\ind 0 
-	+	\bppd{\omega_\ind 0}{\rho_\ind 1 } \dot \omega_\ind 0
-	+	\bppd{\rho_\ind 1 }{\rho_\ind 1 } \dot \rho_\ind 1 
-	+	\bppd{\omega_\ind 1}{\rho_\ind 1 } \dot \omega_\ind 1
-} \ket\Psi \\
-&\quad - \frac{i}{2} \paren{
-	\bpp{\rho_\ind 1 } \kpp{\rho_\ind 0 } \dot \rho_\ind 0  
-	+ \bpp{\rho_\ind 1 } \kpp{\omega_\ind 0} \dot \omega_\ind 0 
-	+ \bpp{\rho_\ind 1 } \kpp{\rho_\ind 1 } \dot \rho_\ind 1  
-	+ \bpp{\rho_\ind 1 } \kpp{\omega_\ind 1} \dot \omega_\ind 1 
-}
-\end{align*}
-Now, since the Euler-Lagrange equation gives us $\pd{\rho_\ind 1} L = \ddt \pd{\dot \rho_\ind 1} L$, we can substitute the expressions obtained above and simplify our equation:
-\begin{align*}
-	\pd{\rho_\ind 1 } L &= \ddt \pd{\dot \rho_\ind 1 } L
-	\\ 
-		i\bpp {\rho_\ind 1 }\paren{
-		\kpp {\rho_\ind 0 } \dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0}\dot \omega_\ind 0
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-	 	\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\rho_\ind 1 }
-	%---------------------------------------------------------------
-	&= \pd{\rho_\ind 1 }\sandwich{\Psi}{\hat H}{\Psi}
-\end{align*}
-After all these steps, we obtain the following system of equations from \ref{eq:euler-lagrange}:
-\begin{equation}
-\begin{split}
-	\label {eq:prematrixrw}
-	- 	i\paren{
-		\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\rho_\ind 0 }
-	%---------------------------------------------------------------
-	&= \pd{\rho_\ind 0 }\sandwich{\Psi}{\hat H}{\Psi} \\
-		i\bpp {\omega_\ind 0}\paren{
-		\kpp {\rho_\ind 0 }\dot \rho_\ind 0  
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\omega_\ind 0}
-	%---------------------------------------------------------------
-	&= \pd{\omega_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
-		i\bpp {\rho_\ind 1 }\paren{
-		\kpp {\rho_\ind 0 } \dot \rho_\ind 0  
-	+	\kpp {\omega_\ind 0}\dot \omega_\ind 0
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-	 	\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\omega_\ind 1}\dot \omega_\ind 1
-	}\kpp{\rho_\ind 1 }
-	%---------------------------------------------------------------
-	&= \pd{\rho_\ind 1 }\sandwich{\Psi}{\hat H}{\Psi} \\
-		i\bpp {\rho_\ind 0 }\paren{
-		\kpp {\omega_\ind 0}\dot \omega_\ind 0
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-	- 	i\paren{
-		\bpp{\rho_\ind 0 }\dot \rho_\ind 0 
-	+ 	\bpp{\omega_\ind 0}\dot \omega_\ind 0
-	+ 	\bpp{\rho_\ind 1 }\dot \rho_\ind 1 
-	}\kpp{\omega_\ind 1}
-	%---------------------------------------------------------------
-	&= \pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
-		i\bpp {\rho_\ind 0 }\paren{
-		\kpp {\omega_\ind 0}\dot \omega_\ind 0
-	+	\kpp {\rho_\ind 1 } \dot \rho_\ind 1  
-	+	\kpp {\omega_\ind 1} \dot \omega_\ind 1} 
-	&\\
-	%---------------------------------------------------------------
-\end{split}
-\end{equation}
-We can put the system of equations in matrix form:
-\begin{equation}
-\begin{split}
-	\label {eq:matrixderiv}
-	&\begin{bmatrix}
-		&0
-		& \bpp{\rho_\ind 0} \kpp{\omega_\ind 0}
-		- \bpp{\omega_\ind 0} \kpp{\rho_\ind 0}
-		& \bpp{\rho_\ind 0} \kpp{\rho_\ind 1}
-		- \bpp{\rho_\ind 1} \kpp{\rho_\ind 0}
-		& \bpp{\rho_\ind 0} \kpp{\omega_\ind 1}
-		- \bpp{\omega_\ind 1} \kpp{\rho_\ind 0}
-		\\
-		& \bpp{\omega_\ind 0} \kpp{\rho_\ind 0}
-		- \bpp{\rho_\ind 0} \kpp{\omega_\ind 0}
-		&0
-		& \bpp{\omega_\ind 0} \kpp{\rho_\ind 1}
-		- \bpp{\rho_\ind 1} \kpp{\omega_\ind 0}
-		& \bpp{\omega_\ind 0} \kpp{\omega_\ind 1}
-		- \bpp{\omega_\ind 1} \kpp{\omega_\ind 0}
-		\\
-		& \bpp{\rho_\ind 1} \kpp{\rho_\ind 0}
-		- \bpp{\rho_\ind 0} \kpp{\rho_\ind 1}
-		& \bpp{\rho_\ind 1} \kpp{\omega_\ind 0}
-		- \bpp{\omega_\ind 0} \kpp{\rho_\ind 1}
-		&0
-		& \bpp{\rho_\ind 1} \kpp{\omega_\ind 1}
-		- \bpp{\omega_\ind 1} \kpp{\rho_\ind 1}
-		\\
-		& \bpp{\omega_\ind 1} \kpp{\rho_\ind 0}
-		- \bpp{\rho_\ind 0} \kpp{\omega_\ind 1}
-		& \bpp{\omega_\ind 1} \kpp{\omega_\ind 0}
-		- \bpp{\omega_\ind 0} \kpp{\omega_\ind 1}
-		& \bpp{\omega_\ind 1} \kpp{\rho_\ind 1}
-		- \bpp{\rho_\ind 1} \kpp{\omega_\ind 1}
-		&0
-		\\
-	\end{bmatrix}
-      	\\
-	&\times	i
-	\begin{bmatrix}
-		\dot \rho_\ind 0 \\
-		\dot \omega_\ind 0 \\
-		\dot \rho_\ind 1 \\
-		\dot \omega_\ind 1 \\
-	\end{bmatrix}
-	= 
-	\begin{bmatrix}
-	&\pd{\rho_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
-	&\pd{\omega_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
-	&\pd{\rho_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
-	&\pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
-	\end{bmatrix}
-\end{split}
-\end{equation}
-Now we need to evaluate the elements of the matrix. We already have the partial derivatives of $\ket\Psi$, but we need to find the expressions for their duals. We can take the dual of $\ket \Psi$ from \ref{eq:psirw}:
+%
+Now we need have the partial derivatives of $\ket\Psi$, but we need to find the expressions for their duals. We can take the dual of $\ket \Psi$ from \ref{eq:psirw}:
+%
 \begin{equation}
 	\label{eq:dualpsirw}
 	\begin{split}
@@ -1643,7 +1302,9 @@ Now we need to evaluate the elements of the matrix. We already have the partial 
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\end{split}
 \end{equation}
+%
 And take the derivatives of \ref{eq:dualpsirw}:
+%
 \begin{align*}
 	\pd {\rho_\ind 0 } \bra \Psi 
 	&= -\s {\rho_\ind 0}\co {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\oo 1}}
@@ -1667,16 +1328,19 @@ And take the derivatives of \ref{eq:dualpsirw}:
 	-i e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
-Finally, we have all the information needed to calculate the elements of the first matrix in \ref{eq:matrixderiv}. First, we notice that the matrix is skew-symmetric, since:
-
+%
+Finally, we have all the information needed to calculate the elements of the $\bm M$ matrix in \ref{eq:matrixderiv}. First, we notice that the matrix is skew-symmetric ($\bm M = - \bm M^T$), since:
+%
 \begin{align*}
-	\bpp{\omega_\ind 0} \kpp{\rho_\ind 0}
-	- \bpp{\rho_\ind 0} \kpp{\omega_\ind 0} = 
+	M_{kq} = 
+	\bpp{\lambda_k} \kpp{\lambda_q}
+	- \bpp{\lambda_q} \kpp{\lambda_k} = 
 	- \paren
 	{
-		\bpp{\rho_\ind 0} \kpp{\omega_\ind 0} 
-		-\bpp{\omega_\ind 0} \kpp{\rho_\ind 0}
+		\bpp{\lambda_q} \kpp{\lambda_k}
+		- \bpp{\lambda_k} \kpp{\lambda_q}
 	}
+	=M_{qk}
 \end{align*}
 
 \begin{enumerate}
@@ -2000,41 +1664,40 @@ We can now update our matrix equation \ref{eq:matrixderiv} with the calculated v
 \begin{equation*}
 \begin{split}
 	\label {eq:matrixrw}
-	i
 	\begin{bmatrix}
 		& 0
-		& i\s {2\rho_\ind 0}
 		& 0
-		& 0
-		\\
-		& -i\s {2\rho_\ind 0}
-		& 0
-		& 0
+		& \s {2\rho_\ind 1}
 		& 0
 		\\
 		& 0
 		& 0
 		& 0
-		& i\s {2\rho_\ind 1}
+		& \s {2\rho_\ind 0}
+		\\
+		& -\s {2\rho_\ind 1}
+		& 0
+		& 0
+		& 0
 		\\
 		& 0
 		& 0
-		& -i\s {2\rho_\ind 1}
-		&0
+		& -\s {2\rho_\ind 0}
+		& 0
 		\\
 	\end{bmatrix}
 	\begin{bmatrix}
-		\dot \rho_\ind 0 \\
+		\dot \omega_\ind 1 \\
 		\dot \omega_\ind 0 \\
 		\dot \rho_\ind 1 \\
-		\dot \omega_\ind 1 \\
+		\dot \rho_\ind 0 \\
 	\end{bmatrix}
 	&= 
 	\begin{bmatrix}
-	&\pd{\rho_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
+	&\pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
 	&\pd{\omega_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
 	&\pd{\rho_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
-	&\pd{\omega_\ind 1}\sandwich{\Psi}{\hat H}{\Psi} \\
+	&\pd{\rho_\ind 0}\sandwich{\Psi}{\hat H}{\Psi} \\
 	\end{bmatrix}\\
 	\bm M \dot {\bm \lambda} &= \bm V
 \end{split}
@@ -2044,9 +1707,10 @@ We can now update our matrix equation \ref{eq:matrixderiv} with the calculated v
 \section {\textbf{Circuit for \elec-electron model}}
 
 We propose to use a quantum circuit to evaluate the matrices $\bm M$ and $\bm V$. To do so, we must adapt Li's \shortcite{benjamin} algorithm, which is a variation of Ekert's \shortcite{ekert} quantum circuit, to work with our reduced number of variables.
-
+%
 \subsection {\textbf{Decompose the wavefunction}}
-First, we need to write $\ket \Psi = R \ket 0 = \prod_{k=N_v}^1 R_k(\lambda_k) \ket 0$ for some integer $N_v$.
+
+First, we need to write $\ket \Psi = \bm R \ket 0 = \prod_{k=N_v}^1 \bm R_k(\lambda_k) \ket 0$ for some integer $N_v$. That is, we need to find a product of matrices of a single variable that, when applied to the ground state, gives us our wavefunction.
 Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecomposition} and \ref{eq:urotation}:
 \begin{equation*}
 \begin{split}
@@ -2054,21 +1718,23 @@ Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecompos
 	= \bigotimes_{\ind 0} 
 		u_{\lambda_{\ind 0}} \ket 0
 	= \bigotimes_{\ind 0} 
-		R_z(\omega_{\ind 0}) R_y(2\rho_\ind 0) R_z(-\omega_\ind 0) \ket 0
+		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \ket 0
 \end{split}
 \end{equation*}
+%
 For our case where $\elec = 2$ and $\orb = 4$, we have:
+%
 \begin{equation*}
 \begin{split}
 	\ket\Psi 
-	&= u_{\lambda_{\ind 0}} \otimes  u_{\lambda_{\ind 1}} \ket 0 \\
-	&= (R_z(\omega_{\ind 0}) R_y(2\rho_\ind 0) R_z(-\omega_\ind 0) )
-	\otimes ( R_z(\omega_{\ind 1}) R_y(2\rho_\ind 1) R_z(-\omega_\ind 1) )
+	&= \bm u_{\lambda_{\ind 0}} \otimes \bm u_{\lambda_{\ind 1}} \ket 0 \\
+	&= (\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) )
+	\otimes ( \bm R_z(\omega_{\ind 1}) \bm R_y(2\rho_\ind 1) \bm R_z(-\omega_\ind 1) )
 	\ket 0 \\
 	&= 
-	(R_z(\omega_{\ind 0}) \otimes R_z(\omega_{\ind 1}) )
-	(R_y(2\rho_\ind 0) \otimes R_y(2\rho_\ind 1))
-	(R_z(-\omega_\ind 0) \otimes R_z(-\omega_\ind 1))
+	(\bm R_z(\omega_{\ind 0}) \otimes \bm R_z(\omega_{\ind 1}) )
+	(\bm R_y(2\rho_\ind 0) \otimes \bm R_y(2\rho_\ind 1))
+	(\bm R_z(-\omega_\ind 0) \otimes \bm R_z(-\omega_\ind 1))
 	\ket 0 \\
 	&= 
 	\left[
@@ -2128,14 +1794,14 @@ For our case where $\elec = 2$ and $\orb = 4$, we have:
 		\co {\rho_\ind 1}
 	\end{matrix}
 	\right ] \ket 0\\
-	&= R\ket 0
+	&= \bm R\ket 0
 \end{split}
 \end{equation*}
-
-We can then write the matrix $R$ as a product of 6 matrices:
-
+%
+We can then write the matrix $\bm R$ as a product of 6 matrices:
+%
 \begin{align*}
-	R &= R_6(\omega_\ind 0) R_5(\omega_\ind 1) R_4(\rho_\ind 0) R_3(\rho_\ind 1) R_2(\omega_\ind 0) R_1(\omega_\ind 1) \\
+	\bm R &= \bm R_6(\omega_\ind 0) \bm R_5(\omega_\ind 1) \bm R_4(\rho_\ind 0) \bm R_3(\rho_\ind 1) \bm R_2(\omega_\ind 0) \bm R_1(\omega_\ind 1) \\
 	&=
 	\begin{bmatrix}
 		e^{\frac{-i \omega_\ind 0} 2 } & 0 & 0 & 0 \\
@@ -2180,10 +1846,10 @@ We can then write the matrix $R$ as a product of 6 matrices:
 	\end{bmatrix} \\
 \end{align*}
 
-Then, we obtain the decomposition of the derivatives $\fpd{R_k}{\lambda_k}$ into pauli matrices according to the equation \cite{benjamin}:
+Then, we obtain the decomposition of the derivatives $\fpd{\bm R_k}{\lambda_k}$ into pauli matrices according to the equation \cite{benjamin}:
 \begin{equation}\label{eq:r_to_f}
 \begin{split}
-	\fpd{R_k}{\lambda_k} = \sum_{i \in P} f_{k, i} R_k \sigma_{k, i}
+	\fpd{\bm R_k}{\lambda_k} = \sum_{i \in P} f_{k, i} \bm R_k \sigma_{k, i}
 \end{split}
 \end{equation}
 Where $P = \{x \vert x = \bigotimes_{k = 1}^{N} x_k,\ x_k \in Pauli\}$
@@ -2192,8 +1858,8 @@ Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 
 \begin{enumerate}
 \item $k = 1$:
 \begin{align*}
-	\frac {dR_1}{d\lambda_1} 
-	&= \frac {dR_1}{d\omega_\ind 1} 
+	\frac {d\bm R_1}{d\lambda_1} 
+	&= \frac {d\bm R_1}{d\omega_\ind 1} 
 	= 
 	\frac i 2
 	\begin{bmatrix}
@@ -2203,13 +1869,13 @@ Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 
 		0 & 0 & 0 & -e^{\frac{-i \omega_\ind 1} 2 }
 	\end{bmatrix} \\
 	&= \sum_{A \in P}
-		f_{1, A}R_1 \cdot A
+		f_{1, A}\bm R_1 \cdot A
 		\intertext{The only relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
 		\\
-	&= f_{1, \paulid{ii}} R_1 \paulid{ii}
-	+ f_{1, \paulid{iz}} R_1 \paulid{iz}
-	+ f_{1, \paulid{zi}} R_1 \paulid{zi}
-	+ f_{1, \paulid{zz}} R_1 \paulid{zz}
+	&= f_{1, \paulid{ii}} \bm R_1 \paulid{ii}
+	+ f_{1, \paulid{iz}} \bm R_1 \paulid{iz}
+	+ f_{1, \paulid{zi}} \bm R_1 \paulid{zi}
+	+ f_{1, \paulid{zz}} \bm R_1 \paulid{zz}
 	\\
 	&= f_{1, \paulid{ii}}
 	\rmatdd 1 
@@ -2229,19 +1895,19 @@ Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 
 	\\
 	\intertext{The solution to this system is:}
 	\\
-	&= 0 R_1 \paren{\paulid{ii}} 
-	+ \frac i 2 R_1 \paren{\paulid{iz}}
-	+ 0 R_1 \paren{\paulid{zi}} 
-	+ 0 R_1 \paren{\paulid{zz}} 
+	&= 0 \bm R_1 \paren{\paulid{ii}} 
+	+ \frac i 2 \bm R_1 \paren{\paulid{iz}}
+	+ 0 \bm R_1 \paren{\paulid{zi}} 
+	+ 0 \bm R_1 \paren{\paulid{zz}} 
 \end{align*}
 
 Li \shortcite{benjamin} states 
 \begin{equation}
 	\begin{split}
 	\label{eq:rki}
-	\fpd {\ket \Psi} {\lambda_k} &= \sum_{A \in P}f_{k, A}R_{k, A}\ket 0\\
+	\fpd {\ket \Psi} {\lambda_k} &= \sum_{A \in P}f_{k, A}\bm R_{k, A}\ket 0\\
 	\intertext{\text{Where}}
-	R_{k,A} &= R_{N_v} \ldots R_k \cdot A \cdot R_{k - 1} \ldots R_1
+	\bm R_{k,A} &= \bm R_{N_v} \ldots \bm R_k \cdot A \cdot \bm R_{k - 1} \ldots \bm R_1
 \end{split}
 \end{equation}
 So we have:
@@ -2355,19 +2021,19 @@ So we have:
 	\end{matrix}
 	\right] \ket 0
 	\\
-	&\neq \sum_A f_{1, A} R_{1, A} \ket 0 
-	= \frac i 2 R_{1, \paulid{iz}} \ket 0
+	&\neq \sum_A f_{1, A} \bm R_{1, A} \ket 0 
+	= \frac i 2 \bm R_{1, \paulid{iz}} \ket 0
 \end{align*}
 with \ref{eq:rki}:
 \begin{align*}
-	R_{1, \paulid{iz}} = R_6 R_5 R_4 R_3 R_2 R_1 \paren{\paulid{iz}} &=
+	\bm R_{1, \paulid{iz}} = \bm R_6 \bm R_5 \bm R_4 \bm R_3 \bm R_2 \bm R_1 \paren{\paulid{iz}} &=
 	R\paren{\paulid{iz}}\\ 
 \end{align*}
 
 Finally,
 
 \begin{align*}
-	\frac i 2 R_{1, \paulid{iz}}
+	\frac i 2 \bm R_{1, \paulid{iz}}
 	&=
 	\frac i 2 R \IZ
 	\\
@@ -2381,21 +2047,21 @@ Finally,
 \end{align*}
 and we can see
 $$
-	\sum_i f_{1, i} R_{1, i} \ket 0 
+	\sum_i f_{1, i} \bm R_{1, i} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega}
 $$
 
 This happens since our variables aren't unique. In this case, $\lambda_1 = \lambda_5$, and we'll see later that Li's \shortcite{benjamin} equation \ref{eq:rki} needs to be corrected in our approach to include terms that use the same variable:
 $$
 	\fpd{\ket\Psi}{\lambda_k}
-	=\sum_{j:\lambda_k = \lambda_j} \sum_{A \in P} f_{j, A} R_{j, A} \ket 0 
+	=\sum_{j:\lambda_k = \lambda_j} \sum_{A \in P} f_{j, A} \bm R_{j, A} \ket 0 
 $$
 
 \item $k = 2$
 
 \begin{align*}
-	\frac {dR_2}{d\lambda_2} 
-	&= \frac {dR_2}{d\omega_\ind 0} 
+	\frac {d\bm R_2}{d\lambda_2} 
+	&= \frac {d\bm R_2}{d\omega_\ind 0} 
 	=
 	\begin{bmatrix}
 		\frac i 2 e^{\frac i 2 \omega_\ind 0 } & 0 & 0 & 0 \\
@@ -2403,13 +2069,13 @@ $$
 		0 & 0 & -\frac i 2 e^{-\frac i 2 \omega_\ind 0 } & 0 \\
 		0 & 0 & 0 & -\frac i 2 e^{-\frac i 2 \omega_\ind 0 }
 	\end{bmatrix} \\
-	&= \sum_{A \in P} f_{2, A} R_2 \cdot A 
+	&= \sum_{A \in P} f_{2, A} \bm R_2 \cdot A 
 	\intertext{Once again, the relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
 	\\
-	&= f_{2, \paulid{ii}} R_2 \paren{\paulid{ii}} 
-	+ f_{2, \paulid{iz}} R_2 \paren{\paulid{iz}} 
-	+ f_{2, \paulid{zi}} R_2 \paren{\paulid{zi}} 
-	+ f_{2, \paulid{zz}} R_2 \paren{\paulid{zz}} 
+	&= f_{2, \paulid{ii}} \bm R_2 \paren{\paulid{ii}} 
+	+ f_{2, \paulid{iz}} \bm R_2 \paren{\paulid{iz}} 
+	+ f_{2, \paulid{zi}} \bm R_2 \paren{\paulid{zi}} 
+	+ f_{2, \paulid{zz}} \bm R_2 \paren{\paulid{zz}} 
 	\\
 	&= f_{2, \paulid{ii}}
 	\rmatdd 2
@@ -2429,10 +2095,10 @@ $$
 	\\
 	\intertext{The solution to this system is:}
 	\\
-	&= 0 R_2 \paren{\paulid{ii}} 
-	+ 0 R_2 \paren{\paulid{iz}} 
-	+ \frac i 2 R_2 \paren{\paulid{zi}} 
-	+ 0 R_2 \paren{\paulid{zz}} 
+	&= 0 \bm R_2 \paren{\paulid{ii}} 
+	+ 0 \bm R_2 \paren{\paulid{iz}} 
+	+ \frac i 2 \bm R_2 \paren{\paulid{zi}} 
+	+ 0 \bm R_2 \paren{\paulid{zz}} 
 \end{align*}
 
 Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our result:
@@ -2548,34 +2214,34 @@ Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our r
 	\end{matrix}
 	\right] \ket 0
 	\\
-	&\neq \sum_i f_{2, i} R_{2, i} \ket 0 
-	= \frac i 2 R_{2, \paulid{zi}} \ket 0
+	&\neq \sum_i f_{2, i} \bm R_{2, i} \ket 0 
+	= \frac i 2 \bm R_{2, \paulid{zi}} \ket 0
 \end{align*}
 
 with \ref{eq:rki}:
 %
 \begin{align*}
-	R_{2, \paren{\paulid{zi}}} &= R_6 R_5 R_4 R_3 R_2 \paren{\paulid{zi}} R_1
+	\bm R_{2, \paren{\paulid{zi}}} &= \bm R_6 \bm R_5 \bm R_4 \bm R_3 \bm R_2 \paren{\paulid{zi}} \bm R_1
 \end{align*}
 %
 Finally,
 %
 \begin{align*}
-	\frac i 2 R_{2, \paulid{zi}}
+	\frac i 2 \bm R_{2, \paulid{zi}}
 	&=
-	\frac i 2 R_6 R_5 R_4 R_3 R_2 \ZI R_1
+	\frac i 2 \bm R_6 \bm R_5 \bm R_4 \bm R_3 \bm R_2 \ZI \bm R_1
 	\\
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{2, A} R_{2, A} \ket 0 
+	\sum_{A \in P} f_{2, A} \bm R_{2, A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
 
 \item $k = 3$
 \begin{align*}
-	\frac {dR_3}{d\lambda_3} 
-	&= \frac {dR_3}{d\rho_\ind 1} 
+	\frac {d\bm R_3}{d\lambda_3} 
+	&= \frac {d\bm R_3}{d\rho_\ind 1} 
 	=
 	\begin{bmatrix}
 		-\s{\rho_\ind 1} & -\co{\rho_\ind 1} & 0 & 0 
@@ -2587,7 +2253,7 @@ $$
 		0 & 0 & \co{\rho_\ind 1} & -\s{\rho_\ind 1}
 	\end{bmatrix}
 	\\
-	&= \sum_{A \in P} f_{3, A} R_3 \cdot A 
+	&= \sum_{A \in P} f_{3, A} \bm R_3 \cdot A 
 	\intertext{The relevant matrices in $P$ are $\paulid{ii}, \paulid{ix}, \paulid{iy}, \paulid{iz}, \paulid{zi}, \paulid{zx}, \paulid{zy}$ and $\paulid{zz}$,
 	but the solution is straightforward as it is a multiple of $\paulid{iy}$:}
 	&= f_{3, \paulid{iy}} 
@@ -2599,7 +2265,7 @@ $$
 	\end{bmatrix}
 	\IY
 	\\
-	&= -i R_3 \paren{\paulid{iy}}
+	&= -i \bm R_3 \paren{\paulid{iy}}
 \end{align*}
 Looking at Li's \shortcite{benjamin} equation \ref{eq:rki} again, we have:
 \begin{align*}
@@ -2704,12 +2370,12 @@ Looking at Li's \shortcite{benjamin} equation \ref{eq:rki} again, we have:
 	\end{matrix}
 \right ] \ket 0
 	\\
-	&= \sum_{A \in P} f_{3, A} R_{3, A} \ket 0 
-	= -i R_{3, \paulid{iy}} \ket 0
+	&= \sum_{A \in P} f_{3, A} \bm R_{3, A} \ket 0 
+	= -i \bm R_{3, \paulid{iy}} \ket 0
 \end{align*}
 with \ref{eq:rki}:
 \begin{align*}
-	R_{3, \paulid{iy}} &= R_6 R_5 R_4 R_3 \paren{\paulid{iy}} R_2 R_1
+	\bm R_{3, \paulid{iy}} &= \bm R_6 \bm R_5 \bm R_4 \bm R_3 \paren{\paulid{iy}} \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2755,15 +2421,15 @@ with \ref{eq:rki}:
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{3, A} R_{3, A} \ket 0 
+	\sum_{A \in P} f_{3, A} \bm R_{3, A} \ket 0 
 	= \fpd{\ket\Psi}{\rho_\ind 1}
 $$
 The results coincide here as $\lambda_3$ is unique in our set of variables.
 
 \item $k = 4$
 \begin{align*}
-	\frac {dR_4}{d\lambda_4} 
-	&= \frac {dR_4}{d\rho_\ind 0} 
+	\frac {d\bm R_4}{d\lambda_4} 
+	&= \frac {d\bm R_4}{d\rho_\ind 0} 
 	=
 	\begin{bmatrix}
 		-\s{\rho_\ind 0} & 0 & \co{\rho_\ind 0} & 0 
@@ -2775,7 +2441,7 @@ The results coincide here as $\lambda_3$ is unique in our set of variables.
 		0 & \co{\rho_\ind 0} & 0 & -\s{\rho_\ind 0}
 	\end{bmatrix}
 	\\
-	&= \sum_{A \in P} f_{4, A} R_4 \cdot A 
+	&= \sum_{A \in P} f_{4, A} \bm R_4 \cdot A 
 	\intertext{The relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{xi}, \paulid{xz}, \paulid{yi}, \paulid{yz}, \paulid{zi}$ and $\paulid{zz}$, 
 	but the solution is again straightforward as it is a multiple of $\paulid{yz}$:}
 	&= f_{4, \paulid{yz}} 
@@ -2790,7 +2456,7 @@ The results coincide here as $\lambda_3$ is unique in our set of variables.
 	\end{bmatrix}
 	\YZ
 	\\
-	&= i R_4 \paren{\paulid{yz}}
+	&= i \bm R_4 \paren{\paulid{yz}}
 \end{align*}
 Looking at Li's \shortcite{benjamin} equations \ref{eq:rki} again, we have:
 \begin{align*}
@@ -2896,12 +2562,12 @@ Looking at Li's \shortcite{benjamin} equations \ref{eq:rki} again, we have:
 	\end{matrix}
 	\right ] \ket 0
 	\\
-	&= \sum_{A \in P} f_{4, A} R_{4, A} \ket 0 
-	= i R_{4, \paulid{yz}} \ket 0
+	&= \sum_{A \in P} f_{4, A} \bm R_{4, A} \ket 0 
+	= i \bm R_{4, \paulid{yz}} \ket 0
 \end{align*}
 with \ref{eq:rki}:
 \begin{align*}
-	R_{4, \paulid{yz}} &= R_6 R_5 R_4 \paren{\paulid{yz}} R_3 R_2 R_1
+	\bm R_{4, \paulid{yz}} &= \bm R_6 \bm R_5 \bm R_4 \paren{\paulid{yz}} \bm R_3 \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2947,15 +2613,15 @@ with \ref{eq:rki}:
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{4, A} R_{4, A} \ket 0 
+	\sum_{A \in P} f_{4, A} \bm R_{4, A} \ket 0 
 	= \fpd{\ket\Psi}{\rho_\ind 0}
 $$
 
 \item $ k = 5 $
 %
 \begin{align*}
-	\frac {dR_5}{d\lambda_5} 
-	&= \frac {dR_5}{d\omega_\ind 1} 
+	\frac {d\bm R_5}{d\lambda_5} 
+	&= \frac {d\bm R_5}{d\omega_\ind 1} 
 	= 
 	\begin{bmatrix}
 		-\frac i 2 e^{-\frac i 2 \omega_\ind 1 } & 0 & 0 & 0 \\
@@ -2964,13 +2630,13 @@ $$
 		0 & 0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 1 }
 	\end{bmatrix} \\
 	&= \sum_{A \in P}
-		f_{5, A}R_5 \cdot A
+		f_{5, A}\bm R_5 \cdot A
 		\intertext{The only relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
 		\\
-	&= f_{5, \paulid{ii}} R_5 \paren{\paulid{ii}}
-	+ f_{5, \paulid{iz}} R_5 \paren{\paulid{iz}}
-	+ f_{5, \paulid{zi}} R_5 \paren{\paulid{zi}}
-	+ f_{5, \paulid{zz}} R_5 \paren{\paulid{zz}}
+	&= f_{5, \paulid{ii}} \bm R_5 \paren{\paulid{ii}}
+	+ f_{5, \paulid{iz}} \bm R_5 \paren{\paulid{iz}}
+	+ f_{5, \paulid{zi}} \bm R_5 \paren{\paulid{zi}}
+	+ f_{5, \paulid{zz}} \bm R_5 \paren{\paulid{zz}}
 	\\
 	&= f_{5, \paulid{ii}}
 	\rmatdd 5 
@@ -2990,10 +2656,10 @@ $$
 	\\
 	\intertext{The solution to this system is:}
 	\\
-	&= 0 R_5 \paren{\paulid{ii}} 
-	- \frac i 2 R_5 \paren{\paulid{iz}}
-	+ 0 R_5 \paren{\paulid{zi}} 
-	+ 0 R_5 \paren{\paulid{zz}} 
+	&= 0 \bm R_5 \paren{\paulid{ii}} 
+	- \frac i 2 \bm R_5 \paren{\paulid{iz}}
+	+ 0 \bm R_5 \paren{\paulid{zi}} 
+	+ 0 \bm R_5 \paren{\paulid{zz}} 
 \end{align*}
 %
 Li's \shortcite{benjamin} equation \ref{eq:rki} once again fails, as we have:
@@ -3108,35 +2774,35 @@ Li's \shortcite{benjamin} equation \ref{eq:rki} once again fails, as we have:
 	\end{matrix}
 	\right] \ket 0
 	\\
-	&\neq \sum_A f_{5, A} R_{5, A} \ket 0 
-	= - \frac i 2 R_{5, \paulid{iz}} \ket 0
+	&\neq \sum_A f_{5, A} \bm R_{5, A} \ket 0 
+	= - \frac i 2 \bm R_{5, \paulid{iz}} \ket 0
 \end{align*}
 %
 with \ref{eq:rki}:
 %
 \begin{align*}
-	R_{5, \paulid{iz}} &= R_6 R_5 \paren{\paulid{iz}} R_4 R_3 R_2 R_1
+	\bm R_{5, \paulid{iz}} &= \bm R_6 \bm R_5 \paren{\paulid{iz}} \bm R_4 \bm R_3 \bm R_2 \bm R_1
 \end{align*}
 %
 Finally,
 %
 \begin{align*}
-	- \frac i 2 R_{5, \paulid{iz}}
+	- \frac i 2 \bm R_{5, \paulid{iz}}
 	&=
-	-\frac i 2 R_6 R_5 \IZ R_4 R_3 R_2 R_1 
+	-\frac i 2 \bm R_6 \bm R_5 \IZ \bm R_4 \bm R_3 \bm R_2 \bm R_1 
 	\\
 \end{align*}
 %
 and we can see
 %
 $$
-	\sum_{A \in P} f_{5, A} R_{5, A} \ket 0 
+	\sum_{A \in P} f_{5, A} \bm R_{5, A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 1}
 $$
 On the other hand,
 $$
-	\sum_{A \in P} f_{1, A} R_{1, A} \ket 0 
-	+ \sum_{A \in P} f_{5, A} R_{5, A} \ket 0 
+	\sum_{A \in P} f_{1, A} \bm R_{1, A} \ket 0 
+	+ \sum_{A \in P} f_{5, A} \bm R_{5, A} \ket 0 
 	= \fpd{\ket\Psi}{\omega_\ind 1}
 $$
 As expectend since $\lambda_5 = \lambda_1$.
@@ -3144,8 +2810,8 @@ As expectend since $\lambda_5 = \lambda_1$.
 \item $ k = 6 $
 %
 \begin{align*}
-	\frac {dR_6}{d\lambda_6} 
-	&= \frac {dR_6}{d\omega_\ind 0} 
+	\frac {d\bm R_6}{d\lambda_6} 
+	&= \frac {d\bm R_6}{d\omega_\ind 0} 
 	=
 	\begin{bmatrix}
 		-\frac i 2 e^{-\frac i 2 \omega_\ind 0 } & 0 & 0 & 0 \\
@@ -3153,13 +2819,13 @@ As expectend since $\lambda_5 = \lambda_1$.
 		0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 0} & 0 \\
 		0 & 0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 0}
 	\end{bmatrix} \\
-	&= \sum_{A \in P} f_{6, A} R_6 \cdot A 
+	&= \sum_{A \in P} f_{6, A} \bm R_6 \cdot A 
 	\intertext{Once again, the relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
 	\\
-	&= f_{6, \paulid{ii}} R_6 \paren{\paulid{ii}} 
-	+ f_{6, \paulid{iz}} R_6 \paren{\paulid{iz}} 
-	+ f_{6, \paulid{zi}} R_6 \paren{\paulid{zi}} 
-	+ f_{6, \paulid{zz}} R_6 \paren{\paulid{zz}} 
+	&= f_{6, \paulid{ii}} \bm R_6 \paren{\paulid{ii}} 
+	+ f_{6, \paulid{iz}} \bm R_6 \paren{\paulid{iz}} 
+	+ f_{6, \paulid{zi}} \bm R_6 \paren{\paulid{zi}} 
+	+ f_{6, \paulid{zz}} \bm R_6 \paren{\paulid{zz}} 
 	\\
 	&= f_{6, \paulid{ii}}
 	\rmatdd 6
@@ -3180,10 +2846,10 @@ As expectend since $\lambda_5 = \lambda_1$.
 	%
 	\intertext{The solution to this system is:}
 	%
-	&= 0 R_6 \paren{\paulid{ii}} 
-	+ 0 R_6 \paren{\paulid{iz}} 
-	- \frac i 2 R_6 \paren{\paulid{zi}} 
-	+ 0 R_6 \paren{\paulid{zz}} 
+	&= 0 \bm R_6 \paren{\paulid{ii}} 
+	+ 0 \bm R_6 \paren{\paulid{iz}} 
+	- \frac i 2 \bm R_6 \paren{\paulid{zi}} 
+	+ 0 \bm R_6 \paren{\paulid{zz}} 
 \end{align*}
 %
 Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our result:
@@ -3299,34 +2965,34 @@ Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our r
 	\end{matrix}
 	\right] \ket 0
 	\\
-	&\neq \sum_i f_{6, i} R_{6, i} \ket 0 
-	= - \frac i 2 R_{6, \paulid{zi}} \ket 0
+	&\neq \sum_i f_{6, i} \bm R_{6, i} \ket 0 
+	= - \frac i 2 \bm R_{6, \paulid{zi}} \ket 0
 \end{align*}
 %
 with
 %
 \begin{align*}
-	R_{6, \paren{\paulid{zi}}} &= R_6 \paren{\paulid{zi}} R_5 R_4 R_3 R_2 R_1
+	\bm R_{6, \paren{\paulid{zi}}} &= \bm R_6 \paren{\paulid{zi}} \bm R_5 \bm R_4 \bm R_3 \bm R_2 \bm R_1
 \end{align*}
 %
 Finally,
 %
 \begin{align*}
-	- \frac i 2 R_{6, \paulid{zi}}
+	- \frac i 2 \bm R_{6, \paulid{zi}}
 	&=
-	-\frac i 2 R_6 \ZI R_5 R_4 R_3 R_2 R_1
+	-\frac i 2 \bm R_6 \ZI \bm R_5 \bm R_4 \bm R_3 \bm R_2 \bm R_1
 \end{align*}
 %
 and we can see
 %
 $$
-	\sum_{A \in P} f_{6, A} R_{6, A} \ket 0 
+	\sum_{A \in P} f_{6, A} \bm R_{6, A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
-But once again, the equation is satisfied when involving $R_2$:
+But once again, the equation is satisfied when involving $\bm R_2$:
 $$
-	\sum_{A \in P} f_{2, A} R_{2, A} \ket 0 
-	+ \sum_{A \in P} f_{6, A} R_{6, A} \ket 0 
+	\sum_{A \in P} f_{2, A} \bm R_{2, A} \ket 0 
+	+ \sum_{A \in P} f_{6, A} \bm R_{6, A} \ket 0 
 	= \fpd{\ket\Psi}{\omega_\ind 0}
 $$
 \end{enumerate}
@@ -3355,14 +3021,14 @@ Now each individual term of $M$ and $V$ can be rewritten in terms of our newfoun
 	M_{k, q} 
 	= \sum_{i, j \in Pauli}
 	\left[
-	\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{k, i}^\dagger R_{q, j}} 0}
-	+\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{k, i}^\dagger R_{q, j}} 0}^*
+	\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{k, i}^\dagger \bm R_{q, j}} 0}
+	+\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{k, i}^\dagger \bm R_{q, j}} 0}^*
 	\right]\\
 	V_{k} 
 	= \sum_{i, j \in Pauli}
 	\left[
-	\paren{if_{k, i}^*h_{j}\sandwich 0 {R_{k, i}^\dagger \sigma_j R} 0}
-	+\paren{if_{k, i}^*h_{j}\sandwich 0 {R_{k, i}^\dagger \sigma_j R} 0}^*
+	\paren{if_{k, i}^*h_{j}\sandwich 0 {\bm R_{k, i}^\dagger \sigma_j R} 0}
+	+\paren{if_{k, i}^*h_{j}\sandwich 0 {\bm R_{k, i}^\dagger \sigma_j R} 0}^*
 	\right]
 \end{split}
 \end{equation}
@@ -3436,19 +3102,19 @@ Measuring the first qubit in this circuit yields us:
 \begin{equation*}
 	\begin{split}
 		\ket \phi 
-		&= \frac{\ket 0}{\sqrt 2} \otimes R_{N_v} \ldots R_k \cdot \sigma_{ki} \cdot R_{k-1} \ldots R_1 \ket 0^{\otimes \elec}\\
-		&\quad + \frac{e^{i\theta}\ket 1}{\sqrt 2} \otimes R_{N_v} \ldots R_q \cdot \sigma_{qj} \cdot R_{q-1} \ldots R_1 \ket 0^{\otimes \elec}\\
+		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_k \cdot \sigma_{ki} \cdot \bm R_{k-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
+		&\quad + \frac{e^{i\theta}\ket 1}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_q \cdot \sigma_{qj} \cdot \bm R_{q-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
 		\span\text{We can now use \ref{eq:rki} to simplify our expression:}\\
-		&= \frac{\ket 0}{\sqrt 2} \otimes R_{ki} \ket 0^{\otimes \elec}
-		+ \frac{e^{i\theta}\ket 1}{\sqrt 2} R_{qj}\ket 0^{\otimes \elec}\\
+		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{ki} \ket 0^{\otimes \elec}
+		+ \frac{e^{i\theta}\ket 1}{\sqrt 2} \bm R_{qj}\ket 0^{\otimes \elec}\\
 		\span\text{We can now change basis in our first qubit to
 		$\ket + = \frac{\ket 0 + \ket 1}{\sqrt 2}$
 		and
 		$\ket - = \frac{\ket 0 - \ket 1}{\sqrt 2}$:}\\
-		&= \frac{\ket + + \ket -}{2} \otimes R_{ki} \ket 0^{\otimes \elec}
-		+ \frac{e^{i\theta}\paren{\ket + - \ket -}}{2} R_{qj}\ket 0^{\otimes \elec}\\
-		&= \ket + \otimes \frac{R_{ki} + e^{i\theta}R_{qj}}{2} \ket 0^{\otimes \elec}
-		 + \ket - \otimes \frac{R_{ki} - e^{i\theta}R_{qj}}{2} \ket 0^{\otimes \elec}
+		&= \frac{\ket + + \ket -}{2} \otimes \bm R_{ki} \ket 0^{\otimes \elec}
+		+ \frac{e^{i\theta}\paren{\ket + - \ket -}}{2} \bm R_{qj}\ket 0^{\otimes \elec}\\
+		&= \ket + \otimes \frac{\bm R_{ki} + e^{i\theta}\bm R_{qj}}{2} \ket 0^{\otimes \elec}
+		 + \ket - \otimes \frac{\bm R_{ki} - e^{i\theta}\bm R_{qj}}{2} \ket 0^{\otimes \elec}
 	\end{split}
 \end{equation*}
 The probability of measuring $\ket +$ on the first qubit is:
@@ -3456,23 +3122,23 @@ The probability of measuring $\ket +$ on the first qubit is:
 	\begin{split}
 		P(\ket +)
 		&= \sandwich 0 {
-			\frac{1}{2}\paren{R_{ki} + e^{i\theta} R_{qj}}
-			\frac{1}{2}\paren{R_{ki} + e^{i\theta} R_{qj}}^{\dagger}
+			\frac{1}{2}\paren{\bm R_{ki} + e^{i\theta} \bm R_{qj}}
+			\frac{1}{2}\paren{\bm R_{ki} + e^{i\theta} \bm R_{qj}}^{\dagger}
 		} 0 \\
 		&= \frac 1 4 \sandwich 0 {
-			\paren{R_{ki} + e^{i\theta} R_{qj}}
-			\paren{R_{ki}^\dagger + e^{-i\theta} R_{qj}^{\dagger}}
+			\paren{\bm R_{ki} + e^{i\theta} \bm R_{qj}}
+			\paren{\bm R_{ki}^\dagger + e^{-i\theta} \bm R_{qj}^{\dagger}}
 		} 0 \\
 		&= \frac 1 4 \sandwich 0 {
-			R_{ki}R_{ki}^\dagger + e^{-i\theta} R_{ki}R_{qj}^{\dagger} 
-			+ e^{i\theta} R_{qj}R_{ki}^\dagger + R_{qj}R_{qj}^\dagger
+			\bm R_{ki}\bm R_{ki}^\dagger + e^{-i\theta} \bm R_{ki}\bm R_{qj}^{\dagger} 
+			+ e^{i\theta} \bm R_{qj}\bm R_{ki}^\dagger + \bm R_{qj}\bm R_{qj}^\dagger
 		} 0 \\
 		&= \frac 1 4 \sandwich 0 {
-			e^{-i\theta} R_{ki}R_{qj}^{\dagger} + \paren{e^{-i\theta} R_{ki}R_{qj}^\dagger}^\dagger
+			e^{-i\theta} \bm R_{ki}\bm R_{qj}^{\dagger} + \paren{e^{-i\theta} \bm R_{ki}\bm R_{qj}^\dagger}^\dagger
 		} 0 
 			+ \frac{\sandwich 0 I 0}{2}\\
 		&= \frac 1 2 Re\paren{e^{i\theta}\sandwich 0 {
-			 R_{ki}R_{qj}^{\dagger}
+			 \bm R_{ki}\bm R_{qj}^{\dagger}
 	} 0 }
 			+ \frac{1}{2}\\
 	\end{split}
@@ -3482,23 +3148,23 @@ The probability of measuring $\ket -$ on the first qubit is then:
 	\begin{split}
 		P(\ket -)
 		= \frac 1 2 - \frac 1 2 Re\paren{e^{i\theta}\sandwich 0 {
-			 R_{ki}R_{qj}^{\dagger}
+			 \bm R_{ki}\bm R_{qj}^{\dagger}
 	} 0 }
 	\end{split}
 \end{equation*}
-The average measurement of this circuit is then $Avg = P(\ket +) \cdot 1 + P(\ket -) \cdot (-1) = Re\paren{e^{i\theta}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}$ since the eigenvalue of $\ket +$ is 1 and the eigenvalue of $\ket -$ is -1.
+The average measurement of this circuit is then $Avg = P(\ket +) \cdot 1 + P(\ket -) \cdot (-1) = Re\paren{e^{i\theta}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}$ since the eigenvalue of $\ket +$ is 1 and the eigenvalue of $\ket -$ is -1.
 
 Taking $a_{kiqj} = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and referring back to \ref{eq:benjamin}:
 \begin{equation*}
 	\begin{split}
 		\sum_{i, j \in P} a_{kiqj} \cdot Avg_{kiqj} 
-		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{e^{i\theta}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{\frac{if_{k, i}^*f_{q, j}}{\abs{if_{k, i}^*f_{q, j}}}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} \frac{a_{kiqj}}{\abs{if_{k, i}^*f_{q, j}}} Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} 2 Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{e^{i\theta}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{\frac{if_{k, i}^*f_{q, j}}{\abs{if_{k, i}^*f_{q, j}}}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P} \frac{a_{kiqj}}{\abs{if_{k, i}^*f_{q, j}}} Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P} 2 Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
 		&= \sum_{i, j \in P} 
-		\left [if_{k, i}^*f_{q, j}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0 +
-		\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}^* \right ] = M_{k, q}\\
+		\left [if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0 +
+		\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}^* \right ] = M_{k, q}\\
 	\end{split}
 \end{equation*}
 Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega_\ind 0, \omega_\ind 1$, we get the following for R, using \ref{eq:udecomposition}:
@@ -3507,18 +3173,18 @@ Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega
 	= \sum_{\ind 0} \paren{
 		u_{\lambda_{\ind 0}} \otimes \ket{\ind 0} \bra{\ind 0} }\ket 0 \\
 	&= \sum_{\ind 0} \paren{
-		R_z(\omega_{\ind 0}) R_y(2\rho_\ind 0) R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}} \ket 0
+		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}} \ket 0
 \end{align*}
 
 We can rewrite $R$ as:
 \begin{align*}
 	R 
 	&= \sum_{\ind 0} 
-		R_z(\omega_{\ind 0}) R_y(2\rho_\ind 0) R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}
-	=\prod_{k=N_v}^1 R_k(\lambda_k)
+		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}
+	=\prod_{k=N_v}^1 \bm R_k(\lambda_k)
 \end{align*}
 
-We can now use the $R_k$ to find our $f_{k, i}$ via \ref{eq:r_to_f}. Finally, we use the values obtained to obtain the gates used in, for example, circuit \ref{fig:circuit}.
+We can now use the $\bm R_k$ to find our $f_{k, i}$ via \ref{eq:r_to_f}. Finally, we use the values obtained to obtain the gates used in, for example, circuit \ref{fig:circuit}.
 
 %-------------------------------------------------------------------------------------
 
@@ -3527,7 +3193,7 @@ We can now use the $R_k$ to find our $f_{k, i}$ via \ref{eq:r_to_f}. Finally, we
 Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method together with some other approximations, we've obtained a reference wavefunction $\ket \Psi(\bm \omega, \bm \rho) = \hat U\ket 0$ that depends on vectors of real rotation angles $\bm \omega$ and $\bm \rho$.
 
 Next, we've solved the Euler-Lagrange differential equation system related to that wavefunction to get an algebraic result for the matrices in our system.
-We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} R(\lambda_{\ind 0})$.
+We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$.
 
 We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_q \bm M_{k,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. Computational results confirming the research are in progress.
 \begin{figure}[hb!]
