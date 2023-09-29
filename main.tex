@@ -1006,7 +1006,7 @@ ${\delta = -\omega_\ind 0}$. Finally:
 %
 Notice now that $\det \bm u_{\lambda_\ind 0} = 1$, and $\bm u_{\lambda_\ind 0}$ belongs to the special unitary group $\bm u_{\lambda_\ind 0} \in SU(2)$.
 %
-We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the Pauli matrices ($I, X, Y, Z$):
+We shall now rewrite $\bm u_{\lambda_\ind 0}$ in terms of the Pauli matrices ($\bm I, \bm X, \bm Y, \bm Z$):
 \begin{align*}
 	\bm u_{\lambda_\ind 0}
 	&= \bm R_z(\omega_\ind 0)\bm R_y(2\rho_\ind 0)\bm R_z(-\omega_\ind 0) \\
@@ -1116,7 +1116,11 @@ Note here that our wavefunction $\ket \Psi$ is a function of four real variables
 
 %-------------------------------------------------------------------------------------
 
-\section {\textbf{Dynamics}}
+\section {\textbf{Circuit for 2-electron model}}
+
+We propose to use a quantum circuit to evaluate the matrices $\bm M$ and $\bm V$. To do so, we must adapt Li's \shortcite{benjamin} algorithm, which is a variation of Ekert's \shortcite{ekert} quantum circuit, to work with our reduced number of variables.
+%
+\subsection {\textbf{Dynamics}}
 
 The next step to use the \gls{tdvp} would be to evaluate $\bm M$ and $\bm V$. To do so, we need to set up the Lagrangian and solve the Euler-Lagrange equation system.
 As seen in \cite{benjamin}, we can obtain the Lagrangian of our sistem as:
@@ -1706,11 +1710,6 @@ We can now update our matrix equation \ref{eq:matrixderiv} with the calculated v
 \end{equation*}
 %-------------------------------------------------------------------------------------
 
-%TODO: Circuit for 1-electron model
-\section {\textbf{Circuit for 2-electron model}}
-
-We propose to use a quantum circuit to evaluate the matrices $\bm M$ and $\bm V$. To do so, we must adapt Li's \shortcite{benjamin} algorithm, which is a variation of Ekert's \shortcite{ekert} quantum circuit, to work with our reduced number of variables.
-%
 \subsection {\textbf{Decompose the wavefunction}}
 
 First, we need to write $\ket \Psi = \bm R \ket 0 = \prod_{k=N_v}^1 \bm R_k(\lambda_k) \ket 0$ for some integer $N_v$. That is, we need to find a product of matrices of a single variable that, when applied to the ground state, gives us our wavefunction.
@@ -1719,7 +1718,7 @@ Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecompos
 \begin{split}
 	\ket\Psi 
 	= \bigotimes_{\ind 0} 
-		u_{\lambda_{\ind 0}} \ket 0
+		\bm u_{\lambda_{\ind 0}} \ket 0
 	= \bigotimes_{\ind 0} 
 		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \ket 0
 \end{split}
@@ -3399,7 +3398,6 @@ Finally,
 		\end{pmatrix}
 	\end{split}
 \end{equation*}
-
 %
 Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables:
 %
@@ -3577,6 +3575,773 @@ We then used the matrices $\bm R_k$ to find our constants $f_{k, i} \in \mathbb{
 
 %-------------------------------------------------------------------------------------
 
+\section {\textbf{Circuit for 1-electron model}}
+
+The 1-electron case is somewhat simpler than the 2-electron counterpart. We follow through the same steps, however. We must get an expression for $\ket \Psi$, use it to obtain a matrix $\bm R$, decompose it into a product of single-variable matrices $\bm R_k$ and use these to find our $f$ constants. Then we must find the Hamiltonian $\hat H$ and use it to find the $h$ constants. Using the $f$ and $h$ constants, we can assemble a circuit.
+%
+\subsection {\textbf{Dynamics}}
+%
+We take somewhat similar steps to before in solving the lagrangian. Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecomposition} and \ref{eq:urotation}:
+\begin{equation*}
+\begin{split}
+	\ket\Psi 
+	= \bigotimes_{\ind 0} 
+		\bm u_{\lambda_{\ind 0}} \ket 0
+	= \bigotimes_{\ind 0} 
+		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \ket 0
+	= \bm R_z(\omega) \bm R_y(2\rho) \bm R_z(-\omega) \ket 0
+\end{split}
+\end{equation*}
+%
+Meaning we have two variables $\omega$ and $\rho$. Let $\omega$ be $\lambda_1$ and $\rho$ be $\lambda_2$. Therefore, we have:
+%
+\begin{equation*}
+	\begin{split}
+		L &= \frac{i}{2}\bra{\Psi}{\kpp t} - \frac{i}{2}{\bpp{t}}\ket{\Psi} - \sandwich{\Psi}{\hat H}{\Psi} \\
+	L &= 	
+		\sum_j \frac{i}{2}\bra{\Psi}{\kpp {\lambda_j}} \dot \lambda_j
+	- 	\sum_j \frac{i}{2}{\bpp{\lambda_j}}\ket{\Psi}\dot{\lambda_j}
+	- \sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation*}
+%
+Taking the derivative of $L$ with regards to $\lambda_k$ for $k \in \{1, 2\}$:
+%
+\begin{equation*}
+	\begin{split}
+	\pd{\lambda_k} L &= 	
+	\phantom{-}\sum_j \frac{i}{2}\bra{\Psi}{\kppd {\lambda_k}{\lambda_j}} \dot \lambda_j
+	+	\sum_j \frac{i}{2}\bpp{\lambda_k}{\kpp {\lambda_j}} \dot \lambda_j \\
+	&\quad -\sum_j \frac{i}{2}{\bppd{\lambda_k}{\lambda_j}}\ket{\Psi}\dot{\lambda_j}
+	- 	\sum_j \frac{i}{2}{\bpp{\lambda_j}}\kpp{\lambda_k}\dot{\lambda_j}\\
+	&\quad -\pd{\lambda_k} \sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation*}
+%
+Taking the derivative of $L$ with regards to $\dot{\lambda_k}$ for $k \in \{1, 2\}$:
+%
+\begin{equation*}
+	\begin{split}
+		\pd{\dot{\lambda_k}} L &=
+		\frac{i}{2}\bra{\Psi}{\kpp {\lambda_k}}
+	- 	\frac{i}{2}{\bpp{\lambda_k}}\ket{\Psi}
+	\end{split}
+\end{equation*}
+%
+Taking the derivative of the expression above with regards to time:
+%
+\begin{equation*}
+	\begin{split}
+		\ddt \pd{\dot{\lambda_k}} L &=
+		\sum_j \frac{i}{2}\bpp{\lambda_j}{\kpp {\lambda_k}} \dot \lambda_j
+	+	\sum_j \frac{i}{2}\bra{\Psi}{\kppd {\lambda_j}{\lambda_k}} \dot \lambda_j \\
+    	&- 	\sum_j \frac{i}{2}{\bppd{\lambda_j}{\lambda_k}}\ket{\Psi}\dot{\lambda_j}
+	- 	\sum_j \frac{i}{2}{\bpp{\lambda_k}}\kpp{\lambda_j}\dot{\lambda_j}
+	\end{split}
+\end{equation*}
+%
+Now, since the Euler-Lagrange equation gives us $\pd{\lambda_k} L = \ddt \pd{\dot {\lambda_k}} L$, the only terms that do not cancel out are as follows:
+%
+\begin{equation*}
+	\begin{split}
+		\ddt \pd{\dot{\lambda_k}} L 
+	&=	\pd{\lambda_k} L
+	\\
+	 	\sum_j i \bpp{\lambda_k} \kpp{\lambda_j}\dot{\lambda_j}
+	-	\sum_j i \bpp{\lambda_j} \kpp{\lambda_k}\dot{\lambda_j}
+	&= 	\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi}
+	\end{split}
+\end{equation*}
+%
+This can be written in matrix notation:
+%
+\begin{equation*}
+	\begin{split}
+	 	i \left [ \bpp{\lambda_k} \kpp{\lambda_q} 
+			- \bpp{\lambda_q} \kpp{\lambda_k} \right ]_{kq}
+		\cdot \left[ \dot \lambda_q \right]_q
+	&= 	\left[\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi}\right]_k \\
+	\begin{pmatrix}
+		0 & i \bpp{\lambda_1} \kpp{\lambda_2} - i \bpp{\lambda_2} \kpp{\lambda_1} \\
+		i \bpp{\lambda_2} \kpp{\lambda_1} - i \bpp{\lambda_1} \kpp{\lambda_2} & 0
+	\end{pmatrix} 
+	\begin{pmatrix}
+		\dot \lambda_1 \\
+		\dot \lambda_2 
+	\end{pmatrix} 
+	    &=
+	\begin{pmatrix}
+		\pd {\lambda_1} \sandwich{\Psi}{\hat H}{\Psi}\\
+		\pd {\lambda_2} \sandwich{\Psi}{\hat H}{\Psi}\\
+	\end{pmatrix} \\
+	\sum_q M_{kq} \dot \lambda_q = V_k
+	\end{split}
+\end{equation*}
+%
+Where:
+\begin{equation*}
+	\begin{split}
+	M_{kq} 
+	&= 
+	 	i \bpp{\lambda_k} \kpp{\lambda_q} - i \bpp{\lambda_q} \kpp{\lambda_k} 
+	\\
+	V_k 
+	&= 	\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi} \\
+	\end{split}
+\end{equation*}
+%
+Taking a look at our previous decomposition of $\bm u$ through equation \ref{eq:psirw}, we can find our wavefunction $\ket\Psi$:
+%
+\begin{equation*}
+	\begin{split}
+	\ket \Psi 
+	&= \bm u_{\lambda_\ind 0} \ket {\psi_{\oo 0}} \\
+	&= \co {\rho} \ket {\psi_{\oo 0}} + \s {\rho}e^{i\omega} \ket{\psi_{\uo 0}} \\
+	\end{split}
+\end{equation*}
+%
+We can now calculate the elements of $\bm M$. First we calculate the values of the derivatives of $\ket \Psi$ with respect to $\rho$ and $\omega$.
+%
+\begin{equation*}
+	\begin{split}
+		\ket{\Psi} 
+		&= \co{\rho}\ket{\psi_{\oo {0}}} + \s\rho e^{i\omega}\ket{\psi_{\uo {0}}} 
+		%
+		\\
+		%
+		\pd\omega\ket\Psi 
+		&= \co\rho\ket{\psi_{\oo {0}}} + i\s\rho e^{i\omega}\ket{\psi_{\uo {0}}} 
+		%
+		\\
+		%
+		\pd\rho\ket\Psi 
+		&= -\s\rho\ket{\psi_{\oo {0}}} + \co\rho e^{i\omega}\ket{\psi_{\uo {0}}} 
+	\end{split}
+\end{equation*}
+
+Then we get the dual $\bra\Psi = {\ket\Psi}^\dagger$ and calculate its derivatives:
+\begin{equation*}
+	\begin{split}
+		\bra{\Psi} 
+		&= \co{\rho}\bra{\psi_{\oo {0}}} + \s\rho e^{-i\omega}\bra{\psi_{\uo {0}}}
+		%
+		\\
+		%
+		\pd\omega\bra\Psi 
+		&= \co\rho\bra{\psi_{\oo {0}}} - i\s\rho e^{-i\omega}\bra{\psi_{\uo {0}}}
+		%
+		\\
+		%
+		\pd\rho\bra\Psi 
+		&= -\s\rho\bra{\psi_{\oo {0}}} + \co\rho e^{-i\omega}\bra{\psi_{\uo {0}}}
+	\end{split}
+\end{equation*}
+%
+Finally:
+%
+\begin{equation*}
+	\begin{split}
+	i \bpp{\omega} \kpp{\rho} - i \bpp{\rho} \kpp{\omega} 
+	&= 
+	i\paren{-\s\rho\co\rho - i\s\rho\co\rho} \\
+	&\quad 
+	-i\paren{-\s\rho\co\rho + i\s\rho\co\rho} \\
+	&=
+	i\paren{-2i\s\rho\co\rho} \\
+	&=
+	\s{2\rho}
+	%
+	\\
+	%
+	i \bpp{\rho} \kpp{\omega} - i \bpp{\omega} \kpp{\rho} 
+	&= 
+	- \paren{i \bpp{\omega} \kpp{\rho} - i \bpp{\rho} \kpp{\omega}} \\
+	&=
+	-\s{2\rho}
+	\end{split}
+\end{equation*}
+%
+And we have the values for the $\bm M$ matrix:
+%
+\begin{equation*}
+	\begin{split}
+		\bm M = 
+	\begin{pmatrix}
+		0 & \s{2\rho} \\
+		-\s{2\rho} & 0
+	\end{pmatrix} 
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+	\begin{pmatrix}
+		0 & \s{2\rho} \\
+		-\s{2\rho} & 0
+	\end{pmatrix} 
+	\cdot
+	\begin{pmatrix}
+		\dot \lambda_1 \\
+		\dot \lambda_2 
+	\end{pmatrix} 
+	    &=
+	\begin{pmatrix}
+		\pd {\lambda_1} \sandwich{\Psi}{\hat H}{\Psi}\\
+		\pd {\lambda_2} \sandwich{\Psi}{\hat H}{\Psi}\\
+	\end{pmatrix} \\
+	\bm M \dot {\bm \lambda} = \bm V
+	\end{split}
+\end{equation*}
+%
+\subsection {\textbf{Decompose the wavefunction}}
+Now we need to write $\ket \Psi = \bm R \ket 0 = \prod_{k=N_v}^1 \bm R_k(\lambda_k) \ket 0$ for some integer $N_v$. That is, we need to find a product of matrices of a single variable that, when applied to the ground state, gives us our wavefunction.
+For our case where $\elec = 1$ and $\orb = 2$, we have:
+%
+\begin{equation*}
+\begin{split}
+	\ket\Psi 
+	&= \bm u_{\lambda_{\ind 0}} \ket 0 \\
+	&= \bm R_z(\omega) \bm R_y(2\rho) \bm R_z(-\omega)
+	\ket 0 \\
+	&= 
+	\begin{bmatrix}
+		e^{-\frac{i\omega} 2} & 0 \\
+		0 & e^{\frac{i\omega} 2}\\
+	\end{bmatrix} 
+	\begin{bmatrix}
+		\co \rho & - \s \rho \\
+		\s \rho  & \co \rho\\
+	\end{bmatrix} 
+	\begin{bmatrix}
+		e^{\frac{i\omega} 2} & 0 \\
+		0 & e^{-\frac{i\omega} 2}\\
+	\end{bmatrix} 
+	\ket 0 \\
+	&=
+	\begin{bmatrix}
+		\co \rho & - \s \rho e^{-i\omega} \\
+		\s \rho e^{i\omega} & \co \rho\\
+	\end{bmatrix} 
+	\ket 0 \\
+	&= \bm R\ket 0
+\end{split}
+\end{equation*}
+%
+We can then write the matrix $\bm R$ as a product of 3 matrices. Taking $\lambda_1 = \lambda_3 = \omega$ and $\lambda_2 = \rho$:
+%
+\begin{equation}
+	\begin{split}
+	\label{eq:rdecomposition1e}
+	\bm R &= \begin{bmatrix}
+		\co {\lambda_2} & - \s {\lambda_2} e^{-i{\lambda_1}} \\
+		\s {\lambda_2} e^{i{\lambda_1}} & \co {\lambda_2}\\
+	\end{bmatrix} \\
+	\bm R_3({\lambda_1})  &=
+	\begin{bmatrix}
+		e^{-\frac{i{\lambda_3}} 2} & 0 \\
+		0 & e^{\frac{i{\lambda_3}} 2}\\
+	\end{bmatrix} \\
+	\bm R_2({\lambda_2}) &= 
+	\begin{bmatrix}
+		\co {\lambda_2} & - \s {\lambda_2} \\
+		\s {\lambda_2}  & \co {\lambda_2}\\
+	\end{bmatrix} \\
+	\bm R_1({\lambda_1}) &=
+	\begin{bmatrix}
+		e^{\frac{i{\lambda_1}} 2} & 0 \\
+		0 & e^{-\frac{i{\lambda_1}} 2}\\
+	\end{bmatrix} \\
+	\end{split}
+\end{equation}
+%
+We note here that the order of the operators in \ref{eq:rdecomposition1e} is important, as the matrix $\bm R_2$ does not commute with the others. Thus, we fix the variables 
+$\lambda_1 = \omega;  \lambda_2 = \rho; \lambda_3 = \omega$.
+%
+%
+\subsection {\textbf{Obtaining constants}}
+%
+Now that we have each matrix $\bm R_k$, we obtain the decomposition of their derivatives $\fpd{\bm R_k}{\lambda_k}$ into Pauli matrices according to the following equation \cite{benjamin}:
+%
+\begin{equation}\label{eq:r_to_f1e}
+\begin{split}
+	\fpd{\bm R_k}{\lambda_k} = \sum_{i \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{k, i} \bm R_k \bm \sigma_{k, i}
+\end{split}
+\end{equation}
+%
+Where $\bm \sigma_{k, i} = i \in \{\bm I, \bm X, \bm Y, \bm Z\}$ are Pauli matrices.
+Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, 2, 3\}$ and $i \in \{\bm I, \bm X, \bm Y, \bm Z\}$. We accomplish this task by taking a look at \ref{eq:r_to_f1e} for each $k$:
+%
+\begin{enumerate}
+\item $k = 1$:
+\begin{align*}
+	\frac {d\bm R_1}{d\lambda_1} 
+	&= \frac {d\bm R_1}{d\omega} 
+	= 
+	\begin{bmatrix} 
+		\frac i 2 e^{\frac{i\omega} 2} & 0 \\
+		0 & -\frac i 2 e^{-\frac{i\omega} 2}\\
+	\end{bmatrix}\\
+	&= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}}
+		f_{1, \bm A}\bm R_1 \cdot \bm A
+		\intertext{The only relevant matrices are $\bm {I}$ and $\bm {Z}$, as the other matrices have only zeroes in the main diagonal.}
+	%
+	&= f_{1, \bm {I}} \bm R_1 \bm {I}
+	+ f_{1, \bm {Z}} \bm R_1 \bm {Z}
+	\\
+	&= f_{1, \bm {I}}
+	\begin{bmatrix} 
+		\frac i 2 e^{\frac{i\omega} 2} & 0 \\
+		0 & -\frac i 2 e^{-\frac{i\omega} 2}\\
+	\end{bmatrix}
+	\I
+	\\
+	&+ f_{1, \bm {Z}}
+	\begin{bmatrix} 
+		\frac i 2 e^{\frac{i\omega} 2} & 0 \\
+		0 & -\frac i 2 e^{-\frac{i\omega} 2}\\
+	\end{bmatrix}
+	\Z
+	\\
+	\intertext{The solution to this system is:}
+	%
+	&= 0 \bm R_1 \paren{\bm {I}} 
+	+ \frac i 2 \bm R_1 \paren{\bm {Z}} \\
+	&= \frac i 2 \bm R_1 \paren{\bm {Z}}
+\end{align*}
+%
+Li \shortcite{benjamin} states that:
+\begin{equation}
+	\begin{split}
+	\label{eq:rki1e}
+	\fpd {\ket \Psi} {\lambda_k} &= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}}f_{k, \bm A}\bm R_{k, \bm A}\ket 0
+	%
+	\intertext{\text{Where}}
+	%
+	\bm R_{k,\bm A} &= \bm R_{N_v} \ldots \bm R_k \cdot \bm A \cdot \bm R_{k - 1} \ldots \bm R_1
+\end{split}
+\end{equation}
+%
+So we have:
+%
+\begin{align*}
+	\fpd {\ket\Psi}{\lambda_1} &= \fpd {\ket\Psi}{\omega} = \left[ 
+		i \s \rho \co \omega\bm  X + i \s \rho \s \omega\bm  Y
+	\right ] \ket 0 \\
+	&= \left( 
+		i \s \rho \co \omega \X + i \s \rho \s \omega \Y
+	\right ) \ket 0 \\
+	&= \left( 
+		\begin{bmatrix}
+			0 & i \s \rho \paren{\co \omega - i \s \omega} \\
+			i \s \rho \paren{\co \omega + i \s \omega} & 0\\
+		\end{bmatrix}
+	\right ) \ket 0 \\
+	&= \left( 
+		\begin{bmatrix}
+			0 & i \s \rho e^{-i\omega} \\
+			i \s \rho e^{i\omega} & 0\\
+		\end{bmatrix}
+	\right ) \ket 0 \\
+\end{align*}
+%
+with \ref{eq:rki1e}:
+%
+\begin{align*}
+	\bm R_{1, Z} = \bm R_3 \bm R_2 \bm R_1 \sigma_{1, Z} &=
+	\bm RZ\\ 
+	&= \begin{bmatrix}
+		\co \rho & - \s \rho e^{-i\omega} \\
+		\s \rho e^{i\omega} & \co \rho\\
+	\end{bmatrix} 
+	\begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}\\
+	&= \begin{bmatrix}
+		\co \rho &  \s \rho e^{-i\omega} \\
+		\s \rho e^{i\omega} & -\co \rho\\
+	\end{bmatrix} 
+	\\
+\end{align*}
+%
+and we can see
+%
+$$
+	\sum_{\bm A} f_{1, \bm A} \bm R_{1, \bm A} \ket 0
+	= 
+	\frac i 2
+	\begin{bmatrix}
+		\co \rho &  \s \rho e^{-i\omega} \\
+		\s \rho e^{i\omega} & -\co \rho\\
+	\end{bmatrix}
+	\neq \fpd{\ket\Psi}{\omega}
+$$
+This happens since our variables aren't unique. In this case, $\lambda_1 = \lambda_5$, and we'll see later that Li's \shortcite{benjamin} equation \ref{eq:rki1e} needs to be corrected in our approach to include terms that use the same variable:
+%
+\begin{equation}
+	\begin{split}
+		\label{eq:correctedli1e}
+	\fpd{\ket\Psi}{\lambda_k}
+	=\sum_{j:\lambda_k = \lambda_j} \sum_{\bm A \in P_\elec} f_{j, \bm A} \bm R_{j, \bm A} \ket 0 
+	\end{split}
+\end{equation}
+
+\item $k = 2$
+
+\begin{align*}
+	\frac {d\bm R_2}{d\lambda_2} 
+	&= \frac {d\bm R_2}{d\omega} 
+	=
+	\begin{bmatrix}
+		-\s \rho & - \co \rho \\
+		\co \rho & -\s \rho\\
+	\end{bmatrix} \\
+	&= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{2, \bm A} \bm R_2 \cdot \bm A 
+	\intertext{This time, the relevant matrices in $\{\bm I, \bm X, \bm Y, \bm Z\}$ are $\bm {Y}$ and $\bm {X}$:}
+	%\\
+	&= f_{2, \bm {Y}} \bm R_2 \paren{\bm {Y}} 
+	+ f_{2, \bm {X}} \bm R_2 \paren{\bm {X}} 
+	\\
+	&= f_{2, \bm {Y}}
+	\begin{bmatrix}
+		\co {\rho} & - \s {\rho} \\
+		\s {\rho}  & \co {\rho}\\
+	\end{bmatrix} 
+	\Y
+	\\
+	&+ f_{2, \bm {X}}
+	\begin{bmatrix}
+		\co {\rho} & - \s {\rho} \\
+		\s {\rho}  & \co {\rho}\\
+	\end{bmatrix} 
+	\X
+	\\
+	\intertext{The solution to this system is:}
+	%\\
+	&= -i \bm R_2 \paren{\bm {Y}} 
+	+ 0 \bm R_2 \paren{\bm {X}} \\
+	&= -i \bm R_2 \paren{\bm {Y}} 
+\end{align*}
+%
+This time, Li's \shortcite{benjamin} equation \ref{eq:rki1e} is satisfied by our result:
+%
+\begin{align*}
+	\fpd {\ket\Psi}{\lambda_2} 
+	&= \fpd {\ket\Psi}{\rho}
+	= 
+	\left[ 
+		- \s \rho \bm I + i \co \rho \s \omega \bm X - i \co \rho \co \omega\bm Y
+	\right ] \ket 0 \\
+	&=
+	\left[ 
+		- \s \rho \I + i \co \rho \s \omega \X - i \co \rho \co \omega \Y
+	\right ] \ket 0 \\
+	&=
+		\begin{bmatrix}
+			- \s \rho & \co \rho \paren{i\s \omega - \co \omega} \\
+			\co \rho \paren{ i\s \omega + \co \omega} & -\s \rho
+		\end{bmatrix}
+	\ket 0 \\
+	&=
+		\begin{bmatrix}
+			- \s \rho & -\co \rho e^{-i\omega} \\
+			\co \rho e^{i\omega} & -\s \rho
+		\end{bmatrix}
+	\ket 0 \\
+\end{align*}
+%
+with \ref{eq:rki1e}:
+%
+\begin{align*}
+	\bm R_{2, \bm {Y}} &= \bm R_3 \bm R_2 \paren{\bm {Y}} \bm R_1 \\
+	&= \begin{bmatrix}e^{-\frac{i}{2}\omega} & 0 \\ 0 & e^{\frac i 2\omega}\end{bmatrix}
+	\begin{bmatrix}
+		\co \rho & - \s \rho \\
+		\s \rho & \co \rho\\
+	\end{bmatrix} 
+	\Y 
+	\begin{bmatrix}e^{\frac{i}{2}\omega} & 0 \\ 0 & e^{-\frac i 2\omega}\end{bmatrix}\\
+	&=
+	\begin{bmatrix}
+		e^{-\frac i 2\omega}\co \rho & - e^{-\frac i 2\omega}\s \rho \\
+		e^{\frac i 2\omega}\s \rho & e^{\frac i 2\omega}\co \rho\\
+	\end{bmatrix} 
+	\begin{bmatrix}0 & -ie^{-\frac i 2\omega} \\ ie^{\frac i 2\omega} & 0\end{bmatrix}\\
+	&= \begin{bmatrix}
+		-i \s \rho & -ie^{-i\omega} \co \rho \\
+		ie^{i\omega} \co \rho & -i\sin \rho\\
+	\end{bmatrix} 
+\end{align*}
+%
+and we can see
+$$
+	\sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{2, \bm A} \bm R_{2, \bm A} \ket 0 
+	= -i \bm R_{2, \bm Y}
+	= \fpd{\ket\Psi}{\omega}
+$$
+%
+As expected, since our $\lambda_2$ variable is unique in our set of variables.
+%
+\item $k = 3$
+%
+\begin{align*}
+	\frac {d\bm R_3}{d\lambda_3} 
+	&= \frac {d\bm R_3}{d\omega} 
+	=
+	\begin{bmatrix}
+		- \frac i 2 e^{-\frac {i\omega} 2} & 0 \\
+		0 &  \frac i 2 e^{\frac {i\omega} 2}
+	\end{bmatrix}\\
+	&= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{3, \bm A} \bm R_3 \cdot \bm A 
+	\intertext{The relevant matrices in $\{\bm I, \bm X, \bm Y, \bm Z\}$ are $\bm {I}$ and $\bm {Z}$:}
+	%
+	&= f_{3, \bm {I}} 
+	\begin{bmatrix}
+		e^{-\frac{i{\omega}} 2} & 0 \\
+		0 & e^{\frac{i{\omega}} 2}\\
+	\end{bmatrix} 
+	\I
+	+ f_{3, \bm {Z}} 
+	\begin{bmatrix}
+		e^{-\frac{i{\omega}} 2} & 0 \\
+		0 & e^{\frac{i{\omega}} 2}\\
+	\end{bmatrix} 
+	\Z
+	\\
+	\intertext{The solution to this system is:}
+	%\\
+	&= 0 \bm R_3 \paren{\bm {I}}
+	- \frac i 2 \bm R_3 \paren{\bm {Z}} \\
+	&= -\frac i 2 \bm R_3 \paren{\bm {Z}}
+\end{align*}
+%
+Looking at Li's \shortcite{benjamin} equation \ref{eq:rki} again, we have:
+%
+\begin{align*}
+	\fpd {\ket\Psi}{\lambda_3} &= \fpd {\ket\Psi}{\omega} = \left[ 
+		i \s \rho \co \omega\bm  X + i \s \rho \s \omega\bm  Y
+	\right ] \ket 0 \\
+	&= \left( 
+		i \s \rho \co \omega \X + i \s \rho \s \omega \Y
+	\right ) \ket 0 \\
+	&= \left( 
+		\begin{bmatrix}
+			0 & i \s \rho \paren{\co \omega - i \s \omega} \\
+			i \s \rho \paren{\co \omega + i \s \omega} & 0\\
+		\end{bmatrix}
+	\right ) \ket 0 \\
+	&= \left( 
+		\begin{bmatrix}
+			0 & i \s \rho e^{-i\omega} \\
+			i \s \rho e^{i\omega} & 0\\
+		\end{bmatrix}
+	\right ) \ket 0 
+\end{align*}
+%
+with \ref{eq:rki1e}:
+%
+\begin{align*}
+	\bm R_{3, \bm {Z}} &= \bm R_3 \paren{\bm {Z}} \bm R_2 \bm R_1
+	\\
+	&=\begin{bmatrix}
+		e^{-\frac {i\omega} 2} & 0 \\
+		0 & e^{\frac {i\omega} 2}
+	\end{bmatrix} 
+	\Z R_2 R_1
+	\\
+	&=\begin{bmatrix}
+		e^{-\frac {i\omega} 2} & 0 \\
+		0 & -e^{\frac {i\omega} 2}
+	\end{bmatrix} 
+	R_2 R_1
+	= Z R_3 R_2 R_1
+	\\
+	&= \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}
+	\begin{bmatrix}
+		\co \rho & - \s \rho e^{i\omega} \\
+		\s \rho e^{i\omega} & \co \rho\\
+	\end{bmatrix} 
+	\\
+	&= \begin{bmatrix}
+		\co \rho &  -\s \rho e^{i\omega} \\
+		-\s \rho e^{i\omega} & -\co \rho\\
+	\end{bmatrix} 
+\end{align*}
+%
+and we can see
+%
+$$
+	\sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{3, \bm A} \bm R_{3, \bm A} \ket 0 
+	\neq \fpd{\ket\Psi}{\rho_\ind 1}
+$$
+%
+Using the equation \ref{eq:correctedli1e}, however, we can verify:
+%
+$$
+	\sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{1, \bm A} \bm R_{1, \bm A} \ket 0 
+	+ \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{3, \bm A} \bm R_{3, \bm A} \ket 0 
+	= \fpd{\ket\Psi}{\omega}
+	= \fpd{\ket\Psi}{\lambda_1}
+	= \fpd{\ket\Psi}{\lambda_3}
+$$
+%
+As expected since $\lambda_3 = \lambda_1$.
+%
+\end{enumerate}
+%
+Now we have the constants $f_{k, i}$ that are not zero:
+%
+\begin{equation*}
+	\begin{split}
+		f_{1, \bm {Z}} &= \frac i 2 \\
+		f_{2, \bm {Y}} &= -i \\
+		f_{3, \bm {Z}} &= -\frac i 2 \\
+	\end{split}
+\end{equation*}
+%
+Which means the only relevant Pauli matrices for this case are:
+%
+\begin{align*}
+	\bm Y, \bm Z
+\end{align*}
+
+\subsection{\textbf{Hamiltonian and potential matrix for 1 electron}}
+
+Our potential matrix, $V$ is:
+%
+\begin{equation*}
+	\begin{split}
+		V = \begin{pmatrix}
+			\pd {\lambda_1} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_2} \sandwich {\Psi}{\hat H}{\Psi}\\
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+%
+To calculate that, we first need our hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, since there's only one electron, we can safely disregard the electron interaction:
+%
+\begin{equation*}
+	\begin{split}
+	\hat H  &= \sum_{\go 0, \go 1}h_{\go 0 \go 1}\creg 0 \anig 1 \\
+		&= {h_{\alpha\alpha}} \creo 0 \anio 0
+		+ {h_{\mu\mu}} \creu 0 \aniu 0
+		+ h_{\mu\alpha} \creu 0 \anio 0 
+%
+		\\
+%
+		&= \frac{h_{\alpha\alpha}}{2} \paren{\hat I + \hat Z}
+		+ \frac{h_{\mu\mu}}{2} \paren{\hat I - \hat Z}
+		+ h_{\mu\alpha} \hat X
+%
+	\\
+%
+		&= 	\frac{1}{2} \left[ 
+			\paren{h_{\alpha\alpha} + h_{\mu\mu}} \hat I 
+		+	\paren{h_{\alpha\alpha} - h_{\mu\mu}} \hat Z
+		+ 	2 \cdot h_{\mu\alpha} \hat X
+	\right]
+%
+	\\
+%
+		&=	h_{I} \cdot \hat I 
+		+	h_{Z} \cdot \hat Z
+		+	h_{X} \cdot \hat X
+	\end{split}
+\end{equation*}
+%
+Where:
+%
+\begin{equation*}
+	\begin{split}
+			h_{I}
+		&=	\frac{h_{\alpha\alpha} + h_{\mu\mu}} 2
+%
+	\\
+%
+			h_{Z}
+		&=	\frac{h_{\alpha\alpha} - h_{\mu\mu}} 2
+%
+	\\
+%
+			h_{X}
+		&= 	h_{\mu\alpha}
+%
+	\end{split}
+\end{equation*}
+%
+We also have the values of
+$
+h_{\alpha\alpha}, h_{\mu\mu}, h_{\mu\alpha}$
+for a Hydrogen atom. They're tabled values, and under STO-3G basis set (Approximates the Slater type orbitals by the use of three Gaussian curves), these values can be found in \shortcite{szabo}:
+\begin{equation*}
+	\begin{split}
+		h_{\alpha\alpha} &= -1.2528 \text{ a.u.} \\
+		h_{\mu\mu} &= -0.4756 \text{ a.u.}\\
+		h_{\mu\alpha} &= 0 \text{ a.u.}
+	\end{split}
+\end{equation*}
+%
+We now need to calculate $\sandwich{\Psi}{\hat H}{\Psi}$ and for that we shall use:
+%
+\begin{equation*}
+	\begin{split}
+		\hat H 
+		&= \frac{h_{\alpha\alpha}}{2} \paren{\hat I + \hat Z}
+		+ \frac{h_{\mu\mu}}{2} \paren{\hat I - \hat Z} 
+		+ h_{\mu\alpha} \hat X\\
+		\ket \Psi 
+		&= \co \rho \ket 0 + e^{i \omega} \s \rho \ket 1 \\
+		\bra \Psi 
+		&= \bra 0 \co \rho  + \bra 1 e^{-i \omega} \s \rho 
+	\end{split}
+\end{equation*}
+%
+Therefore:
+%
+\begin{equation*}
+	\begin{split}
+		\sandwich \Psi {\hat H} \Psi
+		&= \bra \Psi \frac 1 2 \left[
+			h_{\alpha\alpha} (\hat I + \hat Z) \paren{\co \rho \ket 0 + \s \rho e^{i\omega} \ket 1} \right .\\
+		& \quad + h_{\mu\mu} (\hat I - \hat Z) \paren{\co \rho \ket 0 + \s \rho e^{i\omega} \ket 1} \\
+		&\left. \quad + 2 h_{\mu\alpha} \hat X \paren{\co \rho \ket 0 + \s \rho e^{i\omega} \ket 1}
+		\right] \\
+		&= \bra \Psi \frac 1 2 \left(
+			2h_{\alpha\alpha} \co \rho \ket 0 + 2h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+			+ 2h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
+		\right) \\
+		&= \bra \Psi \left(
+			h_{\alpha\alpha} \co \rho \ket 0 + h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+			+ h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
+		\right) \\
+		&= \paren{\bra 0 \co \rho  + \bra 1 e^{-i \omega} \s \rho } \\
+		& \quad \times \left (
+			h_{\alpha\alpha} \co \rho \ket 0 + h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+			+ h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
+		\right) \\
+		&= \braket 0 0 \co \rho h_{\alpha\alpha} \co \rho 
+		+ \braket 1 1 e^{-i \omega} \s \rho h_{\mu\mu} \s \rho e^{i\omega} \\
+		&\quad + h_{\mu\alpha} \paren{\co \rho e^{-i \omega} \s \rho \braket 1 1 + \s \rho e^{i\omega} \co \rho \braket 0 0} \\
+		&=  h_{\alpha\alpha} \co \rho ^2
+		+ h_{\mu\mu} \s \rho ^2
+		+ h_{\mu\alpha} \co \omega \s {2\rho}\\
+	\end{split}
+\end{equation*}
+%
+Finally,
+%
+\begin{equation*}
+	\begin{split}
+		V = \begin{pmatrix}
+			- h_{\mu\alpha} \s \omega \s {2\rho} \\
+			(h_{\mu\mu} - h_{\alpha\alpha}) \s {2\rho}
+			+ 2h_{\mu\alpha} \co \omega \co {2\rho}
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+%
+Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables using \ref{eq:benjamin}.
+%
+Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, with real parameters $a$ and $\theta$, and there is a quantum circuit that can efficiently evaluate it.
+%
+%-------------------------------------------------------------------------------------
+%
 \chapter{\textbf{Initial Results and Research Directions}}\label{chap:results}
 
 Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method together with some other approximations, we've obtained a reference wavefunction $\ket \Psi(\bm \omega, \bm \rho) = \hat U\ket 0$ that depends on vectors of real rotation angles $\bm \omega$ and $\bm \rho$.
@@ -3628,8 +4393,6 @@ Further research could be made using the non-unitary representation for $\hat U$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%TODO: new document or added section
-%\chapter{\textbf{Career goals}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Backmatter -- Bibliography, appendices, etc.%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
