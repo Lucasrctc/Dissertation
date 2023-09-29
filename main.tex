@@ -183,22 +183,22 @@
 
 \newcommand{\paulid}[1]{
 		\IfEqCase{#1}{
-			{ii}{I \otimes I}
-			{ix}{I \otimes X}
-			{iy}{I \otimes Y}
-			{iz}{I \otimes Z}
-			{xi}{X \otimes I}
-			{xx}{X \otimes X}
-			{xy}{X \otimes Y}
-			{xz}{X \otimes Z}
-			{yi}{Y \otimes I}
-			{yx}{Y \otimes X}
-			{yy}{Y \otimes Y}
-			{yz}{Y \otimes Z}
-			{zi}{Z \otimes I}
-			{zx}{Z \otimes X}
-			{zy}{Z \otimes Y}
-			{zz}{Z \otimes Z}
+			{ii}{\bm I \otimes \bm I}
+			{ix}{\bm I \otimes \bm X}
+			{iy}{\bm I \otimes \bm Y}
+			{iz}{\bm I \otimes \bm Z}
+			{xi}{\bm X \otimes \bm I}
+			{xx}{\bm X \otimes \bm X}
+			{xy}{\bm X \otimes \bm Y}
+			{xz}{\bm X \otimes \bm Z}
+			{yi}{\bm Y \otimes \bm I}
+			{yx}{\bm Y \otimes \bm X}
+			{yy}{\bm Y \otimes \bm Y}
+			{yz}{\bm Y \otimes \bm Z}
+			{zi}{\bm Z \otimes \bm I}
+			{zx}{\bm Z \otimes \bm X}
+			{zy}{\bm Z \otimes \bm Y}
+			{zz}{\bm Z \otimes \bm Z}
 		}[\PackageError{p2d}{Undefined option to uo: #1}{}]
 }
 \newcommand{\uo}[1]{
@@ -505,7 +505,7 @@ $\{\go{0}, \go{1}, \go{2}, \go{3}, \ldots\}$
 index our $\orb$ orbitals in general.
 Let $\nuc$ be the number of nuclei in our system.
 
-To simplify our system, we shall consider that the nuclei are at rest to calculate the electron dynamics. Therefore, our formulation consists of $\orb$ orthonormal electronic spin orbitals $\psig 0(\mathbf{x}_1), \go{0} = 1, 2, \ldots, \orb$ with $\orb \geq \elec$, where $\bx_1 = \paren{\br_1, \sigma_1}$ with $\br_1$ denoting the spatial coordinate and $\sigma_1$ denoting the spin coordinate.
+To simplify our system, we shall consider that the nuclei are at rest to calculate the electron dynamics. Therefore, our formulation consists of $\orb$ orthonormal electronic spin orbitals $\psig 0(\mathbf{x}_1), \go{0} = 1, 2, \ldots, \orb$ with $\orb \geq \elec$, where $\bx_1 = \paren{\br_1, \bm \sigma_1}$ with $\br_1$ denoting the spatial coordinate and $\bm \sigma_1$ denoting the spin coordinate.
 
 We also have the second-quantization creation operators $\creg{0}$, annihilation operators $\anig{0}$ and vacuum state $\vac$ for our electrons.
 In short, creation and annihilation are inverse operations and they work as follows:
@@ -864,7 +864,7 @@ The field of quantum computing has attracted the attention of people of many div
 
 	At this point, we have an approximation of our wavefunction given to us by \gls{hf} and other approximation techniches $\ket\Psi_{HF}$ that describes our system, but it's not very accurate. It can be used, however, in a \gls{tdvp} to evolve over time and iterate towards a more accurate wavefunction that represents our system. The details of the workings of the \gls{tdvp} can be found in Kramer's book \shortcite{kramer}, and some of its many applications can be found in McArdle's \shortcite{mcardle} review paper, which goes in-depth into variational quantum simulation applied to time evolution and other quantum chemistry problems. Comparisons between the \gls{tdvp} and other methods of time evolution is made in Broeckhove's \shortcite{broeckhove} paper.
 
-	\gls{tdvp} does come with a cost, however. At each iteration, we have to solve a system of differential partial equations $\bm M \dot {\bm \lambda} = \bm V$ given to us by Euler-Lagrange equations, and the matrices $M$ and $V$ change with each iteration. The process of calculating these matrices on a classical computer is inefficient, and Li's paper \shortcite{benjamin} proposes a shallow quantum circuit based off Ekert's \shortcite{ekert} that calculates these matrices, which feed into the \gls{tdvp}, speeding up the process while also having some built-in error tolerance, thus avoiding the error rates that accompany more deep quantum circuits.
+	\gls{tdvp} does come with a cost, however. At each iteration, we have to solve a system of differential partial equations $\bm M \dot {\bm \lambda} = \bm V$ given to us by Euler-Lagrange equations, and the matrices $\bm M$ and $\bm V$ change with each iteration. The process of calculating these matrices on a classical computer is inefficient, and Li's paper \shortcite{benjamin} proposes a shallow quantum circuit based off Ekert's \shortcite{ekert} that calculates these matrices, which feed into the \gls{tdvp}, speeding up the process while also having some built-in error tolerance, thus avoiding the error rates that accompany more deep quantum circuits.
 	%\item For explanations on Thouless theorem
 	%	\shortcite{thouless}
 	%\item For explanations on Thouless theorem
@@ -1121,10 +1121,10 @@ As seen in \cite{benjamin}, we can obtain the Lagrangian of our sistem as:
 \[
 	L = \frac{\sandwich{\Psi(t)}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi(t)}}{\braket{\Psi(t)}{\Psi(t)}}
 \]
-% TODO: link this to the relevant section
+%
 Our wavefunction $\Psi$ is normalized, which means $\braket{\Psi(t)}{\Psi(t)} = 1$. We now also rewrite the variables of $\ket{\Psi}$ as 
 $\lambda_1 = \omega_\ind 1; \lambda_2 = \omega_\ind 0; \lambda_3 = \rho_\ind 1; \lambda_4 = \rho_\ind 0$.
-The order of the numbering of the new lambda variables is important and shall be discussed later. %Link here to R6R5...
+The order of the numbering of the new lambda variables is important and shall be discussed later in equation \ref{eq:rdecomposition}. 
 This means we can develop the Lagrangian into:
 \begin{equation}
 	\begin{split}
@@ -1800,7 +1800,9 @@ For our case where $\elec = 2$ and $\orb = 4$, we have:
 %
 We can then write the matrix $\bm R$ as a product of 6 matrices:
 %
-\begin{align*}
+\begin{equation}
+	\begin{split}
+		\label{eq:rdecomposition}
 	\bm R &= \bm R_6(\omega_\ind 0) \bm R_5(\omega_\ind 1) \bm R_4(\rho_\ind 0) \bm R_3(\rho_\ind 1) \bm R_2(\omega_\ind 0) \bm R_1(\omega_\ind 1) \\
 	&=
 	\begin{bmatrix}
@@ -1844,17 +1846,23 @@ We can then write the matrix $\bm R$ as a product of 6 matrices:
 		0 & 0 & e^{\frac{i \omega_\ind 1} 2 } & 0 \\
 		0 & 0 & 0 & e^{\frac{-i \omega_\ind 1} 2 }
 	\end{bmatrix} \\
-\end{align*}
+	\end{split}
+\end{equation}
+%
+We note here that the order of the operators in \ref{eq:rdecomposition} is important. Although many of the $\bm R_k$ matrices commute, not all of them do. Thus, we fix the variables 
+$\lambda_1 = \omega_\ind 1; \lambda_2 = \omega_\ind 0; \lambda_3 = \rho_\ind 1; \lambda_4 = \rho_\ind 0; \lambda_5 = \lambda_1 = \omega_\ind 1; \lambda_6 = \lambda_2 = \omega_\ind 0$.
 
-Then, we obtain the decomposition of the derivatives $\fpd{\bm R_k}{\lambda_k}$ into pauli matrices according to the equation \cite{benjamin}:
+Then, we obtain the decomposition of the derivatives $\fpd{\bm R_k}{\lambda_k}$ into Pauli matrices according to the equation \cite{benjamin}:
+%
 \begin{equation}\label{eq:r_to_f}
 \begin{split}
-	\fpd{\bm R_k}{\lambda_k} = \sum_{i \in P} f_{k, i} \bm R_k \sigma_{k, i}
+	\fpd{\bm R_k}{\lambda_k} = \sum_{i \in P_\elec} f_{k, i} \bm R_k \bm \sigma_{k, i}
 \end{split}
 \end{equation}
-Where $P = \{x \vert x = \bigotimes_{k = 1}^{N} x_k,\ x_k \in Pauli\}$
-and $\sigma_{k, i}$ are Pauli matrices.
-Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 6\}$ and $i \in P$. We accomplish this task by taking a look at \ref{eq:r_to_f} for each $k$:
+%
+Where $P_\elec = \{x \vert x = \bigotimes_{k = 1}^{\elec} x_k,\ x_k \in Pauli\}$ is the set of tensor products of $\elec$ Pauli matrices and $ \bm \sigma_{k, i} = i \in P_\elec$ are elements of set $P_\elec$.
+Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 6\}$ and $i \in P_\elec$. We accomplish this task by taking a look at \ref{eq:r_to_f} for each $k$:
+%
 \begin{enumerate}
 \item $k = 1$:
 \begin{align*}
@@ -1868,10 +1876,10 @@ Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 
 		0 & 0 & e^{\frac{i \omega_\ind 1} 2 } & 0 \\
 		0 & 0 & 0 & -e^{\frac{-i \omega_\ind 1} 2 }
 	\end{bmatrix} \\
-	&= \sum_{A \in P}
-		f_{1, A}\bm R_1 \cdot A
-		\intertext{The only relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
-		\\
+	&= \sum_{\bm A \in P_\elec}
+		f_{1, \bm A}\bm R_1 \cdot \bm A
+		\intertext{The only relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$, as the other matrices have only zeroes in the main diagonal.}
+	%
 	&= f_{1, \paulid{ii}} \bm R_1 \paulid{ii}
 	+ f_{1, \paulid{iz}} \bm R_1 \paulid{iz}
 	+ f_{1, \paulid{zi}} \bm R_1 \paulid{zi}
@@ -1894,23 +1902,27 @@ Now we need to determine the constants $f_{k, i}$ for every $k \in \{1, \ldots, 
 	\ZZ
 	\\
 	\intertext{The solution to this system is:}
-	\\
+	%
 	&= 0 \bm R_1 \paren{\paulid{ii}} 
 	+ \frac i 2 \bm R_1 \paren{\paulid{iz}}
 	+ 0 \bm R_1 \paren{\paulid{zi}} 
-	+ 0 \bm R_1 \paren{\paulid{zz}} 
+	+ 0 \bm R_1 \paren{\paulid{zz}} \\
+	&= \frac i 2 \bm R_1 \paren{\paulid{iz}}
 \end{align*}
-
-Li \shortcite{benjamin} states 
+%
+Li \shortcite{benjamin} states that:
 \begin{equation}
 	\begin{split}
 	\label{eq:rki}
-	\fpd {\ket \Psi} {\lambda_k} &= \sum_{A \in P}f_{k, A}\bm R_{k, A}\ket 0\\
+	\fpd {\ket \Psi} {\lambda_k} &= \sum_{\bm A \in P_\elec}f_{k, \bm A}\bm R_{k, \bm A}\ket 0\\
 	\intertext{\text{Where}}
-	\bm R_{k,A} &= \bm R_{N_v} \ldots \bm R_k \cdot A \cdot \bm R_{k - 1} \ldots \bm R_1
+	%
+	\bm R_{k,\bm A} &= \bm R_{N_v} \ldots \bm R_k \cdot \bm A \cdot \bm R_{k - 1} \ldots \bm R_1
 \end{split}
 \end{equation}
+%
 So we have:
+%
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_1} &= \fpd {\ket\Psi}{\omega_\ind 1} \\
 				   &=\fpd {}{\omega_\ind 1}\left[
@@ -2020,24 +2032,23 @@ So we have:
 		0
 	\end{matrix}
 	\right] \ket 0
-	\\
-	&\neq \sum_A f_{1, A} \bm R_{1, A} \ket 0 
-	= \frac i 2 \bm R_{1, \paulid{iz}} \ket 0
 \end{align*}
+%
 with \ref{eq:rki}:
+%
 \begin{align*}
 	\bm R_{1, \paulid{iz}} = \bm R_6 \bm R_5 \bm R_4 \bm R_3 \bm R_2 \bm R_1 \paren{\paulid{iz}} &=
-	R\paren{\paulid{iz}}\\ 
+	\bm R\paren{\paulid{iz}}
 \end{align*}
-
+%
 Finally,
-
+%
 \begin{align*}
 	\frac i 2 \bm R_{1, \paulid{iz}}
 	&=
-	\frac i 2 R \IZ
+	\frac i 2 \bm R \IZ
 	\\
-	&=R
+	&= \bm R
 	\begin{bmatrix}
 		\frac i 2 & 0 & 0 & 0 \\
 		0 & -\frac i 2 & 0 & 0 \\
@@ -2054,7 +2065,7 @@ $$
 This happens since our variables aren't unique. In this case, $\lambda_1 = \lambda_5$, and we'll see later that Li's \shortcite{benjamin} equation \ref{eq:rki} needs to be corrected in our approach to include terms that use the same variable:
 $$
 	\fpd{\ket\Psi}{\lambda_k}
-	=\sum_{j:\lambda_k = \lambda_j} \sum_{A \in P} f_{j, A} \bm R_{j, A} \ket 0 
+	=\sum_{j:\lambda_k = \lambda_j} \sum_{\bm A \in P_\elec} f_{j, \bm A} \bm R_{j, \bm A} \ket 0 
 $$
 
 \item $k = 2$
@@ -2069,9 +2080,9 @@ $$
 		0 & 0 & -\frac i 2 e^{-\frac i 2 \omega_\ind 0 } & 0 \\
 		0 & 0 & 0 & -\frac i 2 e^{-\frac i 2 \omega_\ind 0 }
 	\end{bmatrix} \\
-	&= \sum_{A \in P} f_{2, A} \bm R_2 \cdot A 
-	\intertext{Once again, the relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
-	\\
+	&= \sum_{\bm A \in P_\elec} f_{2, \bm A} \bm R_2 \cdot \bm A 
+	\intertext{Once again, the relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
+	%\\
 	&= f_{2, \paulid{ii}} \bm R_2 \paren{\paulid{ii}} 
 	+ f_{2, \paulid{iz}} \bm R_2 \paren{\paulid{iz}} 
 	+ f_{2, \paulid{zi}} \bm R_2 \paren{\paulid{zi}} 
@@ -2094,15 +2105,16 @@ $$
 	\ZZ
 	\\
 	\intertext{The solution to this system is:}
-	\\
+	%\\
 	&= 0 \bm R_2 \paren{\paulid{ii}} 
 	+ 0 \bm R_2 \paren{\paulid{iz}} 
 	+ \frac i 2 \bm R_2 \paren{\paulid{zi}} 
-	+ 0 \bm R_2 \paren{\paulid{zz}} 
+	+ 0 \bm R_2 \paren{\paulid{zz}} \\
+	&= \frac i 2 \bm R_2 \paren{\paulid{zi}} 
 \end{align*}
-
+%
 Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our result:
-
+%
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_2} 
 	&= \fpd {\ket\Psi}{\omega_\ind 0}
@@ -2213,11 +2225,8 @@ Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our r
 		0
 	\end{matrix}
 	\right] \ket 0
-	\\
-	&\neq \sum_i f_{2, i} \bm R_{2, i} \ket 0 
-	= \frac i 2 \bm R_{2, \paulid{zi}} \ket 0
 \end{align*}
-
+%
 with \ref{eq:rki}:
 %
 \begin{align*}
@@ -2234,7 +2243,7 @@ Finally,
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{2, A} \bm R_{2, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{2, \bm A} \bm R_{2, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
 
@@ -2253,9 +2262,10 @@ $$
 		0 & 0 & \co{\rho_\ind 1} & -\s{\rho_\ind 1}
 	\end{bmatrix}
 	\\
-	&= \sum_{A \in P} f_{3, A} \bm R_3 \cdot A 
-	\intertext{The relevant matrices in $P$ are $\paulid{ii}, \paulid{ix}, \paulid{iy}, \paulid{iz}, \paulid{zi}, \paulid{zx}, \paulid{zy}$ and $\paulid{zz}$,
+	&= \sum_{\bm A \in P_\elec} f_{3, \bm A} \bm R_3 \cdot \bm A 
+	\intertext{The relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{ix}, \paulid{iy}, \paulid{iz}, \paulid{zi}, \paulid{zx}, \paulid{zy}$ and $\paulid{zz}$,
 	but the solution is straightforward as it is a multiple of $\paulid{iy}$:}
+	%
 	&= f_{3, \paulid{iy}} 
 	\begin{bmatrix}
 		\co{\rho_\ind 1} & -\s{\rho_\ind 1} & 0 & 0 \\
@@ -2369,13 +2379,12 @@ Looking at Li's \shortcite{benjamin} equation \ref{eq:rki} again, we have:
 		-\co{\rho_\ind 0} \s{\rho_\ind 1}
 	\end{matrix}
 \right ] \ket 0
-	\\
-	&= \sum_{A \in P} f_{3, A} \bm R_{3, A} \ket 0 
-	= -i \bm R_{3, \paulid{iy}} \ket 0
 \end{align*}
+%
 with \ref{eq:rki}:
+%
 \begin{align*}
-	\bm R_{3, \paulid{iy}} &= \bm R_6 \bm R_5 \bm R_4 \bm R_3 \paren{\paulid{iy}} \bm R_2 \bm R_1
+	f_{3, \paulid{iy}} \cdot \bm R_{3, \paulid{iy}} &= -i \bm R_6 \bm R_5 \bm R_4 \bm R_3 \paren{\paulid{iy}} \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2421,7 +2430,7 @@ with \ref{eq:rki}:
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{3, A} \bm R_{3, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{3, \bm A} \bm R_{3, \bm A} \ket 0 
 	= \fpd{\ket\Psi}{\rho_\ind 1}
 $$
 The results coincide here as $\lambda_3$ is unique in our set of variables.
@@ -2441,9 +2450,10 @@ The results coincide here as $\lambda_3$ is unique in our set of variables.
 		0 & \co{\rho_\ind 0} & 0 & -\s{\rho_\ind 0}
 	\end{bmatrix}
 	\\
-	&= \sum_{A \in P} f_{4, A} \bm R_4 \cdot A 
-	\intertext{The relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{xi}, \paulid{xz}, \paulid{yi}, \paulid{yz}, \paulid{zi}$ and $\paulid{zz}$, 
+	&= \sum_{\bm A \in P_\elec} f_{4, \bm A} \bm R_4 \cdot \bm A 
+	\intertext{The relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{iz}, \paulid{xi}, \paulid{xz}, \paulid{yi}, \paulid{yz}, \paulid{zi}$ and $\paulid{zz}$, 
 	but the solution is again straightforward as it is a multiple of $\paulid{yz}$:}
+	%
 	&= f_{4, \paulid{yz}} 
 	\begin{bmatrix}
 		\co{\rho_\ind 0} & 0 & \s{\rho_\ind 0} & 0 
@@ -2561,13 +2571,12 @@ Looking at Li's \shortcite{benjamin} equations \ref{eq:rki} again, we have:
 		-\co{\rho_\ind 1} \s{\rho_\ind 0}
 	\end{matrix}
 	\right ] \ket 0
-	\\
-	&= \sum_{A \in P} f_{4, A} \bm R_{4, A} \ket 0 
-	= i \bm R_{4, \paulid{yz}} \ket 0
 \end{align*}
+%
 with \ref{eq:rki}:
+%
 \begin{align*}
-	\bm R_{4, \paulid{yz}} &= \bm R_6 \bm R_5 \bm R_4 \paren{\paulid{yz}} \bm R_3 \bm R_2 \bm R_1
+	f_{4, \paulid{yz}} \cdot \bm R_{4, \paulid{yz}} &= i \bm R_6 \bm R_5 \bm R_4 \paren{\paulid{yz}} \bm R_3 \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2613,7 +2622,7 @@ with \ref{eq:rki}:
 \end{align*}
 and we can see
 $$
-	\sum_{A \in P} f_{4, A} \bm R_{4, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{4, \bm A} \bm R_{4, \bm A} \ket 0 
 	= \fpd{\ket\Psi}{\rho_\ind 0}
 $$
 
@@ -2629,10 +2638,10 @@ $$
 		0 & 0 & -\frac i 2 e^{-\frac i 2 \omega_\ind 1} & 0 \\
 		0 & 0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 1 }
 	\end{bmatrix} \\
-	&= \sum_{A \in P}
-		f_{5, A}\bm R_5 \cdot A
-		\intertext{The only relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
-		\\
+	&= \sum_{\bm A \in P_\elec}
+		f_{5, \bm A}\bm R_5 \cdot \bm A
+		\intertext{The only relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
+		%\\
 	&= f_{5, \paulid{ii}} \bm R_5 \paren{\paulid{ii}}
 	+ f_{5, \paulid{iz}} \bm R_5 \paren{\paulid{iz}}
 	+ f_{5, \paulid{zi}} \bm R_5 \paren{\paulid{zi}}
@@ -2655,11 +2664,12 @@ $$
 	\ZZ
 	\\
 	\intertext{The solution to this system is:}
-	\\
+	%\\
 	&= 0 \bm R_5 \paren{\paulid{ii}} 
 	- \frac i 2 \bm R_5 \paren{\paulid{iz}}
 	+ 0 \bm R_5 \paren{\paulid{zi}} 
-	+ 0 \bm R_5 \paren{\paulid{zz}} 
+	+ 0 \bm R_5 \paren{\paulid{zz}} \\
+	&= - \frac i 2 \bm R_5 \paren{\paulid{iz}}
 \end{align*}
 %
 Li's \shortcite{benjamin} equation \ref{eq:rki} once again fails, as we have:
@@ -2774,7 +2784,7 @@ Li's \shortcite{benjamin} equation \ref{eq:rki} once again fails, as we have:
 	\end{matrix}
 	\right] \ket 0
 	\\
-	&\neq \sum_A f_{5, A} \bm R_{5, A} \ket 0 
+	&\neq \sum_{\bm A} f_{5, \bm A} \bm R_{5, \bm A} \ket 0 
 	= - \frac i 2 \bm R_{5, \paulid{iz}} \ket 0
 \end{align*}
 %
@@ -2796,17 +2806,22 @@ Finally,
 and we can see
 %
 $$
-	\sum_{A \in P} f_{5, A} \bm R_{5, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{5, \bm A} \bm R_{5, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 1}
 $$
+%
 On the other hand,
+%
 $$
-	\sum_{A \in P} f_{1, A} \bm R_{1, A} \ket 0 
-	+ \sum_{A \in P} f_{5, A} \bm R_{5, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{1, \bm A} \bm R_{1, \bm A} \ket 0 
+	+ \sum_{\bm A \in P_\elec} f_{5, \bm A} \bm R_{5, \bm A} \ket 0 
 	= \fpd{\ket\Psi}{\omega_\ind 1}
+	= \fpd{\ket\Psi}{\lambda_1}
+	= \fpd{\ket\Psi}{\lambda_5}
 $$
-As expectend since $\lambda_5 = \lambda_1$.
-
+%
+As expected since $\lambda_5 = \lambda_1$.
+%
 \item $ k = 6 $
 %
 \begin{align*}
@@ -2819,9 +2834,9 @@ As expectend since $\lambda_5 = \lambda_1$.
 		0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 0} & 0 \\
 		0 & 0 & 0 & \frac i 2 e^{\frac i 2 \omega_\ind 0}
 	\end{bmatrix} \\
-	&= \sum_{A \in P} f_{6, A} \bm R_6 \cdot A 
-	\intertext{Once again, the relevant matrices in $P$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
-	\\
+	&= \sum_{\bm A \in P_\elec} f_{6, \bm A} \bm R_6 \cdot \bm A 
+	\intertext{Once again, the relevant matrices in $P_\elec$ are $\paulid{ii}, \paulid{iz}, \paulid{zi}$ and $\paulid{zz}$}
+	%\\
 	&= f_{6, \paulid{ii}} \bm R_6 \paren{\paulid{ii}} 
 	+ f_{6, \paulid{iz}} \bm R_6 \paren{\paulid{iz}} 
 	+ f_{6, \paulid{zi}} \bm R_6 \paren{\paulid{zi}} 
@@ -2849,10 +2864,11 @@ As expectend since $\lambda_5 = \lambda_1$.
 	&= 0 \bm R_6 \paren{\paulid{ii}} 
 	+ 0 \bm R_6 \paren{\paulid{iz}} 
 	- \frac i 2 \bm R_6 \paren{\paulid{zi}} 
-	+ 0 \bm R_6 \paren{\paulid{zz}} 
+	+ 0 \bm R_6 \paren{\paulid{zz}} \\
+	&= - \frac i 2 \bm R_6 \paren{\paulid{zi}} 
 \end{align*}
 %
-Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our result:
+Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our result at first:
 %
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_6} 
@@ -2986,14 +3002,16 @@ Finally,
 and we can see
 %
 $$
-	\sum_{A \in P} f_{6, A} \bm R_{6, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{6, \bm A} \bm R_{6, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
-But once again, the equation is satisfied when involving $\bm R_2$:
+But once again, the corrected equation is satisfied when involving $\bm R_2$:
 $$
-	\sum_{A \in P} f_{2, A} \bm R_{2, A} \ket 0 
-	+ \sum_{A \in P} f_{6, A} \bm R_{6, A} \ket 0 
+	\sum_{\bm A \in P_\elec} f_{2, \bm A} \bm R_{2, \bm A} \ket 0 
+	+ \sum_{\bm A \in P_\elec} f_{6, \bm A} \bm R_{6, \bm A} \ket 0 
 	= \fpd{\ket\Psi}{\omega_\ind 0}
+	= \fpd{\ket\Psi}{\lambda_6}
+	= \fpd{\ket\Psi}{\lambda_2}
 $$
 \end{enumerate}
 %
@@ -3010,30 +3028,30 @@ Now we have the constants $f_{k, i}$ that are not zero:
 	\end{split}
 \end{equation*}
 %
-Which means the only relevant elements of $P$ for this case are:
+Which means the only relevant elements of $P_\elec$ for this case are:
 %
 \begin{align*}
 	\paulid{iz}, \paulid{zi}, \paulid{iy}, \paulid{yz}
 \end{align*}
-Now each individual term of $M$ and $V$ can be rewritten in terms of our newfound variables:
+Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables:
 \begin{equation}\label{eq:benjamin}
 \begin{split}
 	M_{k, q} 
-	= \sum_{i, j \in Pauli}
+	= \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-	\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{k, i}^\dagger \bm R_{q, j}} 0}
-	+\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{k, i}^\dagger \bm R_{q, j}} 0}^*
+	\paren{if_{k, \bm l}^*f_{q, \bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm R_{q, \bm j}} 0}
+	+\paren{if_{k, \bm l}^*f_{q, \bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm R_{q, \bm j}} 0}^*
 	\right]\\
 	V_{k} 
-	= \sum_{i, j \in Pauli}
+	= \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-	\paren{if_{k, i}^*h_{j}\sandwich 0 {\bm R_{k, i}^\dagger \sigma_j R} 0}
-	+\paren{if_{k, i}^*h_{j}\sandwich 0 {\bm R_{k, i}^\dagger \sigma_j R} 0}^*
+		\paren{if_{k, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}
+		+\paren{if_{k, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}^*
 	\right]
 \end{split}
 \end{equation}
 
-Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, and there is a quantum circuit that can efficiently evaluate it.
+Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, with real parameters $a$ and $\theta$, and there is a quantum circuit that can efficiently evaluate it.
 
 \subsection{\textbf{Circuits}}
 
@@ -3043,7 +3061,7 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
   \label{fig:circuitreal}
 \end{figure}
 
-Circuit \ref{fig:circuitreal} evolves as follows:
+To highlight how the circuit evaluates the elements of matrices $\bm M$ and $\bm V$, we refer to a more basic circuit represented in figure \ref{fig:circuitreal}, which evolves as follows:
 \begin{equation*}
 	\begin{split}
 		\psi_0 
@@ -3102,8 +3120,8 @@ Measuring the first qubit in this circuit yields us:
 \begin{equation*}
 	\begin{split}
 		\ket \phi 
-		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_k \cdot \sigma_{ki} \cdot \bm R_{k-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
-		&\quad + \frac{e^{i\theta}\ket 1}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_q \cdot \sigma_{qj} \cdot \bm R_{q-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
+		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_k \cdot \bm \sigma_{ki} \cdot \bm R_{k-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
+		&\quad + \frac{e^{i\theta}\ket 1}{\sqrt 2} \otimes \bm R_{N_v} \ldots \bm R_q \cdot \bm \sigma_{qj} \cdot \bm R_{q-1} \ldots \bm R_1 \ket 0^{\otimes \elec}\\
 		\span\text{We can now use \ref{eq:rki} to simplify our expression:}\\
 		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{ki} \ket 0^{\otimes \elec}
 		+ \frac{e^{i\theta}\ket 1}{\sqrt 2} \bm R_{qj}\ket 0^{\otimes \elec}\\
@@ -3157,12 +3175,12 @@ The average measurement of this circuit is then $Avg = P(\ket +) \cdot 1 + P(\ke
 Taking $a_{kiqj} = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and referring back to \ref{eq:benjamin}:
 \begin{equation*}
 	\begin{split}
-		\sum_{i, j \in P} a_{kiqj} \cdot Avg_{kiqj} 
-		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{e^{i\theta}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} a_{kiqj}\cdot Re\paren{\frac{if_{k, i}^*f_{q, j}}{\abs{if_{k, i}^*f_{q, j}}}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} \frac{a_{kiqj}}{\abs{if_{k, i}^*f_{q, j}}} Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} 2 Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
-		&= \sum_{i, j \in P} 
+		\sum_{i, j \in P_\elec} a_{kiqj} \cdot Avg_{kiqj} 
+		&= \sum_{i, j \in P_\elec} a_{kiqj}\cdot Re\paren{e^{i\theta}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P_\elec} a_{kiqj}\cdot Re\paren{\frac{if_{k, i}^*f_{q, j}}{\abs{if_{k, i}^*f_{q, j}}}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P_\elec} \frac{a_{kiqj}}{\abs{if_{k, i}^*f_{q, j}}} Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P_\elec} 2 Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
+		&= \sum_{i, j \in P_\elec} 
 		\left [if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0 +
 		\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}^* \right ] = M_{k, q}\\
 	\end{split}
@@ -3198,7 +3216,7 @@ We've then decomposed $\hat U$ into a product of matrices that depend on a singl
 We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_q \bm M_{k,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. Computational results confirming the research are in progress.
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{img/circuit.jpg}
-  \caption{Circuit for $k = 1, q = 4, \sigma_{1, iz}, \sigma_{4, yi}, \elec = 2, \orb = 4$}
+  \caption{Circuit for $k = 1, q = 4, \bm \sigma_{1, iz}, \bm \sigma_{4, yi}, \elec = 2, \orb = 4$}
   \label{fig:circuit}
 \end{figure}
 
