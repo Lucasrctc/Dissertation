@@ -547,15 +547,17 @@ $$
 $$
 
 The Hamiltonian for the electrons in the system, using second quantization and atomic units is then:
-\begin{equation*}
+\begin{equation}
 \begin{split}
+	\label{eq:electronhamiltonian}
 	\hat H_e = \sum_{\go 0, \go 1}h_{\go 0 \go 1}\creg 0 \anig 1 + 
 	\frac 1 4 \sum_{\go 0, \go 1, \go 2, \go 3} \sandwich{\go 0 \go 1}{}{\go 2 \go 3}\creg 0 \creg 1 \anig 2 \anig 3
 \end{split}
-\end{equation*}
+\end{equation}
 where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral $\sandwich{\go 0 \go 1}{}{\go 2 \go 3}$ are:
-\begin{equation*}
+\begin{equation}
 \begin{split}
+	\label{eq:electronhamiltonianaux}
 	h_{\go 0 \go 1} 
 	&= \sandwich {\go 0} {h} {\go 1} 
 	= \int\psig 0^*(\bx_1)h(\br_1)\psig 1(\bx_1)d\bx_1 \\
@@ -568,7 +570,7 @@ where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral 
 	\psig 1^*(\bx_2)\psig 3(\bx_2) 
 	d\bx_1 d\bx_2 
 \end{split}
-\end{equation*}
+\end{equation}
 Finally, $h(\br_1)$ is the one-electron hamiltonian and $\frac 1 {r_{12}}$ is the Coulumb repulsion operator.
 
 \section{\textbf{Lie Algebras}}
@@ -1704,7 +1706,8 @@ We can now update our matrix equation \ref{eq:matrixderiv} with the calculated v
 \end{equation*}
 %-------------------------------------------------------------------------------------
 
-\section {\textbf{Circuit for \elec-electron model}}
+%TODO: Circuit for 1-electron model
+\section {\textbf{Circuit for 2-electron model}}
 
 We propose to use a quantum circuit to evaluate the matrices $\bm M$ and $\bm V$. To do so, we must adapt Li's \shortcite{benjamin} algorithm, which is a variation of Ekert's \shortcite{ekert} quantum circuit, to work with our reduced number of variables.
 %
@@ -1851,8 +1854,11 @@ We can then write the matrix $\bm R$ as a product of 6 matrices:
 %
 We note here that the order of the operators in \ref{eq:rdecomposition} is important. Although many of the $\bm R_k$ matrices commute, not all of them do. Thus, we fix the variables 
 $\lambda_1 = \omega_\ind 1; \lambda_2 = \omega_\ind 0; \lambda_3 = \rho_\ind 1; \lambda_4 = \rho_\ind 0; \lambda_5 = \lambda_1 = \omega_\ind 1; \lambda_6 = \lambda_2 = \omega_\ind 0$.
-
-Then, we obtain the decomposition of the derivatives $\fpd{\bm R_k}{\lambda_k}$ into Pauli matrices according to the equation \cite{benjamin}:
+%
+%
+\subsection {\textbf{Obtaining constants}}
+%
+Now that we have each matrix $\bm R_k$, we obtain the decomposition of their derivatives $\fpd{\bm R_k}{\lambda_k}$ into Pauli matrices according to the following equation \cite{benjamin}:
 %
 \begin{equation}\label{eq:r_to_f}
 \begin{split}
@@ -2980,9 +2986,6 @@ Again, Li's \shortcite{benjamin} equation \ref{eq:rki} is not satisfied by our r
 		0
 	\end{matrix}
 	\right] \ket 0
-	\\
-	&\neq \sum_i f_{6, i} \bm R_{6, i} \ket 0 
-	= - \frac i 2 \bm R_{6, \paulid{zi}} \ket 0
 \end{align*}
 %
 with
@@ -3033,90 +3036,461 @@ Which means the only relevant elements of $P_\elec$ for this case are:
 \begin{align*}
 	\paulid{iz}, \paulid{zi}, \paulid{iy}, \paulid{yz}
 \end{align*}
+
+\subsection{\textbf{Hamiltonian and potential matrix for non-interacting case}}
+
+Our potential matrix, $V$ is:
+%
+\begin{equation*}
+	\begin{split}
+		V = \begin{pmatrix}
+			\pd {\lambda_1} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_2} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_3} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_4} \sandwich {\Psi}{\hat H}{\Psi}\\
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+%
+To calculate that, we first need our hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
+%
+\begin{equation*}
+	\begin{split}
+	\hat H  &= \sum_{\go 0, \go 1}h_{\go 0 \go 1}\creg 0 \anig 1 \\
+		&= {h_{\alpha\alpha}} \creo 0 \anio 0
+		+ {h_{\mu\mu}} \creu 0 \aniu 0
+		+ h_{\mu\alpha} \creu 0 \anio 0 
+		+ {h_{\beta\beta}} \creo 1 \anio 1
+		+ {h_{\nu\nu}} \creu 1 \aniu 1
+		+ h_{\nu\beta} \creu 1 \anio 1
+%
+		\\
+%
+		&= \frac{h_{\alpha\alpha}}{2} \paren{\hat I + \hat Z} \otimes \hat I
+		+ \frac{h_{\mu\mu}}{2} \paren{\hat I - \hat Z} \otimes \hat I
+		+ h_{\mu\alpha} \hat X \otimes \hat I 
+%
+		\\
+%
+		& \quad
+		+ \frac{h_{\beta\beta}}{2} \hat I \otimes \paren{\hat I + \hat Z} 
+		+ \frac{h_{\nu\nu}}{2} \hat I \otimes \paren{\hat I - \hat Z} 
+		+ h_{\nu\beta} \hat I \otimes \hat X
+%
+	\\
+%
+		&= 	\frac{1}{2} \left[ 
+			\paren{h_{\alpha\alpha} + h_{\beta\beta} + h_{\mu\mu} + h_{\nu\nu}} \hat I \otimes \hat I 
+		+	\paren{h_{\alpha\alpha} - h_{\mu\mu}} \hat Z \otimes \hat I 
+		+	\paren{h_{\beta\beta} - h_{\nu\nu}} \hat I \otimes \hat Z 
+	\right .
+	\\
+		& \quad	\left .
+		+ 	2 \cdot h_{\mu\alpha} \hat X \otimes \hat I 
+		+ 	2 \cdot h_{\nu\beta} \hat I \otimes \hat X
+	\right]
+%
+	\\
+%
+		&=	h_{II} \cdot \hat I \otimes \hat I
+		+	h_{ZI} \cdot \hat Z \otimes \hat I
+		+	h_{IZ} \cdot \hat I \otimes \hat Z
+		+	h_{XI} \cdot \hat X \otimes \hat I
+		+	h_{IX} \cdot \hat I \otimes \hat X
+	\end{split}
+\end{equation*}
+%
+Where:
+%
+\begin{equation*}
+	\begin{split}
+			h_{II}
+		&=	\frac{h_{\alpha\alpha} + h_{\beta\beta} + h_{\mu\mu} + h_{\nu\nu}} 2
+%
+	\\
+%
+			h_{ZI}
+		&=	\frac{h_{\alpha\alpha} - h_{\mu\mu}} 2
+%
+	\\
+%
+			h_{IZ}
+		&=	\frac{h_{\beta\beta} - h_{\nu\nu}} 2
+%
+	\\
+%
+			h_{XI}
+		&= 	h_{\mu\alpha}
+%
+	\\
+%
+			h_{IX}
+		&=	h_{\nu\beta}
+	\end{split}
+\end{equation*}
+%
+We also have the values of
+$
+h_{\alpha\alpha}, h_{\mu\mu}, h_{\mu\alpha}, h_{\beta\beta}, h_{\nu\nu}, h_{\nu\beta}
+$ for a Hydrogen atom. They're tabled values, and under STO-3G basis set (Approximates the Slater type orbitals by the use of three Gaussian curves), these values can be found in \shortcite{szabo}:
+\begin{equation*}
+	\begin{split}
+		h_{\alpha\alpha} &= h_{\beta\beta} = -1.2528 \text{ a.u.} \\
+		h_{\mu\mu} &= h_{\nu\nu} = -0.4756 \text{ a.u.}\\
+		h_{\mu\alpha} &= h_{\nu\beta} = 0 \text{ a.u.}
+	\end{split}
+\end{equation*}
+We now need to calculate $\sandwich{\Psi}{\hat H}{\Psi}$ and for that we shall use:
+%
+\begin{equation*}
+	\begin{split}
+	\ket \Psi 
+	&= 
+	\co {\lambda_3}\co {\lambda_4}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+	+ e^{i\lambda_1}\s {\lambda_3}\co {\lambda_4}\ket{\psi_{\oo 0} \psi_{\uo 1}} 
+	\\
+	&\phantom{=}
+	+ e^{i\lambda_2}\co {\lambda_3 }\s {\lambda_4}\ket {\psi_{\uo 0}\psi_{\oo 1}} 
+	+ e^{i\lambda_1}e^{i\lambda_2}\s {\lambda_3}\s {\lambda_4}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+	\\
+%
+%
+	\\
+	\bra \Psi 
+	&= 
+	\co {\lambda_3}\co {\lambda_4}\bra {\psi_{\oo 0}\psi_{\oo 1}}
+	+ e^{-i\lambda_1}\s {\lambda_3}\co {\lambda_4}\bra{\psi_{\oo 0} \psi_{\uo 1}} 
+	\\
+	&\phantom{=}
+	+ e^{-i\lambda_2}\co {\lambda_3 }\s {\lambda_4}\bra {\psi_{\uo 0}\psi_{\oo 1}} 
+	+ e^{-i\lambda_1}e^{-i\lambda_2}\s {\lambda_3}\s {\lambda_4}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+%
+%
+	\\
+	\end{split}
+\end{equation*}
+
+Therefore:
+	\begin{align*}
+		\sandwich \Psi {\hat H} \Psi
+		&= \bra \Psi \left[
+			h_{II} \cdot \hat I \otimes \hat I
+		+	h_{ZI} \cdot \hat Z \otimes \hat I
+		+	h_{IZ} \cdot \hat I \otimes \hat Z
+		+	h_{XI} \cdot \hat X \otimes \hat I
+		+	h_{IX} \cdot \hat I \otimes \hat X \right ] \ket \Psi
+%
+	\\
+%
+		&=	\sandwich \Psi {h_{II} \cdot \hat I \otimes \hat I} \Psi
+		+	\sandwich \Psi {h_{ZI} \cdot \hat Z \otimes \hat I} \Psi
+		+	\sandwich \Psi {h_{IZ} \cdot \hat I \otimes \hat Z} \Psi
+%
+		\\ 
+		&\quad
+%
+		+	\sandwich \Psi {h_{XI} \cdot \hat X \otimes \hat I} \Psi
+		+	\sandwich \Psi {h_{IX} \cdot \hat I \otimes \hat X} \Psi
+%
+%
+	\\
+%
+%
+		&=	h_{II}
+		+	\bra \Psi \paren{h_{ZI} \cdot \hat Z \otimes \hat I} 
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+				+ e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+			\right ]
+%
+	\\
+	&\quad
+		+	\bra \Psi {h_{IZ} \cdot \hat I \otimes \hat Z} 
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+				+ e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+			\right ]
+%
+		\\ 
+		&\quad
+%
+		+	\bra \Psi {h_{XI} \cdot \hat X \otimes \hat I} 
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+				+ e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+			\right ]
+%
+	\\
+	&\quad
+		+	\bra \Psi {h_{IX} \cdot \hat I \otimes \hat X} 
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+%
+			\\
+%
+%
+		&=	h_{II}
+		+	\bra \Psi h_{ZI}
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+			\\
+		&\qquad \left .
+%
+			-	e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+			- 	e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+			\right ]
+%
+	\\
+	&\quad
+		+	\bra \Psi h_{IZ} 
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+				- e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+				- e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+			\right ]
+%
+		\\ 
+		&\quad
+%
+		+	\bra \Psi h_{XI}
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\uo 0}\psi_{\oo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\uo 0}\psi_{\uo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\oo 0} \psi_{\oo 1}} 
+				+ e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\oo 0} \psi_{\uo 1}} 
+			\right ]
+%
+	\\
+	&\quad
+		+	\bra \Psi h_{IX}
+			\left [
+				\co {\lambda_4}\co {\lambda_3}\ket {\psi_{\oo 0}\psi_{\uo 1}}
+				+ e^{i\lambda_1}\co {\lambda_4 }\s {\lambda_3}\ket {\psi_{\oo 0}\psi_{\oo 1}} \right .
+%
+			\\
+%
+				&\qquad \left . + e^{i\lambda_2}\s {\lambda_4}\co {\lambda_3}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+				+ e^{i\lambda_2}e^{i\lambda_1}\s {\lambda_4}\s {\lambda_3}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+			\right ]
+%
+%
+	\\
+%
+%
+		&=	h_{II}
+		+	h_{ZI}
+			\left [
+					\cosq {\lambda_4}\cosq {\lambda_3} 
+				+ 	\cosq {\lambda_4 }\ssq {\lambda_3} \right .
+%
+			\\
+		&\qquad \left .
+%
+				-	\ssq {\lambda_4}\cosq {\lambda_3}
+				- 	\ssq {\lambda_4}\ssq {\lambda_3}
+			\right ]
+%
+	\\
+	&\quad
+		+	h_{IZ} 
+			\left [
+					\cosq {\lambda_4}\cosq {\lambda_3} 
+				- 	\cosq {\lambda_4 }\ssq {\lambda_3} \right .
+%
+			\\
+		&\qquad \left .
+%
+				+	\ssq {\lambda_4}\cosq {\lambda_3}
+				- 	\ssq {\lambda_4}\ssq {\lambda_3}
+			\right ]
+%
+		\\ 
+		&\quad
+% 
+		+	h_{XI}
+			\left [
+				e^{-i\lambda_2}\s {\lambda_4}\co {\lambda_4}\cosq {\lambda_3}
+			+ 	e^{-i\lambda_2}\s {\lambda_4 }\co {\lambda_4 }\ssq {\lambda_3}
+			\right .
+%
+			\\
+%
+				&\qquad \left . 
+			+ 	e^{i\lambda_2}\s {\lambda_4}\co {\lambda_4}\cosq {\lambda_3}
+			+ 	e^{i\lambda_2}\s {\lambda_4}\co {\lambda_4}\ssq {\lambda_3}
+			\right ]
+%
+	\\
+	&\quad
+		+	h_{IX}
+			\left [
+				e^{-i\lambda_1}\cosq {\lambda_4}\s {\lambda_3}\co {\lambda_3}
+			+ 	e^{i\lambda_1}\cosq {\lambda_4 }\s {\lambda_3}\co {\lambda_3}
+			\right .
+%
+			\\
+%
+				&\qquad \left . 
+			+ 	e^{-i\lambda_1}\ssq {\lambda_4}\s {\lambda_3}\co {\lambda_3}
+			+ 	e^{i\lambda_1}\ssq {\lambda_4}\s {\lambda_3}\co {\lambda_3}
+			\right ]
+%
+%
+	\\
+%
+%
+		&=	h_{II}
+		+	h_{ZI} \cdot \co {2 \lambda_4}
+		+	h_{IZ} \cdot \co {2 \lambda_3}
+		+	h_{XI} \cdot \s  {2 \lambda_4} \co {\lambda_2}
+%
+	\\
+	&\quad
+%
+		+	h_{IX} \cdot \s  {2 \lambda_3} \co {\lambda_1}
+	\end{align*} %Align needed as split doesn't allow page breaks
+
+Finally,
+
+\begin{equation*}
+	\begin{split}
+		V = \begin{pmatrix}
+		-	h_{IX} \cdot \s  {2 \lambda_3} \s  {\lambda_1}
+%
+	\\
+		-	h_{XI} \cdot \s  {2 \lambda_4} \s  {\lambda_2}
+%
+	\\
+%
+%
+		-	2 h_{IZ} \cdot \s  {2 \lambda_3}
+		+	2 h_{IX} \cdot \co {2 \lambda_3} \co {\lambda_1}
+%
+	\\
+%
+		-	2 h_{ZI} \cdot \s  {2 \lambda_4}
+		+	2 h_{XI} \cdot \co {2 \lambda_4} \co {\lambda_2}
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+
+%
 Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables:
+%
 \begin{equation}\label{eq:benjamin}
 \begin{split}
 	M_{k, q} 
-	= \sum_{\bm l, \bm j \in P_\elec}
+	= \sum_{m:\lambda_m=\lambda_k} \sum_{n:\lambda_n=\lambda_q} \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-	\paren{if_{k, \bm l}^*f_{q, \bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm R_{q, \bm j}} 0}
-	+\paren{if_{k, \bm l}^*f_{q, \bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm R_{q, \bm j}} 0}^*
+	\paren{if_{m, \bm l}^*f_{n, \bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm R_{n, \bm j}} 0}
+	+\paren{if_{m, \bm l}^*f_{n, \bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm R_{n, \bm j}} 0}^*
 	\right]\\
 	V_{k} 
-	= \sum_{\bm l, \bm j \in P_\elec}
+	= \sum_{m:\lambda_m=\lambda_k} \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-		\paren{if_{k, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}
-		+\paren{if_{k, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{k, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}^*
+		\paren{if_{m, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}
+		+\paren{if_{m, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}^*
 	\right]
 \end{split}
 \end{equation}
-
+%
 Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, with real parameters $a$ and $\theta$, and there is a quantum circuit that can efficiently evaluate it.
-
+%
 \subsection{\textbf{Circuits}}
 
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{circuits/circuit1.pdf}
-  \caption{Example circuit that measures $e^{i\theta}\sandwich{0}{U}{0}$ for some unitary matrix $U$ and an angle $\theta$}
+  \caption[Example reduced circuit]{Example circuit that measures $e^{i\theta}\sandwich{0}{\bm U}{0}$ for some unitary matrix $\bm U$ and an angle $\theta$}
   \label{fig:circuitreal}
 \end{figure}
 
 To highlight how the circuit evaluates the elements of matrices $\bm M$ and $\bm V$, we refer to a more basic circuit represented in figure \ref{fig:circuitreal}, which evolves as follows:
 \begin{equation*}
 	\begin{split}
-		\psi_0 
+		\ket {\psi_0}
 		&= \paren{\frac{\ket 0 + e^{i\theta}\ket 1}{\sqrt 2}}\otimes \ket 0^{\otimes\elec} \\
-		\psi_1
+		\ket {\psi_1}
 		&= \paren{\frac{\ket 1 + e^{i\theta}\ket 0}{\sqrt 2}}\otimes \ket 0^{\otimes\elec} \\
-		\psi_2
-		&= \frac{\ket 1}{\sqrt 2} \otimes U \ket 0^{\otimes\elec} + \frac{e^{i\theta}}{\sqrt 2}\ket 0 \otimes \ket 0^{\otimes\elec} \\
-		\psi_3
-		&= \frac{\ket 0}{\sqrt 2} \otimes U \ket 0^{\otimes\elec} + \frac{e^{i\theta}}{\sqrt 2}\ket 1 \otimes \ket 0^{\otimes\elec} \\
+		\ket {\psi_2}
+		&= \frac{\ket 1}{\sqrt 2} \otimes \bm U \ket 0^{\otimes\elec} + \frac{e^{i\theta}}{\sqrt 2}\ket 0 \otimes \ket 0^{\otimes\elec} \\
+		\ket {\psi_3}
+		&= \frac{\ket 0}{\sqrt 2} \otimes \bm U \ket 0^{\otimes\elec} + \frac{e^{i\theta}}{\sqrt 2}\ket 1 \otimes \ket 0^{\otimes\elec} \\
 		\intertext{\text{We can now change basis to 
 		$\ket + = \frac{\ket 0 + \ket 1}{\sqrt 2}$
 		and
 		$\ket - = \frac{\ket 0 - \ket 1}{\sqrt 2}$:}}
 		\psi_3
-		&= \frac{\ket + + \ket -}{2} \otimes U \ket 0^{\otimes\elec} + e^{i\theta}\frac{\ket + - \ket -}{2} \otimes \ket 0^{\otimes\elec} \\
-		&= \ket + \frac{U + e^{i\theta}I}{2}\ket 0^{\otimes\elec} 
-		+ \ket - \frac{U - e^{i\theta}I}{2}\ket 0^{\otimes\elec} 
+		&= \frac{\ket + + \ket -}{2} \otimes \bm U \ket 0^{\otimes\elec} + e^{i\theta}\frac{\ket + - \ket -}{2} \otimes \ket 0^{\otimes\elec} \\
+		&= \ket + \frac{\bm U + e^{i\theta}\bm I}{2}\ket 0^{\otimes\elec} 
+		+ \ket - \frac{\bm U - e^{i\theta}\bm I}{2}\ket 0^{\otimes\elec} 
 	\end{split}
 \end{equation*}
+%
 The probability of measuring $\ket +$ on the first qubit is:
+%
 \begin{equation*}
 	\begin{split}
 		P(\ket +)
 		&= \sandwich 0 {
-			\paren{\frac{U + e^{i\theta}I}{2}}
-			\paren{\frac{U + e^{i\theta}I}{2}}^\dagger
+			\paren{\frac{\bm U + e^{i\theta}\bm I}{2}}
+			\paren{\frac{\bm U + e^{i\theta}\bm I}{2}}^\dagger
 		} 0 \\
 		&= \sandwich 0 {
-			\paren{\frac{U + e^{i\theta}I}{2}}
-			\paren{\frac{U^\dagger + e^{-i\theta}I}{2}}
+			\paren{\frac{\bm U + e^{i\theta}\bm I}{2}}
+			\paren{\frac{\bm U^\dagger + e^{-i\theta}\bm I}{2}}
 		} 0 \\
 		&= \sandwich 0 {
-			\paren{\frac{UU^\dagger + Ue^{-i\theta}I + U^\dagger e^{i\theta}I + I^2}{4}}
+			\paren{\frac{\bm U\bm U^\dagger + \bm Ue^{-i\theta}\bm I + \bm U^\dagger e^{i\theta}\bm I + \bm I^2}{4}}
 		} 0 \\
 		&= \sandwich 0 {
-			\paren{\frac{Ue^{-i\theta}I + U^\dagger e^{i\theta}I}{4}}
+			\paren{\frac{\bm Ue^{-i\theta}\bm I + \bm U^\dagger e^{i\theta}\bm I}{4}}
 		} 0 
-		+ \frac{\sandwich 0 I 0}{2} \\
+		+ \frac{\sandwich 0 {\bm I} 0}{2} \\
 		&= \sandwich 0 {
-			\paren{\frac{Ue^{-i\theta}I + \paren{Ue^{i\theta}I}^\dagger}{4}}
+			\paren{\frac{\bm Ue^{-i\theta}\bm I + \paren{\bm Ue^{i\theta}\bm I}^\dagger}{4}}
 		} 0 
 		+ \frac{1}{2} \\
-		&= \frac{Re \paren{e^{i\theta}\sandwich 0 { U } 0}}{2}
+		&= \frac{Re \paren{e^{i\theta}\sandwich 0 { \bm U } 0}}{2}
 		+ \frac{1}{2} \\
 	\end{split}
 \end{equation*}
-A more involved circuit that uses this principle comes from Li's paper \shortcite{benjamin}, as shown in figure \ref{fig:circuitbenjamin}
-
-\begin{figure}[hb!]
+%
+A more involved circuit that uses this principle comes from Li's paper \shortcite{benjamin}, as shown in figure \ref{fig:circuitbenjamin}.
+%
+\begin{figure}[h!]
   \includegraphics[width=\linewidth]{circuits/circuit2.pdf}
-  \caption{Li's circuit to measure $a \cdot Re\paren{e^{i\theta}\sandwich 0 U 0}$, which is then used to calculate $M_{kq}$ for the \gls{tdvp}}
+  \caption[Li's circuit]{Li's circuit to measure $a \cdot Re\paren{e^{i\theta}\sandwich 0 {\bm U} 0}$, which is then used to calculate $\bm M_{kq}$ for the \gls{tdvp}. The circuit that calculates $\bm V_k$ is similar, as it simply takes $q = N_v + 1$}
   \label{fig:circuitbenjamin}
 \end{figure}
-Measuring the first qubit in this circuit yields us:
+%
+The first (topmost) qubit in this circuit evolves into the state:
+%
 \begin{equation*}
 	\begin{split}
 		\ket \phi 
@@ -3171,8 +3545,8 @@ The probability of measuring $\ket -$ on the first qubit is then:
 	\end{split}
 \end{equation*}
 The average measurement of this circuit is then $Avg = P(\ket +) \cdot 1 + P(\ket -) \cdot (-1) = Re\paren{e^{i\theta}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}$ since the eigenvalue of $\ket +$ is 1 and the eigenvalue of $\ket -$ is -1.
-
-Taking $a_{kiqj} = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and referring back to \ref{eq:benjamin}:
+%
+Taking $a_{kiqj} = 2\cdot \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and referring back to \ref{eq:benjamin}:
 \begin{equation*}
 	\begin{split}
 		\sum_{i, j \in P_\elec} a_{kiqj} \cdot Avg_{kiqj} 
@@ -3182,27 +3556,24 @@ Taking $a_{kiqj} = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_
 		&= \sum_{i, j \in P_\elec} 2 Re\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}\\
 		&= \sum_{i, j \in P_\elec} 
 		\left [if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0 +
-		\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}^* \right ] = M_{k, q}\\
+		\paren{if_{k, i}^*f_{q, j}\sandwich 0 {\bm R_{ki}\bm R_{qj}^{\dagger}} 0}^* \right ]\\
 	\end{split}
 \end{equation*}
-Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega_\ind 0, \omega_\ind 1$, we get the following for R, using \ref{eq:udecomposition}:
-\begin{align*}
-	\ket\Psi &= R\ket 0 
-	= \sum_{\ind 0} \paren{
-		u_{\lambda_{\ind 0}} \otimes \ket{\ind 0} \bra{\ind 0} }\ket 0 \\
-	&= \sum_{\ind 0} \paren{
-		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}} \ket 0
-\end{align*}
+%
+That is, we can calculate $\bm M_{kq}$ as a weighted sum of the average measurement of the circuits for each pair $k, q$, where the products $a_{kiqj} = 2\cdot \abs{if_{k, i}^*f_{q, j}}$ are the weights.
+Similarly, $\bm V_k$ can be calculated as a weighted sum where the products $a_{kij} = 2\cdot \abs{f_{k, i}^*h_j}$ are the weights.
 
-We can rewrite $R$ as:
-\begin{align*}
-	R 
-	&= \sum_{\ind 0} 
-		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \otimes \ket{\ind 0} \bra{\ind 0}
-	=\prod_{k=N_v}^1 \bm R_k(\lambda_k)
-\end{align*}
-
-We can now use the $\bm R_k$ to find our $f_{k, i}$ via \ref{eq:r_to_f}. Finally, we use the values obtained to obtain the gates used in, for example, circuit \ref{fig:circuit}.
+Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega_\ind 0, \omega_\ind 1$, we obtained 
+$\bm R = 
+\bm R_6(\omega_\ind 0) \cdot
+\bm R_5(\omega_\ind 1) \cdot
+\bm R_4(\rho_\ind 0) \cdot
+\bm R_3(\rho_\ind 1) \cdot
+\bm R_2(\omega_\ind 0) \cdot
+\bm R_1(\omega_\ind 1)
+$, through equation \ref{eq:rdecomposition}.
+%
+We then used the matrices $\bm R_k$ to find our constants $f_{k, i} \in \mathbb{C}$ via \ref{eq:r_to_f}. Finally, for each pair of nonzero constants $f_{k, i}, f_{q, j}$ we can assemble a circuit and measure its average to obtain $\bm M_{kq}$ gates used in, for example, circuit \ref{fig:circuit}.
 
 %-------------------------------------------------------------------------------------
 
@@ -3213,7 +3584,7 @@ Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method to
 Next, we've solved the Euler-Lagrange differential equation system related to that wavefunction to get an algebraic result for the matrices in our system.
 We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$.
 
-We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_q \bm M_{k,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. Computational results confirming the research are in progress.
+We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_q \bm M_{k,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. 
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{img/circuit.jpg}
   \caption{Circuit for $k = 1, q = 4, \bm \sigma_{1, iz}, \bm \sigma_{4, yi}, \elec = 2, \orb = 4$}
@@ -3224,21 +3595,30 @@ The theoretical algebraic derivations for the low-dimension cases for this resea
 With equations for the wavefunction in hand, a circuit can be built to obtain matrices $\bm M$ and $\bm V$ needed to solve the system of Euler-Lagrange equations and accelerate the \gls{tdvp}.
 
 \begin{figure}[h!]
-	\includegraphics[width=\linewidth]{img/M&V Graph.jpg}
+	\includegraphics[width=\linewidth]{img/1e.jpg}
+  \caption{Loglog graph of error vs number of shots for a hydrogen atom}
+  \label{fig:2derrorgraph}
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{img/2e-nonint.jpg}
   \caption{Loglog graph of error vs number of shots for a hydrogen molecule}
   \label{fig:2derrorgraph}
 \end{figure}
 
-Current results in our simulations of a hydrogen atom as well as a hydrogen molecule suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}:
+%TODO: Describe code, hardware
+We've currently obtained results for the accuracy in calculating $\bm M$ and $\bm V$ matrices by simulating a quantum computer using the qiskit software package and running it on Texas Tech's High Performance Computing Center(HPCC) Nocona partition. We've taken the averages using $2^S$ shots, with $S \in \{1, 2, \ldots, 29\}$. That is, we have results for up to half a billion shots. For most of these values of $S$, there were 100 experiments run, so we could take the average of the average measurements and investigate the behaviour of the accuracy as the number of shots increased. The $r^2$ value was calculated using the averages of the average measurements.
+
+Current results in our simulations of a hydrogen atom as well as a hydrogen molecule suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}. The averages of the average measurement were only calculated for the values of $S$ with 10 or more experiments, but the individual measurement data is also displayed in the graph.
 
 \begin{equation*}
 	\begin{split}
-		\log E &= -\frac 1 2 \log S + c \\
-		E &= \frac 1 {\sqrt{S}} + c \\
+		\log E &\approx -\frac 1 2 \log S + c \\
+		E &\approx \frac 1 {\sqrt{S}} + c \\
 	\end{split}
 \end{equation*}
 
-Which means the assymptotical behaviour of our error is $\mathcal O(S^{-\frac 1 2})$
+Which means the assymptotical behaviour of our error is $\mathcal O(S^{-\frac 1 2})$.
 
 Further research could be made using the non-unitary representation for $\hat U$ in combination with \gls{lcu} to allow for \gls{qc} in the non-unitary case or even different formulations for the wavefunction in place of \gls{hf}.
 
