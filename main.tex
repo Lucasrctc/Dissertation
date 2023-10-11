@@ -477,8 +477,11 @@ Fortunately, \gls{qc} \shortcite{nielsen} can offer more efficient algorithms an
 As is known, \gls{qc} ultimately expresses all its operations in terms of unitary matrices, such as those of the Pauli gates \shortcite{nielsen}.
 In contrast, standard formulations of TDVP and Hartree-Fock theory \shortcite{szabo,mcweeny} avoid a unitary representation.
 Years before \gls{qc}, Fukutome \shortcite{fukutome} formulated the time-independent Hartree-Fock theory in terms of unitary Lie groups \shortcite{wybourne} in a purely mathematical context.
-In this dissertation, I will extend Fukutome’s unitary group approach to the Hartree-Fock theory to the TDVP framework and develop with it new \gls{qc} algorithms for chemical reactions.
-This dissertation is divided into 4 more chapters: In the chapter \ref{chap:background} there'll be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
+
+By using this unitary representation of the \gls{hf} a quantum circuit can be constructed to help solve the differential equations necessary to find a description of the system. Adapting and generalizing an existing \shortcite{benjamin} \gls{qc} algorithm to solve the \gls{tdvp}, we can lessen the burden of solving the differential equations and finding a description of the system. This is useful, for example, in the \gls{end} method, which can be used for computer simulations of chemical reactions. One of its applications is in understanding and optimizing the reactions that take place in proton cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
+
+In this dissertation, I extend Fukutome’s unitary group approach to the Hartree-Fock theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms for chemical reactions.
+This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there'll be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
 Then, in chapter \ref{chap:literature}, some prior work in the area has been highlighted with a brief explanation of how they're relevant to this work.
 Also, some book recommendations for further study or from which some formulas and theorems were used in this paper.
 
@@ -548,6 +551,7 @@ $$
 $$
 
 The Hamiltonian for the electrons in the system, using second quantization and atomic units is then:
+%
 \begin{equation}
 \begin{split}
 	\label{eq:electronhamiltonian}
@@ -555,7 +559,9 @@ The Hamiltonian for the electrons in the system, using second quantization and a
 	\frac 1 4 \sum_{\go 0, \go 1, \go 2, \go 3} \sandwich{\go 0 \go 1}{}{\go 2 \go 3}\creg 0 \creg 1 \anig 2 \anig 3
 \end{split}
 \end{equation}
+%
 where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral $\sandwich{\go 0 \go 1}{}{\go 2 \go 3}$ are:
+%
 \begin{equation}
 \begin{split}
 	\label{eq:electronhamiltonianaux}
@@ -572,7 +578,10 @@ where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral 
 	d\bx_1 d\bx_2 
 \end{split}
 \end{equation}
+%
 Finally, $h(\br_1)$ is the one-electron hamiltonian and $\frac 1 {r_{12}}$ is the Coulumb repulsion operator.
+
+The Hamiltonian found in this section is instrumental in describing how the systems we simulate behave, as it describes the energy of the system. With this Hamiltonian we can calculate obtain some of the terms in \ref{eq:matrixderiv}, necessary to solve the differential equations that describe the system.
 
 \section{\textbf{Lie Algebras}}
 
@@ -612,6 +621,8 @@ The reference Slater determinant state (one of the wavefunctions that describe t
 	= \ket{\phi_{\oo 0} \phi_{\oo 1} \ldots \phi_\elec}
 	= \det \left[\phi_{\oo 0}(\bx_i)\right]
 \]
+
+Using the properties of group theory, \shortcite{fukutome} was able to reduce the variables that describe the system by separating the operators that act on the system into operators that ultimately don't affect the state of the system (operators that only exchange electrons between occupied orbitals) and operators that do affect the state of the system into different subalgebras.
 
 \section {\textbf{Fukutome Unitary Approach to Hartree-Fock Theory}}
 %\cite{wybourne} \cite{raczka}
@@ -4351,23 +4362,46 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
 % Chapter 5 seems much too brief. 
 % You also need to clearly and succinctly note your key contributions, I am not seeing that anyonwhere. 
 
-\chapter{\textbf{Initial Results and Research Directions}}\label{chap:results}
+\chapter{\textbf{Results and Future Directions}}\label{chap:results}
 
-Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method together with some other approximations, we've obtained a reference wavefunction $\ket \Psi(\bm \omega, \bm \rho) = \hat U\ket 0$ that depends on vectors of real rotation angles $\bm \omega$ and $\bm \rho$.
+\section{\textbf{Contributions}}
+Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method, we've obtained a reference wavefunction $\ket \Psi(\bm \omega, \bm \rho) = \hat U\ket 0$ that depends on vectors of real rotation angles $\bm \omega$ and $\bm \rho$. 
+
+We've then added on Fukutome's work by applying some approximations to obtain a wavefunction with operators that act on single electrons, described by \ref{eq:udecomposition}. These were instrumental in obtaining a simpler wavefunction that fit our generalization of Li's circuit \shortcite{benjamin}.
 
 Next, we've solved the Euler-Lagrange differential equation system related to that wavefunction to get an algebraic result for the matrices in our system.
-We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$.
+We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$, a step necessary to build our \gls{qc}.
 
-We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_q \bm M_{k,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. 
+We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_{\lambda_l = \lambda_k} \sum_q \bm M_{l,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. 
+%TODO: Generate new figure
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{img/circuit.jpg}
   \caption{Circuit for $k = 1, q = 4, \bm \sigma_{1, iz}, \bm \sigma_{4, yi}, \elec = 2, \orb = 4$}
   \label{fig:circuit}
 \end{figure}
 
-The theoretical algebraic derivations for the low-dimension cases for this research has already been laid out and it looks promising for higher dimensions systems, so this could be scaled for the dynamical modeling of bigger systems than the ones provided here.
 With equations for the wavefunction in hand, a circuit can be built to obtain matrices $\bm M$ and $\bm V$ needed to solve the system of Euler-Lagrange equations and accelerate the \gls{tdvp}.
 
+\section{\textbf{Simulation}}
+
+The algorithm was verified via simulating a Quantum Computer. The open-source library Qiskit was used to simulate the \gls{qc} for the algorithm.
+
+\subsection{\textbf{Hardware description}}
+The computational experiments were conducted on the Nocona partition at Texas Tech University's High-Performance Computing Center (HPCC). The machines run Linux distro CentOS 8.1, with 240 PowerEdge C6252 nodes and 2 AMD EPYC™ 7702 processors per node.
+%
+
+\subsection{\textbf{Simulation and verification}}
+
+The theoretical algebraic derivations for the analytical expressions of the system were obtained so that the could verify the results obtained by our algorithm.
+The algorithm calculated the elements $M_{kq}$ and $V_k$ used by the \gls{tdvp} in equation \ref{eq:matrixderiv}. The error was then calculated using the Frobenius Norm of the difference between the simulated matrices $\hat {\bm M}$ and $\hat {\bm V}$ and their expected analytical expressions $\bm {\bar M}$ and $\bm {\bar V}$:
+%
+\begin{equation*}
+	\begin{split}
+		E_M &= \sqrt{\sum_k \sum_q \lvert {\hat M_{kq} - \bar M_{kq}} \rvert ^ 2 }\\
+		E_V &= \sqrt{\sum_k \lvert {\hat V_{k} - \bar V_{k}} \rvert ^ 2 }\\
+	\end{split}
+\end{equation*}
+%
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{img/1e.jpg}
   \caption{Loglog graph of error vs number of shots for a hydrogen atom}
@@ -4380,18 +4414,16 @@ With equations for the wavefunction in hand, a circuit can be built to obtain ma
   \label{fig:2derrorgraph}
 \end{figure}
 
-%TODO: Describe code, hardware
-We've currently obtained results for the accuracy in calculating $\bm M$ and $\bm V$ matrices by simulating a quantum computer using the qiskit software package and running it on Texas Tech's High Performance Computing Center(HPCC) Nocona partition. We've taken the averages using $2^S$ shots, with $S \in \{1, 2, \ldots, 29\}$. That is, we have results for up to half a billion shots. For most of these values of $S$, there were 100 experiments run, so we could take the average of the average measurements and investigate the behaviour of the accuracy as the number of shots increased. The $r^2$ value was calculated using the averages of the average measurements.
-
-Current results in our simulations of a hydrogen atom as well as a hydrogen molecule suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}. The averages of the average measurement were only calculated for the values of $S$ with 10 or more experiments, but the individual measurement data is also displayed in the graph.
-
+We've plotted the average and individual errors when using $2^S$ shots in the circuits, with $S \in \{1, 2, \ldots, 29\}$. That is, we have results for up to half a billion shots. For most of these values of $S$, the averages had 100 individual experiments run, and we didn't include averages when the number of individual experiments were over 10. The $r^2$ value was calculated over the first-order regression of these averages.
+Current results in our simulations of a hydrogen atom as well as a hydrogen molecule suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}. 
+%
 \begin{equation*}
 	\begin{split}
-		\log E &\approx -\frac 1 2 \log S + c \\
-		E &\approx \frac 1 {\sqrt{S}} + c \\
+		\log E &\approx -\frac 1 2 \log S + C \\
+		E &\approx \frac 1 {\sqrt{S}} \cdot C' \\
 	\end{split}
 \end{equation*}
-
+%
 Which means the assymptotical behaviour of our error is $\mathcal O(S^{-\frac 1 2})$.
 
 Further research could be made using the non-unitary representation for $\hat U$ in combination with \gls{lcu} to allow for \gls{qc} in the non-unitary case or even different formulations for the wavefunction in place of \gls{hf}.
