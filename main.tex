@@ -479,7 +479,7 @@ This is useful, for example, in the \gls{end} method \shortcite{end1,end2,end3},
 One of its applications is in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
 
 In this dissertation, I extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
-This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there'll be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
+This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there will be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
 Then, in chapter \ref{chap:literature}, some prior work in the area has been highlighted with a brief explanation of how they're relevant to this work.
 Also, some book recommendations for further study or from which some formulas and theorems were used in this paper.
 
@@ -494,8 +494,6 @@ These operators generate a Lie Algebra, and Fukutome's work \shortcite{fukutome}
 
 \section {\textbf{Second Quantization in Quantum Chemistry}}
 
-%\cite{ref1} \cite{szabo}
-%{ref3} = FUKUTOME
 Let $\elec$ be the number of electrons in our system and $\orb$ be the total number of available orthonormal spin orbitals being considered for our electrons.
 Note that since every electron requires an orbital, $\orb \geq \elec$.
 Let 
@@ -535,7 +533,7 @@ Using these operators, we can write the reference Slater determinant state $\ket
 \end{split}
 \end{equation*}
 
-We can then denote the excited slater determinants as:
+We can then denote the excited Slater determinants as:
 
 $$
 	\ket {\Psi_{\oo 0}^{\uo 0}}
@@ -577,7 +575,7 @@ where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral 
 \end{split}
 \end{equation}
 %
-Finally, $h(\br_1)$ is the one-electron hamiltonian and $\frac 1 {r_{12}}$ is the Coulumb repulsion operator.
+Finally, $h(\br_1)$ is the one-electron Hamiltonian and $\frac 1 {r_{12}}$ is the Coulomb repulsion operator.
 
 The Hamiltonian found in this section is instrumental in describing how the systems we simulate behave, as it determines the energy and dynamics of the system. With this Hamiltonian we can calculate some of the terms in Eq. \ref{eq:matrixderiv}, necessary to solve the differential equations that describe the system's dynamics.
 
@@ -621,7 +619,7 @@ The reference Slater determinant state (one of the wavefunctions that describe t
 \]
 
 Using the properties of group theory, Fukutome \shortcite{fukutome} was able to reduce the number of variables that describe the system by
-discriminating between pair operatos that do not change the state of the system (i.e., operators that exchange electrons within occupied orbitals or within unoccupied ones) and operators that do change the state of the system (i.e., operators that exchange electropns among occupied and unoccupied orbitals). The two type of operators span two different Lie subalgebras.
+discriminating between pair operators that do not change the state of the system (i.e., operators that exchange electrons within occupied orbitals or within unoccupied ones) and operators that do change the state of the system (i.e., operators that exchange electrons among occupied and unoccupied orbitals). The two type of operators span two different Lie subalgebras.
 %separating the operators that act on the system into operators that ultimately don't affect the state of the system (operators that only exchange electrons between occupied orbitals) and operators that do affect the state of the system into different subalgebras.
 
 
@@ -636,9 +634,9 @@ The field of \gls{qc} has attracted the attention of people of many diverse area
 	In this paper, many \gls{qc} results, not to mention the basics of linear algebra using Dirac notation (That is, bra's $\bra {bra}$ and kets $\ket{ket}$) are drawn from Nielsen and Chuang's book \cite{nielsen}, and many applications of quantum chemistry such as the \gls{hf} method and the second quantization formulation of quantum chemistry.
 	These applications of second formulation quantization, in turn, give way to using group theory, as the operators there defined (creation-annihilation pair $\creg 0\anig 1$ operators) generate a Lie Group, and this group's properties permit us to draw conclusions about which possible wavefunction states can arise from which set of variables and restrictions. This, in turn, allows us to choose a subset of the initial variable set for our study. Those properties can be better studied by taking a look at Wybourne's \shortcite{wybourne} and Raczka's \shortcite{raczka} books.
 	
-	One peculiar property of \gls{qc} is that you need unitary gates (and therefore operators) to be able to build a quantum circuit properly. Many years before the popularization of \gls{qc}, Fukutome \shortcite{fukutome} published a paper on an unitary approach to obtain \gls{hf} approximations of the state of a molecule. Within his approach, we see the connection to the Lie algebras and Lie groups. Also in his paper we can see that some operators only apply a change in phase to wavefunctions, so they don't affect the Slater Determinants. Therefore, we can focus on a subset of the operators, reducing the ammount of variables describing our system.
+	One peculiar property of \gls{qc} is that you need unitary gates (and therefore operators) to be able to build a quantum circuit properly. Many years before the popularization of \gls{qc}, Fukutome \shortcite{fukutome} published a paper on an unitary approach to obtain \gls{hf} approximations of the state of a molecule. Within his approach, we see the connection to the Lie algebras and Lie groups. Also in his paper we can see that some operators only apply a change in phase to wavefunctions, so they don't affect the Slater Determinants. Therefore, we can focus on a subset of the operators, reducing the amount of variables describing our system.
 
-	At this point, we have an approximation of our wavefunction given to us by \gls{hf} and other approximation techniches (i.e., non-interaction between electrons of different spins) $\ket\Psi_{HF}$ that describes our system, but it's not very accurate. It can be used, however, in a \gls{tdvp} to evolve over time and iterate towards a more accurate wavefunction that represents our system. The details of the workings of the \gls{tdvp} can be found in Kramer's book \shortcite{kramer}, and some of its many applications can be found in McArdle's \shortcite{mcardle} review paper, which goes in-depth into variational quantum simulation applied to time evolution and other quantum chemistry problems. Comparisons between the \gls{tdvp} and other methods of time evolution is made in Broeckhove's \shortcite{broeckhove} paper.
+	At this point, we have an approximation of our wavefunction given to us by \gls{hf} and other approximation techniques (i.e., non-interaction between electrons of different spins) $\ket\Psi_{HF}$ that describes our system, but it's not very accurate. It can be used, however, in a \gls{tdvp} to evolve over time and iterate towards a more accurate wavefunction that represents our system. The details of the workings of the \gls{tdvp} can be found in Kramer's book \shortcite{kramer}, and some of its many applications can be found in McArdle's \shortcite{mcardle} review paper, which goes in-depth into variational quantum simulation applied to time evolution and other quantum chemistry problems. Comparisons between the \gls{tdvp} and other methods of time evolution is made in Broeckhove's \shortcite{broeckhove} paper.
 
 	\gls{tdvp} does come with a cost, however. At each iteration, we have to solve a system of differential partial equations $\bm M \dot {\bm \lambda} = \bm V$ given to us by Euler-Lagrange equations, and the matrices $\bm M$ and $\bm V$ change with each iteration. The process of calculating these matrices on a classical computer is inefficient, and Li's paper \shortcite{benjamin} proposes a shallow quantum circuit based off Ekert's \shortcite{ekert} that calculates these matrices, which feed into the \gls{tdvp}, speeding up the process while also having some built-in error tolerance, thus avoiding the error rates that accompany more deep quantum circuits.
 
@@ -664,7 +662,7 @@ These generators give rise to unitary transformations $\hat U(\bm{\gamma})$ that
 %
 where the matrix $\bm \gamma = \paren{\gamma_{\go 0 \go 1}} \in \mathbb{C}^{\orb\times\orb}$ is anti-Hermitian($\gamma_{\go 0 \go 1} = -\gamma_{\go 1 \go 0}^*$).
 Its elements are $\orb^2$ complex parameters that define the transformations $\hat U(\bm \gamma)$.
-These parameters are not independent since they satisfy the anti-Hermitian condition, but taking the real and imaginary parts of each $\gamma_{\go 0 \go 1}$ and appealing to the unitary property, it is easy to prove that the transformations $\hat U(\bm \gamma)$ have $\orb^2$ real independant parameters.
+These parameters are not independent since they satisfy the anti-Hermitian condition, but taking the real and imaginary parts of each $\gamma_{\go 0 \go 1}$ and appealing to the unitary property, it is easy to prove that the transformations $\hat U(\bm \gamma)$ have $\orb^2$ real independent parameters.
 Like the $\hat U(\bm \gamma)$, the unitary matrices $\bm u$ belonging to the unitary Lie group $U(\orb)$ are defined as:
 
 \begin{equation}\label{LieMatrices}
@@ -764,7 +762,7 @@ In addition, the matrices $\bm u_\lambda \in \mathbb{C}^{\orb \times \orb}$ are:
 \end{split}
 \end{equation}
 %
-The matrix function $\bm S(\bm \lambda)$ is a generalization of the sine function while the matrixes $\bm C(\bm \lambda)$ and $\tilde {\bm C}(\bm \lambda)$ are generalizations of the cosine function. They also satisfy generalizations of the trigonometric relationships, such as:
+The matrix function $\bm S(\bm \lambda)$ is a generalization of the sine function while the matrices $\bm C(\bm \lambda)$ and $\tilde {\bm C}(\bm \lambda)$ are generalizations of the cosine function. They also satisfy generalizations of the trigonometric relationships, such as:
 %
 \begin{equation*}
 \begin{split}
@@ -853,8 +851,8 @@ on the reference Slater determinant state $\ket\Psi$ are:
 \end{equation}
 Specifically, $\hat U(\bm u_\xi)$ combines occupied spin-orbitals $\psio 0$ among themselves, transforming $\ket \Psi$ into equivalent states $\det (\bm w) \ket \Psi$, where $\det (\bm w) = \exp(i \oo 0), \oo 0 \in \mathbb{R}$, because $\bm w$ is unitary.
 In contrast, $\hat U(\bm u_\lambda)$ combines occupied $\psio 0$ and unoccupied $\psiu 0$ spin-orbitals, which transforms $\ket \Psi$ into non-equivalent states $\ket \Phi$.
-Therefore, we can ommit $\hat U(\bm u_\xi)$ from $\hat U(\bm u)$.
-In this way, we can reduce the original $\orb^2$ real parameters of $\hat U(\bm u)$ to the $2\elec(\orb - \elec)$ real parameters of $\hat U(\bm u_\lambda)$ as they are the minimum, non-reduntant real parameters to generate all the possible Slater determinant states $\ket\Phi$ that aren't orthogonal to the reference state $\ket\Psi$.
+Therefore, we can omit $\hat U(\bm u_\xi)$ from $\hat U(\bm u)$.
+In this way, we can reduce the original $\orb^2$ real parameters of $\hat U(\bm u)$ to the $2\elec(\orb - \elec)$ real parameters of $\hat U(\bm u_\lambda)$ as they are the minimum, non-redundant real parameters to generate all the possible Slater determinant states $\ket\Phi$ that aren't orthogonal to the reference state $\ket\Psi$.
 According to Thouless theorem \cite{thouless}, the states $\ket\Phi$ can be rewritten as:
 
 \begin{equation}\label{eq:thouless}
@@ -895,7 +893,7 @@ We finally remark that the normalized states $\ket\Phi$ and the un-normalized st
 
 The \gls{tdvp} \shortcite{kramer} has been used to simulate many physical systems, such as nuclear reactions \shortcite{tdvp4}, molecular models \shortcite{tdvp5,kramer} and wave packets dynamics in the multi-configuration Hartree method \shortcite{tdvp7,tdvp8,tdvp9,tdvp10,tdvp11}, which is used to simulate non-adiabatic processes in molecules and molecular reactions.
 
-in conjunction to other techniques, such as \gls{end} \shortcite{end1,end2,end3}, and its derivatives, \gls{slend} and \gls{mcend}, it's been used to simulate molecules under intense electromagnetic fields \shortcite{end12}, molecule collisions leading to moieties' abstractions and exchanges \shortcite{end13}, reactions in organic chemistry \shortcite{end2}, rotations in triatomic molecules \shortcite{end14}, 
+In conjunction to other techniques, such as \gls{end} \shortcite{end1,end2,end3}, and its derivatives, \gls{slend} and \gls{mcend}, it's been used to simulate molecules under intense electromagnetic fields \shortcite{end12}, molecule collisions leading to moieties' abstractions and exchanges \shortcite{end13}, reactions in organic chemistry \shortcite{end2}, rotations in triatomic molecules \shortcite{end14}, 
 stopping powers and energy losses in penetration processes of ions into material media \shortcite{end15,end16,end17,end18},
 proton-molecule reactions of interest in atmospheric chemistry and astrochemistry; $\text{H}^+$ and the following molecules: $\text{H}_2$\shortcite{end19,end20}, C$\text{H}_4$\shortcite{end21}, $\text{H}_2$O\shortcite{end22,end23,end24}, $\text{N}_2$\shortcite{end25}, NO\shortcite{end26}, CO\shortcite{end27}, $\text{C}_2$$\text{H}_2$\shortcite{end29}, $\text{C}_2$$\text{H}_4$\shortcite{end30}.
 It has also been used to simulate ion cancer therapy reactions, like ion-induced water radiolysis \shortcite{end2,end24,end31,end32,end33}, ion-induced nucleobase damage \shortcite{end2,end31,end33,end34} and ion-induced and electron-induced nucleotide damage \shortcite{end33},
@@ -915,7 +913,7 @@ To obtain the dynamics of the system, I construct the quantum Lagrangian $L\left
 \]
 %and the Euler-Lagrange equations $\pd{\lambda_k} L = \ddt \pd{\dot \lambda_k} L$, which gives us a system of first-order differential equations $\bm M \dot{\bm \lambda} = \bm V$.
 %
-where $\hat H$ is the hamiltonian of the system, and $\overrightarrow{\pd t}$ and $\overleftarrow{\pd t}$ act to the right and to the left, respectively;
+where $\hat H$ is the Hamiltonian of the system, and $\overrightarrow{\pd t}$ and $\overleftarrow{\pd t}$ act to the right and to the left, respectively;
 these time derivative operators lead to a real Lagrangian that is symmetric with respect to the location of the time variable $t$ in the bra $\bra{\ }$ (left) and the ket $\ket{\ }$ (right).
 The associated quantum action is $A \left[ \Psi(t), \Psi^*(t) \right]$ \shortcite{kramer}:
 \[
@@ -923,7 +921,7 @@ The associated quantum action is $A \left[ \Psi(t), \Psi^*(t) \right]$ \shortcit
 	= \int_{t_1}^{t_2} L\left [ \Psi(t), \Psi^*(t) \right] dt
 \]
 %
-The dynamical equations are obtainhed by making the action stationary with respect to all the variational parameters $\{\lambda_k(t)\},\ \delta A = 0$ \shortcite{kramer}; this leads to a set of Euler-Lagrange equations for the variational parameters \shortcite{kramer}:
+The dynamical equations are obtained by making the action stationary with respect to all the variational parameters $\{\lambda_k(t)\},\ \delta A = 0$ \shortcite{kramer}; this leads to a set of Euler-Lagrange equations for the variational parameters \shortcite{kramer}:
 %
 \[
 	\ddt\paren{\fpd {L}{\dot \lambda_k}} = \paren{\fpd {L} {\lambda_k}};
@@ -977,7 +975,7 @@ Figure \ref{fig:TDVP} illustrates this process, while figure \ref{fig:flowchart1
   \label{fig:flowchart1}
 \end{figure}
 
-\section{\textbf{Time Dependant Variational Principle (TDVP)}}\label{sec:tdvp}
+\section{\textbf{Time Dependent Variational Principle (TDVP)}}\label{sec:tdvp}
 %\shortcite{broeckhove} \cite{kramer}
 First, we must obtain an approximation of the wavefunction for our simulation. That is done by applying a unitary transformation $\hat U$ to a initial state $\ket 0$.
 We find the \gls {hf} approximation by following through Fukutome's method\cite{fukutome}. After doing so, we need to derive the dynamics of our system.
@@ -3159,7 +3157,7 @@ Our potential matrix, $V$ is:
 	\end{split}
 \end{equation*}
 %
-To calculate that, we first need our hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
+To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
 %
 \begin{equation*}
 	\begin{split}
@@ -3689,7 +3687,7 @@ The 1-electron case is somewhat simpler than the 2-electron counterpart. We foll
 %
 \subsection {\textbf{Dynamics}}
 %
-We take somewhat similar steps to before in solving the lagrangian. Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecomposition} and \ref{eq:urotation}:
+We take somewhat similar steps to before in solving the Lagrangian. Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecomposition} and \ref{eq:urotation}:
 \begin{equation*}
 \begin{split}
 	\ket\Psi 
@@ -4322,7 +4320,7 @@ Our potential matrix, $V$ is:
 	\end{split}
 \end{equation*}
 %
-To calculate that, we first need our hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, since there's only one electron, we can safely disregard the electron interaction:
+To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, since there's only one electron, we can safely disregard the electron interaction:
 %
 \begin{equation*}
 	\begin{split}
@@ -4453,7 +4451,7 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
 
 % Lucas, why is it only initial results? This makes it seem like this is a proposal not a dissertation. 
 % Chapter 5 seems much too brief. 
-% You also need to clearly and succinctly note your key contributions, I am not seeing that anyonwhere. 
+% You also need to clearly and succinctly note your key contributions, I am not seeing that anywhere. 
 
 \chapter{\textbf{Results and Future Directions}}\label{chap:results}
 
@@ -4517,7 +4515,7 @@ Current results in our simulations of a hydrogen atom as well as a hydrogen mole
 	\end{split}
 \end{equation*}
 %
-Which means the assymptotical behaviour of our error is $\mathcal O(S^{-\frac 1 2})$.
+Which means the asymptotical behavior of our error is $\mathcal O(S^{-\frac 1 2})$.
 
 \subsection{\textbf{Conclusion}}
 
