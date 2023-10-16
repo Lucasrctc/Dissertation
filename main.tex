@@ -4512,14 +4512,18 @@ Current results in our simulations of a hydrogen atom as well as a hydrogen mole
 %
 Which means the assymptotical behaviour of our error is $\mathcal O(S^{-\frac 1 2})$.
 
+\subsection{\textbf{Conclusion}}
+
+We have proposed the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory as a means to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
+Through some further assumptions and approximations, we've managed to simplify the trial wavefunction so as to be able to use it on a modified circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices.
+Thus, we are able to find approximations of matrices $\bm M$ and $\bm V$ that arise from the Euler-Lagrange Eqs. \ref{eq:matrixderiv}.
+This approach has netted us a result that requires a number of shots scaling quadratically with the required precision, making it possible to run this quantum circuit as a \gls{nisq} coprocessor to an iterative algorithm, such as the \gls{tdvp}, as expressed in Fig.\ref{fig:TDVP}.
+The quantum algorithm calculates matrices $\bm M$ and $\bm V$ and, using this data, a classical computer can solve the differential equations to supply the quantum computer with a new trial wavefunction via the parameter list $\bm \lambda$.
+
+The \gls{tdvp} can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
+
 Further research could be made using the non-unitary representation for $\hat U$ in combination with \gls{lcu} to allow for \gls{qc} in the non-unitary case or even different formulations for the wavefunction in place of \gls{hf}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 							END OF SECOND CHAPTER								  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Other directions of study would be to apply the technique to simulate reactions with polymers and organic tissue or reactions in crystals, both of which would have geometric features that would allow us to apply this technique.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Backmatter -- Bibliography, appendices, etc.%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
