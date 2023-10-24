@@ -371,7 +371,7 @@ Dr. Bryan Norman\\
 Chair of Committee\\[15pt] %Edit
 Dr. Ismael Regis de Farias JR\\[15pt] %Edit
 Dr. Jorge Alberto Morales \\[15pt] %Edit
-Dr. Donping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
+Dr. Dongping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Changxue Xu \\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Mark Sheridan\\ %Edit (look up the info on the Graduate School's website)
 Dean of the Graduate School\\[30pt]
@@ -422,7 +422,21 @@ Dean of the Graduate School\\[30pt]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Abstract -- Delete or comment out if not wanted:%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{\textbf{Abstract}}
+\chapter{\textbf{Abstract}}
+
+Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine and can only be done using methods with exponential complexity. 
+%Lucas, the next sentence is not clear to me.
+It is using this fact that quantum supremacy has been attempted by simulating a quantum system in a quantum computer \shortcite{arute2019quantum} and verifying the result in a classical computer.
+
+One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
+Using quantum parallelism, variational methods such as the \gls{tdvp} and others \shortcite{qaoa,vqe} provide quantum algorithms with an advantage in complexity when compared with classical algorithms.
+%Conclusion
+Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
+We also simplify the trial wavefunction and modify a circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices into variational methods such as the \gls{tdvp}.
+
+Other quantum computing approaches based on trotterization techniques \shortcite{quantumsimulation}, while more powerful, are more error prone. Therefore, they don't fit into today's \gls{nisq} technology \shortcite{nisq}, making their use in the near future less certain than shallow-circuit, error-tolerant approaches such as Li's \shortcite{benjamin}.
+
+The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
 
 %%%%%%%%%%%%%%%%%
 %End of abstract%
@@ -450,19 +464,6 @@ Dean of the Graduate School\\[30pt]
 
 %TODO: add to introduction what's new work(i.e. section 4)
 
-\chapter{\textbf{Abstract}}
-
-Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine. They can only be done with an exponential complexity. It is using this fact that quantum supremacy has been attempted by simulating a quantum system in a quantum computer \shortcite{arute2019quantum} and verifying the result in a classical computer.
-
-One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
-Using quantum parallelism, variational methods such as the \gls{tdvp} and others \shortcite{qaoa,vqe} provide quantum algorithms with an advantage in complexity when compared with classical algorithms.
-%Conclusion
-Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
-We also simplify the trial wavefunction and modify a circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices into variational methods such as the \gls{tdvp}.
-
-Other quantum computing approaches based on trotterization techniques \shortcite{quantumsimulation}, while more powerful, are more error prone. Therefore, they don't fit into today's \gls{nisq} technology \shortcite{nisq}, making their use in the near future less certain than shallow-circuit, error-tolerant approaches such as Li's \shortcite{benjamin}.
-
-The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
 %
 \chapter{\textbf{Introduction}}
 % Lucas, please expand on the introduction so that someone not familiar with the work can understand why you are doing the work. This means that the significance must be clear and a high level overview of what you are doing should be clear. There should be a few pages of that that would be understandable by Lindsey or Stephanie. 
