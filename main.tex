@@ -367,10 +367,10 @@ the Requirements for\\
 the Degree of\\[15pt]
 Doctor of Philosophy in Industrial Engineering\\[30pt]  %Edit (or Master of YYY)
 %Approved\\[15pt]
-Dr. Bryan Norman\\
+Dr. Bryan A. Norman\\
 Chair of Committee\\[15pt] %Edit
-Dr. Ismael Regis de Farias JR\\[15pt] %Edit
-Dr. Jorge Alberto Morales \\[15pt] %Edit
+Dr. Jorge Alberto Morales \\ %Edit
+Co-Chair of Committee\\[15pt] %Edit
 Dr. Dongping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Changxue Xu \\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Mark Sheridan\\ %Edit (look up the info on the Graduate School's website)
@@ -469,7 +469,7 @@ The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gl
 % Lucas, please expand on the introduction so that someone not familiar with the work can understand why you are doing the work. This means that the significance must be clear and a high level overview of what you are doing should be clear. There should be a few pages of that that would be understandable by Lindsey or Stephanie. 
 
 Quantum chemistry \shortcite{szabo,mcweeny} seeks to describe chemical systems in terms of quantum mechanics.
-For time-dependent processes (e.g., chemical reactions), that requires the solution of the time-dependent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
+For time-dependent processes (e.g., chemical reactions), this requires the solution of the time-dependent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
 Once the wavefunction is found, all the physical and chemical properties of a system can be directly calculated from it \shortcite{szabo,mcweeny}.
 
 Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size.
@@ -494,7 +494,7 @@ This is useful, for example, in the \gls{end} method \shortcite{end1,end2,end3},
 One of its applications is in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
 
 In this dissertation, we extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
-This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there will be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
+This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there is an exposition of necessary mathematical and chemical foundations for the work in this dissertation.
 Then, in chapter \ref{chap:literature}, some prior work in the area has been highlighted with a brief explanation of how they're relevant to this work.
 Also, some book recommendations for further study or from which some formulas and theorems were used in this paper.
 
@@ -592,7 +592,7 @@ where the one-electron integral $h_{\go 0 \go 1}$ and the two electron integral 
 %
 Finally, $h(\br_1)$ is the one-electron Hamiltonian and $\frac 1 {r_{12}}$ is the Coulomb repulsion operator.
 
-The Hamiltonian found in this section is instrumental in describing how the systems we simulate behave, as it determines the energy and dynamics of the system. With this Hamiltonian we can calculate some of the terms in Eq. \ref{eq:matrixderiv}, necessary to solve the differential equations that describe the system's dynamics.
+The Hamiltonian found in this section is instrumental in describing how the systems we simulate behave as it determines the energy and dynamics of the system. With this Hamiltonian we can calculate some of the terms in Eq. \ref{eq:matrixderiv}, necessary to solve the differential equations that describe the system's dynamics.
 
 \section{\textbf{Lie Algebras}}
 
@@ -644,22 +644,22 @@ discriminating between pair operators that do not change the state of the system
 \chapter{\textbf{Literature Review}}\label{chap:literature}
 
 \section{\textbf{Background}}
-The field of \gls{qc} has attracted the attention of people of many diverse areas, but perhaps none more than those working in fields related to quantum physics and quantum chemistry. After all, what best way to simulate a quantum system than with another quantum system? Cao's paper \shortcite{cao} is a review paper that takes a look at various approaches of \gls{qc} in quantum chemistry.
+The field of \gls{qc} has attracted the attention of people from many diverse areas, but perhaps none more than those working in fields related to quantum physics and quantum chemistry. After all, what better way to simulate a quantum system than with another quantum system? Cao's paper \shortcite{cao} is a review paper that takes a look at various approaches suing \gls{qc} in quantum chemistry.
 
-	In this paper, many \gls{qc} results, not to mention the basics of linear algebra using Dirac notation (That is, bra's $\bra {bra}$ and kets $\ket{ket}$) are drawn from Nielsen and Chuang's book \cite{nielsen}, and many applications of quantum chemistry such as the \gls{hf} method and the second quantization formulation of quantum chemistry.
-	These applications of second formulation quantization, in turn, give way to using group theory, as the operators there defined (creation-annihilation pair $\creg 0\anig 1$ operators) generate a Lie Group, and this group's properties permit us to draw conclusions about which possible wavefunction states can arise from which set of variables and restrictions. This, in turn, allows us to choose a subset of the initial variable set for our study. Those properties can be better studied by taking a look at Wybourne's \shortcite{wybourne} and Raczka's \shortcite{raczka} books.
+	In this paper, many \gls{qc} results, not to mention the basics of linear algebra using Dirac notation (that is, bra's $\bra {bra}$ and kets $\ket{ket}$) are drawn from Nielsen and Chuang's book \cite{nielsen}, and many applications of quantum chemistry such as the \gls{hf} method and the second quantization formulation of quantum chemistry.
+	These applications of second formulation quantization, in turn, give way to using group theory, as the operators defined there (creation-annihilation pair $\creg 0\anig 1$ operators) generate a Lie Group, and this group's properties permit us to draw conclusions about which possible wavefunction states can arise from which sets of variables and restrictions. This, in turn, allows us to choose a subset of the initial variable set for our study. Those properties can be better studied by taking a look at Wybourne's \shortcite{wybourne} and Raczka's \shortcite{raczka} books.
 	
-	One peculiar property of \gls{qc} is that you need unitary gates (and therefore operators) to be able to build a quantum circuit properly. Many years before the popularization of \gls{qc}, Fukutome \shortcite{fukutome} published a paper on an unitary approach to obtain \gls{hf} approximations of the state of a molecule. Within his approach, we see the connection to the Lie algebras and Lie groups. Also in his paper we can see that some operators only apply a change in phase to wavefunctions, so they don't affect the Slater Determinants. Therefore, we can focus on a subset of the operators, reducing the amount of variables describing our system.
+	One peculiar property of \gls{qc} is that you need unitary gates (and therefore operators) to be able to build a quantum circuit properly. Many years before the popularization of \gls{qc}, Fukutome \shortcite{fukutome} published a paper on an unitary approach to obtain \gls{hf} approximations of the state of a molecule. Within his approach, we see the connection to Lie algebras and Lie groups. Also in his paper we can see that some operators only apply a change in phase to wavefunctions, so they don't affect the Slater Determinants. Therefore, we can focus on a subset of the operators, reducing the amount of variables describing our system.
 
-	At this point, we have an approximation of our wavefunction given to us by \gls{hf} and other approximation techniques (i.e., non-interaction between electrons of different spins) $\ket\Psi_{HF}$ that describes our system, but it's not very accurate. It can be used, however, in a \gls{tdvp} to evolve over time and iterate towards a more accurate wavefunction that represents our system. The details of the workings of the \gls{tdvp} can be found in Kramer's book \shortcite{kramer}, and some of its many applications can be found in McArdle's \shortcite{mcardle} review paper, which goes in-depth into variational quantum simulation applied to time evolution and other quantum chemistry problems. Comparisons between the \gls{tdvp} and other methods of time evolution is made in Broeckhove's \shortcite{broeckhove} paper.
+	Now, we have an approximation of our wavefunction given to us by \gls{hf} and other approximation techniques (i.e., non-interaction between electrons of different spins) $\ket\Psi_{HF}$ that describes our system, but it's not very accurate. It can be used, however, in a \gls{tdvp} to evolve over time and iterate towards a more accurate wavefunction that better represents our system. The details of the workings of the \gls{tdvp} can be found in Kramer's book \shortcite{kramer}, and some of its many applications can be found in McArdle's \shortcite{mcardle} review paper, which goes in-depth into variational quantum simulation applied to time evolution and other quantum chemistry problems. Comparisons between the \gls{tdvp} and other methods of time evolution is made in Broeckhove's \shortcite{broeckhove} paper.
 
-	\gls{tdvp} does come with a cost, however. At each iteration, we have to solve a system of differential partial equations $\bm M \dot {\bm \lambda} = \bm V$ given to us by Euler-Lagrange equations, and the matrices $\bm M$ and $\bm V$ change with each iteration. The process of calculating these matrices on a classical computer is inefficient, and Li's paper \shortcite{benjamin} proposes a shallow quantum circuit based off Ekert's \shortcite{ekert} that calculates these matrices, which feed into the \gls{tdvp}, speeding up the process while also having some built-in error tolerance, thus avoiding the error rates that accompany more deep quantum circuits.
+	\gls{tdvp} does come with a cost, however. At each iteration, we have to solve a system of differential partial equations $\bm M \dot {\bm \lambda} = \bm V$ given to us by Euler-Lagrange equations, and the matrices $\bm M$ and $\bm V$ change with each iteration. The process of calculating these matrices on a classical computer is inefficient, and Li's paper \shortcite{benjamin} proposes a shallow quantum circuit based off Ekert's \shortcite{ekert} that calculates these matrices, which feed into the \gls{tdvp}, speeding up the process while also having some built-in error tolerance, thus avoiding the error rates that accompany deeper quantum circuits.
 
 \section {\textbf{Fukutome Unitary Approach to Hartree-Fock Theory}}
 %\cite{wybourne} \cite{raczka}
 
 We now know more about the Lie Algebra $U(\orb)$ generated by the creation-annihilation pair operators, but this set is too large.
-We can reduce our search space by looking at some important subalgebras generated by subsets of the pair operators, namely the set of operators that don't mix our occupied and unoccupied orbitals (they act on 2 occupied orbitals or on 2 unoccupied orbitals, so they don't change the number of electrons in either) and the set of operators that do mix occupied and unoccupied orbitals (which either move an electron from occupied to unoccupied orbitals or vice-versa).
+We can reduce our search space by looking at some important subalgebras generated by subsets of the pair operators, namely the set of operators that don't mix our occupied and unoccupied orbitals (they act on 2 occupied orbitals or on 2 unoccupied orbitals, so they don't change the number of electrons in either) and the set of operators that mix occupied and unoccupied orbitals (which either move an electron from occupied to unoccupied orbitals or vice-versa).
 
 Investigating these will show we can focus our attention in one of these subsets of pair operators and ultimately reduce the amount of variables that describe the system.
 
@@ -716,7 +716,7 @@ Since many particle-hole pair operators $\creg 0 \anig 1$ do not commute, as see
 $\hat U(\theta_{\go 0 \go 1}) = \exp\paren{\theta_{\go 0 \go 1}\creg 0 \anig 1 - \theta_{\go 0 \go 1}^*\anig 1 \creg 0}$.
 This is regrettable because the application of $\hat U(\bm \gamma)$ may be cumbersome for large $\orb$.
 Fortunately, different types of partial factorizations of $\hat U(\bm \gamma)$ are possible.
-Fukutome factorization starts by assorting the pair operators $\creg 0 \anig 1$ into hole-hole pair $\creo 0 \anio 1$, particle-particle pair $\creu 0 \aniu 1$ and particle-hole/hole-particle pair $\creu 0 \anio 0 / \creo 0 \aniu 0$ operators. 
+Fukutome factorization starts by classifying the pair operators $\creg 0 \anig 1$ into hole-hole pair $\creo 0 \anio 1$, particle-particle pair $\creu 0 \aniu 1$ and particle-hole/hole-particle pair $\creu 0 \anio 0 / \creo 0 \aniu 0$ operators. 
 We first notice that from Eq. \ref{eq:lieprod} the $\creo 0 \anio 1$ and $\creu 0 \aniu 1$
 operators are generators of the Lie groups $U( \elec )$ and $U ( \orb - \elec )$, respectively. Furthermore, the
 hole-hole and particle-particle pair operators commute $\left[\creo 0 \anio 1, \creu 0 \aniu 1\right] = 0 \implies {U(\elec) \cap U(\orb - \elec) = 0}$, ${U(\orb) = U(\elec)\oplus_d U(\orb - \elec)} $ where $\oplus_d$ denotes ordinary direct sum (to be distinguished from the Kronecker sum denoted by $\oplus_k$). Based on these observations, we can define the following anti-Hermitian operators:
@@ -908,7 +908,7 @@ We finally remark that the normalized states $\ket\Phi$ and the un-normalized st
 
 \section{\textbf{Applications}}
 
-The \gls{tdvp} \shortcite{kramer} has been used to simulate many physical systems, such as nuclear reactions \shortcite{tdvp4}, molecular models \shortcite{tdvp5,kramer} and wave packets dynamics in the multi-configuration Hartree method \shortcite{tdvp7,tdvp8,tdvp9,tdvp10,tdvp11}, which is used to simulate non-adiabatic processes in molecules and molecular reactions.
+The \gls{tdvp} \shortcite{kramer} has been used to simulate many physical systems, such as nuclear reactions \shortcite{tdvp4}, molecular models \shortcite{tdvp5,kramer} and wave packet dynamics in the multi-configuration Hartree method \shortcite{tdvp7,tdvp8,tdvp9,tdvp10,tdvp11}, which is used to simulate non-adiabatic processes in molecules and molecular reactions.
 
 In conjunction to other techniques, such as \gls{end} \shortcite{end1,end2,end3}, and its derivatives, \gls{slend} and \gls{mcend}, it's been used to simulate molecules under intense electromagnetic fields \shortcite{end12}, molecule collisions leading to moieties' abstractions and exchanges \shortcite{end13}, reactions in organic chemistry \shortcite{end2}, rotations in triatomic molecules \shortcite{end14}, 
 stopping powers and energy losses in penetration processes of ions into material media \shortcite{end15,end16,end17,end18},
@@ -975,11 +975,11 @@ Fig. \ref{fig:flowchart1} presents an abbreviated flowchart of the algorithms fo
 \begin{figure}
 	\centering
   \includegraphics[width=\linewidth]{img/variation_figure.pdf}
-  \caption{Visualization of the variational algorithm}
+  \caption{Visualization of the variational algorithm.}
   \label{fig:TDVP}
 \end{figure}
 %
-To solve these differential equations we use the \gls{tdvp}, which is an iterative method in which we start with a best guess $\bm \lambda(0)$, calculate the matrices $\bm M$ and $\bm V$ based on $\bm \lambda(0)$.
+To solve these differential equations we use the \gls{tdvp}, which is an iterative method in which we start with a best guess $\bm \lambda(0)$, and calculate the matrices $\bm M$ and $\bm V$ based on $\bm \lambda(0)$.
 Then, we use these matrices to evolve $\bm \lambda(0)$ for a small amount of time into $\bm \lambda(\delta_t)$.
 The process is repeated until the goal time $n\cdot\delta_t = T$ is reached.
 We propose the use of a quantum circuit similar to Li's \cite{benjamin} and Ekert's \shortcite{ekert} to calculate the elements of the matrices $\bm M$ and $\bm V$ for each system of differential equations in each step of the iteration.
@@ -988,14 +988,14 @@ Figure \ref{fig:TDVP} illustrates this process, while figure \ref{fig:flowchart1
 \begin{figure}[hb!]
 	\centering
   \includegraphics[width=.7\linewidth]{flowcharts/flowchart1.pdf}
-  \caption{Abbreviated flowchart of the process to obtain a more accurate wavefunction for our electrons}
+  \caption{Abbreviated flowchart of the process to obtain a more accurate wavefunction for our electrons.}
   \label{fig:flowchart1}
 \end{figure}
 
 \section{\textbf{Time Dependent Variational Principle (TDVP)}}\label{sec:tdvp}
 %\shortcite{broeckhove} \cite{kramer}
 First, we must obtain an approximation of the wavefunction for our simulation. That is done by applying a unitary transformation $\hat U$ to a initial state $\ket 0$.
-We find the \gls {hf} approximation by following through Fukutome's method\cite{fukutome}. After doing so, we need to derive the dynamics of our system.
+We find the \gls {hf} approximation by following through Fukutome's method \shortcite{fukutome}. After doing so, we need to derive the dynamics of our system.
 
 \subsection{\textbf{Wavefunction approximation}}
 
@@ -1244,7 +1244,7 @@ To do so, we construct the quantum Lagrangian for our trial wave function as exp
 	L = \frac{\sandwich{\Psi(t)}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi(t)}}{\braket{\Psi(t)}{\Psi(t)}}
 \]
 %
-Our wavefunction $\Psi$ is generated by a unitary transformation and, therefore, is normalized to 1 at every time. This means $\braket{\Psi(t)}{\Psi(t)} = 1$. We now also rewrite the variables of $\ket{\Psi}$ as 
+Our wavefunction $\Psi$ is generated by a unitary transformation and, therefore, is always normalized to 1, which means $\braket{\Psi(t)}{\Psi(t)} = 1$. We now also rewrite the variables of $\ket{\Psi}$ as 
 $\lambda_1 = \omega_\ind 1; \lambda_2 = \omega_\ind 0; \lambda_3 = \rho_\ind 1; \lambda_4 = \rho_\ind 0$.
 The order of the numbering of the new lambda variables is important and shall be discussed later in Eq. \ref{eq:rdecomposition}. 
 This means we can express the Lagrangian as:
@@ -1408,7 +1408,7 @@ We can now turn back to the previous expression of $\ket{\Psi}$ in terms of the 
 	+ ie^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
 %
-Now we need have the partial derivatives of $\ket\Psi$, but we need to find the expressions for their duals (i.e., their adjoint expressions). We can take the dual of $\ket \Psi$ from \ref{eq:psirw}:
+Now we need to find the partial derivatives of $\ket\Psi$, but to do that we need to find the expressions for their duals (i.e., their adjoint expressions). We can take the dual of $\ket \Psi$ from \ref{eq:psirw}:
 %
 \begin{equation}
 	\label{eq:dualpsirw}
@@ -1451,7 +1451,7 @@ And take the derivatives of \ref{eq:dualpsirw}:
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
 %
-Finally, we have all the information needed to calculate the elements of the $\bm M$ matrix in \ref{eq:matrixderiv}. First, we notice that the metric matrix is in this case with real variational parameters skew-symmetric (i.e., real anti-Hermitian: $\bm M = - \bm M^T$), since:
+Finally, we have all the information needed to calculate the elements of the $\bm M$ matrix in \ref{eq:matrixderiv}. First, we notice that the metric matrix $\bm M$ is in this case with real variational parameters skew-symmetric (i.e., real anti-Hermitian: $\bm M = - \bm M^T$), since:
 %
 \begin{align*}
 	M_{kq} = 
@@ -3557,7 +3557,7 @@ and there is a quantum circuit that can efficiently evaluate it.
 
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{circuits/circuit1.pdf}
-  \caption[Example reduced circuit]{Example circuit that measures $e^{i\theta}\sandwich{0}{\bm U}{0}$ for some unitary matrix $\bm U$ and an angle $\theta$}
+  \caption[Example reduced circuit]{Example circuit that measures $e^{i\theta}\sandwich{0}{\bm U}{0}$ for some unitary matrix $\bm U$ and an angle $\theta$.}
   \label{fig:circuitreal}
 \end{figure}
 
@@ -3616,7 +3616,7 @@ A more involved circuit related to our purposes and that uses the above principl
 %
 \begin{figure}[h!]
   \includegraphics[width=\linewidth]{circuits/circuit2.pdf}
-  \caption[Li's circuit]{Li's circuit to measure $a \cdot Re\paren{e^{i\theta}\sandwich 0 {\bm U} 0}$, which is then used to calculate $\bm M_{kq}$ for the \gls{tdvp}. The circuit that calculates $\bm V_k$ is similar, as it simply takes $q = N_v + 1$}
+  \caption[Li's circuit]{Li's circuit to measure $a \cdot Re\paren{e^{i\theta}\sandwich 0 {\bm U} 0}$, which is then used to calculate $\bm M_{kq}$ for the \gls{tdvp}. The circuit that calculates $\bm V_k$ is similar, as it simply takes $q = N_v + 1$.}
   \label{fig:circuitbenjamin}
 \end{figure}
 %
@@ -4499,7 +4499,7 @@ We've then adapted the construction of the circuit from Li \shortcite{benjamin} 
 %TODO: Generate new figure
 \begin{figure}[hb!]
   \includegraphics[width=\linewidth]{img/circuit.jpg}
-  \caption{Circuit for $k = 1, q = 4, \bm \sigma_{1, iz}, \bm \sigma_{4, yi}, \elec = 2, \orb = 4$}
+  \caption{Circuit for $k = 1, q = 4, \bm \sigma_{1, iz}, \bm \sigma_{4, yi}, \elec = 2, \orb = 4$.}
   \label{fig:circuit}
 \end{figure}
 
@@ -4527,13 +4527,13 @@ The algorithm calculated the elements $M_{kq}$ and $V_k$ used by the \gls{tdvp} 
 %
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{img/1e.jpg}
-	\caption{Loglog graph of error vs number of shots for a $\text{H}_2^+$ hydrogen molecule}
+	\caption{Loglog graph of error vs number of shots for a $\text{H}_2^+$ hydrogen molecule.}
   \label{fig:1derrorgraph}
 \end{figure}
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{img/2e-nonint.jpg}
-  \caption{Loglog graph of error vs number of shots for a $\text{H}_2$ hydrogen molecule}
+  \caption{Loglog graph of error vs number of shots for a $\text{H}_2$ hydrogen molecule.}
   \label{fig:2derrorgraph}
 \end{figure}
 
