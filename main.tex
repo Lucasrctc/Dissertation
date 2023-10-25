@@ -2184,17 +2184,22 @@ Finally,
 		0 & 0 & 0 & -\frac i 2 \\
 	\end{bmatrix}
 \end{align*}
-and we can see
+%
+however,
 $$
 	\sum_i f_{1, i} \bm R_{1, i} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega}
 $$
 
-This happens because some of our variables are not independent since they satisfy some interrelationships. In this case, $\lambda_1 = \lambda_5$, and we'll see later that Li's \shortcite{benjamin} Eq. \ref{eq:rki} needs to be corrected in our approach to include terms that contain interrelated variables:
-$$
+This happens because some of our variables are not independent since they satisfy some interrelationships. In this case, $\lambda_1 = \lambda_5$, and we'll see later in item V that Li's \shortcite{benjamin} Eq. \ref{eq:rki} needs to be corrected in our approach to include terms that contain interrelated variables:
+%
+\begin{equation}
+	\begin{split}
+		\label{eq:correctedli2e}
 	\fpd{\ket\Psi}{\lambda_k}
 	=\sum_{j:\lambda_k = \lambda_j} \sum_{\bm A \in P_\elec} f_{j, \bm A} \bm R_{j, \bm A} \ket 0 
-$$
+	\end{split}
+\end{equation}
 
 \item $k = 2$
 
@@ -2369,11 +2374,15 @@ Finally,
 	\frac i 2 \bm R_6 \bm R_5 \bm R_4 \bm R_3 \bm R_2 \ZI \bm R_1
 	\\
 \end{align*}
+%
 and we can see
+%
 $$
 	\sum_{\bm A \in P_\elec} f_{2, \bm A} \bm R_{2, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
+
+That is, once again we need to apply our new Eq. \ref{eq:correctedli2e} instead of Li's Eq. \ref{eq:rki} as $\lambda_2 = \lambda_6$. We shall see this equation satisfied in item VI.
 
 \item $k = 3$
 \begin{align*}
@@ -2800,7 +2809,7 @@ $$
 	&= - \frac i 2 \bm R_5 \paren{\paulid{iz}}
 \end{align*}
 %
-Li's \shortcite{benjamin} Eq. \ref{eq:rki} once again fails, as we have:
+Li's \shortcite{benjamin} Eq. \ref{eq:rki} once again is not satisfied, as we have:
 %
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_5} &= \fpd {\ket\Psi}{\omega_\ind 1} = 
@@ -2931,14 +2940,14 @@ Finally,
 	\\
 \end{align*}
 %
-and we can see
+and we can see Eq. \ref{eq:rki} is not satisfied:
 %
 $$
 	\sum_{\bm A \in P_\elec} f_{5, \bm A} \bm R_{5, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 1}
 $$
 %
-On the other hand,
+On the other hand, applying our Eq. \ref{eq:correctedli2e} that accounts for our interrelated variables:
 %
 $$
 	\sum_{\bm A \in P_\elec} f_{1, \bm A} \bm R_{1, \bm A} \ket 0 
@@ -3124,13 +3133,13 @@ Finally,
 	-\frac i 2 \bm R_6 \ZI \bm R_5 \bm R_4 \bm R_3 \bm R_2 \bm R_1
 \end{align*}
 %
-and we can see
+and we can see Eq. \ref{eq:rki} is not satisfied:
 %
 $$
 	\sum_{\bm A \in P_\elec} f_{6, \bm A} \bm R_{6, \bm A} \ket 0 
 	\neq \fpd{\ket\Psi}{\omega_\ind 0}
 $$
-But once again, the corrected equation is satisfied when involving $\bm R_2$:
+On the other hand, applying our Eq. \ref{eq:correctedli2e} that accounts for our interrelated variables:
 $$
 	\sum_{\bm A \in P_\elec} f_{2, \bm A} \bm R_{2, \bm A} \ket 0 
 	+ \sum_{\bm A \in P_\elec} f_{6, \bm A} \bm R_{6, \bm A} \ket 0 
@@ -3555,7 +3564,7 @@ and there is a quantum circuit that can efficiently evaluate it.
 %
 \subsection{\textbf{Circuits}}
 
-\begin{figure}[hb!]
+\begin{figure}[hb]
   \includegraphics[width=\linewidth]{circuits/circuit1.pdf}
   \caption[Example reduced circuit]{Example circuit that measures $e^{i\theta}\sandwich{0}{\bm U}{0}$ for some unitary matrix $\bm U$ and an angle $\theta$.}
   \label{fig:circuitreal}
@@ -3694,7 +3703,7 @@ Taking $a_{kiqj} = 2\cdot \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k,
 That is, we can calculate $\bm M_{kq}$ as a weighted sum of the average measurement of the circuits for each pair $k, q$, where the products $a_{kiqj} = 2\cdot \abs{if_{k, i}^*f_{q, j}}$ are the weights.
 Similarly, $\bm V_k$ can be calculated as a weighted sum where the products $a_{kij} = 2\cdot \abs{f_{k, i}^*h_j}$ are the weights.
 
-Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega_\ind 0, \omega_\ind 1$, we obtained 
+Using our evaluation of $\ket\Psi$ in terms of $\rho_\ind 0, \rho_\ind 1, \omega_\ind 0, \omega_\ind 1$, we obtain 
 $\bm R = 
 \bm R_6(\omega_\ind 0) \cdot
 \bm R_5(\omega_\ind 1) \cdot
@@ -4211,7 +4220,7 @@ $$
 	= \fpd{\ket\Psi}{\omega}
 $$
 %
-As expected, since our $\lambda_2$ variable is the only one not related to the others through a constraint or relationship.
+as expected, since our $\lambda_2$ variable is the only one not related to the others through a constraint or relationship.
 %
 \item $k = 3$
 %
@@ -4306,7 +4315,7 @@ $$
 	\neq \fpd{\ket\Psi}{\rho_\ind 1}
 $$
 %
-Using the Eq. \ref{eq:correctedli1e}, however, we can verify:
+Using Eq. \ref{eq:correctedli1e}, however, we can verify:
 %
 $$
 	\sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}} f_{1, \bm A} \bm R_{1, \bm A} \ket 0 
@@ -4316,7 +4325,7 @@ $$
 	= \fpd{\ket\Psi}{\lambda_3}
 $$
 %
-As expected since $\lambda_3 = \lambda_1$.
+as expected since $\lambda_3 = \lambda_1$.
 %
 \end{enumerate}
 %
@@ -4474,7 +4483,7 @@ Finally,
 	\end{split}
 \end{equation*}
 %
-Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables using \ref{eq:benjamin}.
+Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our $\lambda_1 = \omega$, $\lambda_2 = \rho$ variables and integration constants $f_{k, \bm i}$, $h_{\bm j}$ for $k \in \{1 \ldots 3\}$ and $\bm i, \bm j \in Pauli$ using Eq. \ref{eq:benjamin}.
 %
 Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, with real parameters $a$ and $\theta$, and there is a quantum circuit that can efficiently evaluate it.
 %
@@ -4486,6 +4495,8 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
 % You also need to clearly and succinctly note your key contributions, I am not seeing that anywhere. 
 
 \chapter{\textbf{Results and Future Directions}}\label{chap:results}
+
+In this chapter, we summarize our work, detailing our contributions. We also describe the hardware and simulation process, and the results obtained from this work. Finally, we point out some possible future directions for this research.
 
 \section{\textbf{Contributions}}
 Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method, we've obtained a reference wavefunction $\ket \Psi(\bm \omega, \bm \rho) = \hat U\ket 0$ that depends on vectors of real rotation angles $\bm \omega$ and $\bm \rho$. 
@@ -4515,7 +4526,7 @@ The computational experiments were conducted on the Nocona partition at Texas Te
 
 \subsection{\textbf{Simulation and verification}}
 
-The theoretical algebraic derivations for the analytical expressions of the system were obtained so that the could verify the results obtained by our algorithm.
+The theoretical algebraic derivations for the analytical expressions of the system were obtained to verify the results obtained by our algorithm.
 The algorithm calculated the elements $M_{kq}$ and $V_k$ used by the \gls{tdvp} in Eq. \ref{eq:matrixderiv}. The error was then calculated using the Frobenius Norm of the difference between the simulated matrices $\hat {\bm M}$ and $\hat {\bm V}$ and their expected analytical expressions $\bm {\bar M}$ and $\bm {\bar V}$:
 %
 \begin{equation*}
@@ -4547,8 +4558,8 @@ Current results in our simulations of both hydrogen molecules suggest that the e
 	\end{split}
 \end{equation*}
 %
-Which means the asymptotical behavior of our error is $\mathcal O(S^{-\frac 1 2})$.
-
+Which means the asymptotical behavior of our error is $\mathcal O(S^{-\frac 1 2})$, the cost of reducing the error is quadratical with respect to the number of shots needed on the quantum circuit, which is acceptable.
+%
 \subsection{\textbf{Conclusion}}
 
 We have proposed the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory as a means to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
@@ -4559,7 +4570,7 @@ The quantum algorithm calculates matrices $\bm M$ and $\bm V$ and, using this da
 
 The \gls{tdvp} can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
 
-Further research could be made using the non-unitary representation for $\hat U$ in combination with \gls{lcu} to allow for \gls{qc} in the non-unitary case or even different formulations for the wavefunction in place of \gls{hf}.
+Further research could be done using the non-unitary representation for $\hat U$ in combination with a \gls{lcu} to allow for \gls{qc} in the non-unitary case or even different formulations for the wavefunction in place of \gls{hf}.
 Other directions of study would be to apply the technique to simulate reactions with polymers and organic tissue or reactions in crystals, both of which would have geometric features that would allow us to apply this technique.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Backmatter -- Bibliography, appendices, etc.%
