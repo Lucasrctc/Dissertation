@@ -39,6 +39,7 @@
 \glsnoexpandfields
 
 \loadglsentries{aux/gloss.tex}
+%\renewcommand{\glsnamefont}[1]{\textbf{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %EDIT  (Running head--  REQUIRED)%
@@ -405,9 +406,22 @@ Dean of the Graduate School\\[30pt]
 %Comment out or delete      %
 %if not  wanted             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{\textbf{Acknowledgements}}
+\chapter{\textbf{Acknowledgements}}
 %I am thankful that LaTex has made writing my dissertation an easy and painless experience.
+I would like to express my gratitude and appreciation to several people without whom this journey would not have been possible.
 
+First of all, I would like to extend my sincere thanks to my former advisor, Dr. Ismael Regis de Farias Jr., who sadly passed away last year. 
+His guidance, advice and knowledge were instrumental in getting me where I am today, and his childlike wonder when learning or teaching was refreshing and intoxicating.
+
+I would also like to express my deepest appreciation to Dr. Bryan A. Norman, my current advisor and commitee chair, who stepped up supported me, making sure I could finish my studies.
+
+I am extremely grateful to Dr. Jorge Alberto Morales, the co-chair of the committee. Without his guidance, expertise and patience, none of this would have been possible.
+
+I am deeply indebted to the Edward E. Whitacre Jr. College of Engineering for the financial support, which made possible my studies.
+
+I would also like to thank my colleague and friend, Dr. Rafael Farias Ca\c{c}\~{a}o for all our research collaborations and friendship. Thanks should also go to Dr. Jorge Alberto Morales' Research group for their support and advice, especially for Juan Dominguez, who's contributed to this research.
+
+Finally, I acknowledge my incredible fianc\'{e}e, Sarah Marie Moberley, for all her love and support.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %End of acknowledgements%
@@ -487,11 +501,12 @@ As is known, \gls{qc} ultimately expresses all its operations in terms of unitar
 In contrast, standard formulations of TDVP and Hartree-Fock theory \shortcite{szabo,mcweeny} avoid a unitary representation.
 Years before \gls{qc}, Fukutome \shortcite{fukutome} formulated the time-independent Hartree-Fock theory in terms of unitary Lie groups \shortcite{wybourne} in a purely mathematical context.
 
-By using this unitary representation of the \gls{hf} theory, a quantum circuit can be constructed to help solve the differential equations necessary to find a description of the system. 
-Adapting and generalizing an existing \gls{qc} algorithm to solve \gls{tdvp} problems \shortcite{benjamin}, we can lessen the burden of solving the differential equations and finding a description of the system.
+By using this unitary representation of the \gls{hf} theory along with some further assumptions and approximations, we can obtain a simplified trial wavefunction.
+Further, we adapt Li's circuit \shortcite{benjamin} in order to use it with our simplified wavefunction. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices.
+We can then lessen the burden of solving the differential equations and finding a description of the system on classical computers by carrying out some of the calculations using the modified circuit.
 This is useful, for example, in the \gls{end} method \shortcite{end1,end2,end3}, which can be used for computer simulations of chemical reactions.
 %TODO: add references to other reactions
-One of its applications is in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
+Some of its applications are in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
 
 In this dissertation, we extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
 This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there is an exposition of necessary mathematical and chemical foundations for the work in this dissertation.
@@ -4589,7 +4604,7 @@ Other directions of study would be to apply the technique to simulate reactions 
 
 %\setlength{\glsdescwidth}{0.5\linewidth}
 %\setlength{\glspagelistwidth}{0.1\linewidth}
-\printnoidxglossary[type=acronym,sort=letter]
+\printnoidxglossary[type=acronym,sort=letter,title=\textbf{Acronyms}]
 %\printnoidxglossary[type=symbols,sort=letter]
 
 \end{document}
