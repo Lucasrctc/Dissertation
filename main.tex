@@ -371,7 +371,7 @@ Dr. Bryan Norman\\
 Chair of Committee\\[15pt] %Edit
 Dr. Ismael Regis de Farias JR\\[15pt] %Edit
 Dr. Jorge Alberto Morales \\[15pt] %Edit
-Dr. Donping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
+Dr. Dongping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Changxue Xu \\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Mark Sheridan\\ %Edit (look up the info on the Graduate School's website)
 Dean of the Graduate School\\[30pt]
@@ -424,12 +424,14 @@ Dean of the Graduate School\\[30pt]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{\textbf{Abstract}}
 
-Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine. They can only be done with an exponential complexity. It is using this fact that quantum supremacy has been attempted by simulating a quantum system in a quantum computer \shortcite{arute2019quantum} and verifying the result in a classical computer.
+Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine and can only be done using methods with exponential complexity. 
+%Lucas, the next sentence is not clear to me.
+This fact has caused researchers to use the problem of simulating quantum systems to demonstrate quantum supremacy \shortcite{arute2019quantum}, the idea that there is a problem for which \gls{qc} can find a solution that classical computers could not arrive in any feasible amount of time.
 
 One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
 Using quantum parallelism, variational methods such as the \gls{tdvp} and others \shortcite{qaoa,vqe} provide quantum algorithms with an advantage in complexity when compared with classical algorithms.
 %Conclusion
-Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain unitary representations, which are necessary for \gls{qc}, for trial wavefunctions for $\text{H}_2$ and $\text{H}_2^+$ molecules.
+Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
 We also simplify the trial wavefunction and modify a circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices into variational methods such as the \gls{tdvp}.
 
 Other quantum computing approaches based on trotterization techniques \shortcite{quantumsimulation}, while more powerful, are more error prone. Therefore, they don't fit into today's \gls{nisq} technology \shortcite{nisq}, making their use in the near future less certain than shallow-circuit, error-tolerant approaches such as Li's \shortcite{benjamin}.
