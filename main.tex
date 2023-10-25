@@ -422,7 +422,19 @@ Dean of the Graduate School\\[30pt]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Abstract -- Delete or comment out if not wanted:%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{\textbf{Abstract}}
+\chapter{\textbf{Abstract}}
+
+Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine. They can only be done with an exponential complexity. It is using this fact that quantum supremacy has been attempted by simulating a quantum system in a quantum computer \shortcite{arute2019quantum} and verifying the result in a classical computer.
+
+One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
+Using quantum parallelism, variational methods such as the \gls{tdvp} and others \shortcite{qaoa,vqe} provide quantum algorithms with an advantage in complexity when compared with classical algorithms.
+%Conclusion
+Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain unitary representations, which are necessary for \gls{qc}, for trial wavefunctions for $\text{H}_2$ and $\text{H}_2^+$ molecules.
+We also simplify the trial wavefunction and modify a circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices into variational methods such as the \gls{tdvp}.
+
+Other quantum computing approaches based on trotterization techniques \shortcite{quantumsimulation}, while more powerful, are more error prone. Therefore, they don't fit into today's \gls{nisq} technology \shortcite{nisq}, making their use in the near future less certain than shallow-circuit, error-tolerant approaches such as Li's \shortcite{benjamin}.
+
+The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
 
 %%%%%%%%%%%%%%%%%
 %End of abstract%
@@ -450,19 +462,6 @@ Dean of the Graduate School\\[30pt]
 
 %TODO: add to introduction what's new work(i.e. section 4)
 
-\chapter{\textbf{Abstract}}
-
-Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine. They can only be done with an exponential complexity. It is using this fact that quantum supremacy has been attempted by simulating a quantum system in a quantum computer \shortcite{arute2019quantum} and verifying the result in a classical computer.
-
-One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
-Using quantum parallelism, variational methods such as the \gls{tdvp} and others \shortcite{qaoa,vqe} provide quantum algorithms with an advantage in complexity when compared with classical algorithms.
-%Conclusion
-Here we propose the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
-We also simplify the trial wavefunction and modify a circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices into variational methods such as the \gls{tdvp}.
-
-Other quantum computing approaches based on trotterization techniques \shortcite{quantumsimulation}, while more powerful, are more error prone. Therefore, they don't fit into today's \gls{nisq} technology \shortcite{nisq}, making their use in the near future less certain than shallow-circuit, error-tolerant approaches such as Li's \shortcite{benjamin}.
-
-The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications.
 %
 \chapter{\textbf{Introduction}}
 % Lucas, please expand on the introduction so that someone not familiar with the work can understand why you are doing the work. This means that the significance must be clear and a high level overview of what you are doing should be clear. There should be a few pages of that that would be understandable by Lindsey or Stephanie. 
@@ -492,12 +491,12 @@ This is useful, for example, in the \gls{end} method \shortcite{end1,end2,end3},
 %TODO: add references to other reactions
 One of its applications is in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
 
-In this dissertation, I extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
+In this dissertation, we extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
 This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there will be an exposition of necessary mathematical and chemical foundations to the work in this dissertation.
 Then, in chapter \ref{chap:literature}, some prior work in the area has been highlighted with a brief explanation of how they're relevant to this work.
 Also, some book recommendations for further study or from which some formulas and theorems were used in this paper.
 
-Chapter \ref{chap:methodology} is where my work is introduced and explained. Finally, chapter \ref{chap:results} highlights the importance of this work and suggests some directions for further study.
+Chapter \ref{chap:methodology} is where our work is introduced and explained. Finally, chapter \ref{chap:results} highlights the importance of this work and suggests some directions for further study.
 
 \chapter{\textbf{Background}}\label{chap:background}
 
@@ -877,7 +876,9 @@ According to Thouless theorem \cite{thouless}, the states $\ket\Phi$ can be rewr
 	= \overline N \ket{\bm z}
 \end{split}
 \end{equation}
-Where the new $\orb(\orb - \elec)$ complex-valued parameters $z_\ind 0$ are
+%
+where the new $\orb(\orb - \elec)$ complex-valued parameters $z_\ind 0$ are
+%
 \begin{equation*}
 \begin{split}
 	&z_\ind 0 
@@ -915,12 +916,12 @@ as well as the simulation of time-dependent symmetry breaking during molecular c
 
 \chapter{\textbf{Methodology}}\label{chap:methodology}
 
-In this chapter I detail my work and how it relates to the background provided until now.
+In this chapter we detail our work and how it relates to the background provided until now.
 %We start by applying Fukutome's \cite{fukutome} unitary \gls{hf} approximation to our system. In doing so, we obtain a reference state $\ket\Psi$.
 %We can then derive the dynamics of our system by means of the Lagrangian
-An outline of my research is as follows: I start by expressing the wavefunction $\ket\Psi$ of the system as a \gls{hf} state in Fukutome's unitary representation \shortcite{fukutome}.
+An outline of our research is as follows: We start by expressing the wavefunction $\ket\Psi$ of the system as a \gls{hf} state in Fukutome's unitary representation \shortcite{fukutome}.
 This renders a trial wavefunction $\ket{\Psi(t)} = \Psi \left[ \bm r; \lambda_1(t), \ldots \lambda_k(t), \ldots \lambda_n(t) \right]$ with time-dependent variational parameters $\{\lambda_k(t)\}$ from Fukutome's unitary representation.
-To obtain the dynamics of the system, I construct the quantum Lagrangian $L\left [ \Psi(t), \Psi^*(t) \right]$ corresponding to the \gls{tdvp} \shortcite{kramer}:
+To obtain the dynamics of the system, we construct the quantum Lagrangian $L\left [ \Psi(t), \Psi^*(t) \right]$ corresponding to the \gls{tdvp} \shortcite{kramer}:
 \[
 	L\left [ \Psi(t), \Psi^*(t) \right]
 	= \frac{\sandwich{\Psi(t)}{\frac{i}{2}\left(\overrightarrow{\pd t} - \overleftarrow{\pd t}\right) - \hat H}{\Psi(t)}}{\braket{\Psi(t)}{\Psi(t)}}
@@ -962,9 +963,9 @@ where the anti-Hermitian metric matrix $\bm M$ and the energy gradients vector $
 %
 The dynamics of the system is obtained by integrating Eq. \ref{eq:ml=v} over time, a procedure that provides the values of the variational parameters $\{\lambda_k(t)\}$ at any time $t$ from the initial $t_1$ to the final $t_2$ times;
 knowledge of those parameters permits evaluating any properties of the system over time.
-I will obtain the full dynamics by adapting the quantum/classical computation approach by Li et al. \shortcite{benjamin}.
+we will obtain the full dynamics by adapting the quantum/classical computation approach by Li et al. \shortcite{benjamin}.
 In a quantum/classical scheme, each computational task is assigned to the type of computer, classical or quantum, that can solve it faster with state-of-the art algorithms.
-In my case, the cumbersome construction of the matrix $\bm M$ and vector $\bm V$ is performed on a quantum computer with a substantially modified version of the \gls{qc} algorithm by Li et al. \shortcite{benjamin} and by Ekert et al. \shortcite{ekert};
+In our case, the cumbersome construction of the matrix $\bm M$ and vector $\bm V$ is performed on a quantum computer with a substantially modified version of the \gls{qc} algorithm by Li et al. \shortcite{benjamin} and by Ekert et al. \shortcite{ekert};
 on the other hand, the time integration of Eq. \ref{eq:ml=v} is performed on a classical computer with standard partial differential equations solvers.
 Fig. \ref{fig:TDVP} illustrates this quantum/classical approach regarding computational tasks allocations;
 Fig. \ref{fig:flowchart1} presents an abbreviated flowchart of the algorithms for \gls{tdvp} dynamics.
@@ -1358,7 +1359,7 @@ These equations can be put into matrix form:
 	\end{split}
 \end{equation}
 %
-Where:
+where:
 %
 \begin{equation*}
 	\begin{split}
@@ -1980,7 +1981,7 @@ Now that we have each matrix $\bm R_k$, we obtain the decomposition of their der
 \end{split}
 \end{equation}
 %
-Where $P_\elec = \{x \vert x = \bigotimes_{k = 1}^{\elec} x_k,\ x_k \in Pauli\}$ is the set of tensor products of $\elec$ Pauli matrices and $ \bm \sigma_{k, i} = i \in P_\elec$ are elements of set $P_\elec$.
+where $P_\elec = \{x \vert x = \bigotimes_{k = 1}^{\elec} x_k,\ x_k \in Pauli\}$ is the set of tensor products of $\elec$ Pauli matrices and $ \bm \sigma_{k, i} = i \in P_\elec$ are elements of set $P_\elec$.
 Now we need to determine the coefficients $f_{k, i}$ for every $k \in \{1, \ldots, 6\}$ and $i \in P_\elec$. We accomplish this task by taking a look at Eq. \ref{eq:r_to_f} for each $k$:
 %
 \begin{enumerate}
@@ -2038,7 +2039,7 @@ Li \shortcite{benjamin} states that:
 \end{split}
 \end{equation}
 %
-Where:
+where:
 %
 \begin{equation*}
 	\begin{split}
@@ -3171,7 +3172,13 @@ Our potential matrix, $V$ is:
 	\end{split}
 \end{equation*}
 %
-To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
+To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To set up the Hamiltonian of a given system, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. 
+%Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
+
+We will now consider a two-electron $\text{H}_2$ molecule described with a minimal STO-3G Slater-type-orbital/contracted-Gaussian-function (STO/CGF) atomic basis set \shortcite{szabo} and at the corresponding equilibrium bond distance $R = 1.4 \text{ a.u.} = 7.408478 \times 10^{-11} \text{ m}.$
+In this basis set, the STOs are fitted to a fixed linear combination (“contraction”) of three primitive Gaussian functions with different orbital exponents. 
+This description leads to two occupied spin-orbitals $\psi_{\oo 0}$ and $\psi_{\oo 1}$ with spins up and down, respectively, and to two unoccupied spin-orbitals $\psi_{\uo 0}$ and $\psi_{\uo 1}$ also with spins up and down, respectively.
+We will first consider a case with two non-interacting electrons so that the molecular Hamiltonian only contains the one-electron part of the general Hamiltonian in Eqs. \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonian}. The Hamiltonian for this case is:
 %
 \begin{equation*}
 	\begin{split}
@@ -3219,7 +3226,10 @@ To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To ca
 	\end{split}
 \end{equation*}
 %
-Where:
+where $h_{\alpha\alpha}$, $h_{\mu\mu}$, $h_{\mu\alpha}$, $h_{\beta\beta}$, $h_{\nu\nu}$, $h_{\nu\beta}$
+are the one-electron integrals in terms of the spin-orbitals, and
+$h_{II}$, $h_{ZI}$, $h_{IZ}$, $h_{XI}$, $h_{IX}$
+are rearrangements of the previous integrals according to the shown two-qubit Pauli matrix operators:
 %
 \begin{equation*}
 	\begin{split}
@@ -3248,10 +3258,8 @@ Where:
 	\end{split}
 \end{equation*}
 %
-We also have the values of
-$
-h_{\alpha\alpha}, h_{\mu\mu}, h_{\mu\alpha}, h_{\beta\beta}, h_{\nu\nu}, h_{\nu\beta}
-$ for a Hydrogen atom. They're tabled values, and under STO-3G basis set (Approximates the Slater type orbitals by the use of three Gaussian curves), these values can be found in \shortcite{szabo}:
+Numerical values of the one-electron spin-orbital integrals of $\text{H}_2$ with the STO-3G basis set and at the corresponding equilibrium bond distance $R = 1.4 \text{ a.u.}$ are given in \shortcite{szabo}:
+%
 \begin{equation*}
 	\begin{split}
 		h_{\alpha\alpha} &= h_{\beta\beta} = -1.2528 \text{ a.u.} \\
@@ -3259,6 +3267,7 @@ $ for a Hydrogen atom. They're tabled values, and under STO-3G basis set (Approx
 		h_{\mu\alpha} &= h_{\nu\beta} = 0 \text{ a.u.}
 	\end{split}
 \end{equation*}
+%
 We now need to calculate $\sandwich{\Psi}{\hat H}{\Psi}$ and for that we shall use:
 %
 \begin{equation*}
@@ -3519,7 +3528,7 @@ Finally,
 	\end{split}
 \end{equation*}
 %
-Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our newfound variables:
+Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our $\lambda_k$ variables and integration constants $f_{k, \bm i}$, $h_{\bm j}$ for $k \in \{1 \ldots 6\}$ and $\bm i, \bm j \in P_\elec$:
 %
 \begin{equation}\label{eq:benjamin}
 \begin{split}
@@ -3538,7 +3547,9 @@ Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our
 \end{split}
 \end{equation}
 %
-Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$, with real parameters $a$ and $\theta$, and there is a quantum circuit that can efficiently evaluate it.
+Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 {\bm U} 0}$, 
+where $\bm U$ is a unitary operator and $a$ and $\theta$ are real parameters,
+and there is a quantum circuit that can efficiently evaluate it.
 %
 \subsection{\textbf{Circuits}}
 
@@ -3548,7 +3559,7 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
   \label{fig:circuitreal}
 \end{figure}
 
-To highlight how the circuit evaluates the elements of matrices $\bm M$ and $\bm V$, we refer to a more basic circuit represented in figure \ref{fig:circuitreal}, which evolves as follows:
+To highlight how the circuit evaluates the elements of matrices $\bm M$ and $\bm V$, we first refer to a more basic circuit represented in figure \ref{fig:circuitreal}, which evolves as follows:
 \begin{equation*}
 	\begin{split}
 		\ket {\psi_0}
@@ -3599,7 +3610,7 @@ The probability of measuring $\ket +$ on the first qubit is:
 	\end{split}
 \end{equation*}
 %
-A more involved circuit that uses this principle comes from Li's paper \shortcite{benjamin}, as shown in figure \ref{fig:circuitbenjamin}.
+A more involved circuit related to our purposes and that uses the above principles comes from Li's paper \shortcite{benjamin}, as shown in figure \ref{fig:circuitbenjamin}.
 %
 \begin{figure}[h!]
   \includegraphics[width=\linewidth]{circuits/circuit2.pdf}
@@ -3691,17 +3702,19 @@ $\bm R =
 \bm R_1(\omega_\ind 1)
 $, through Eq. \ref{eq:rdecomposition}.
 %
-We then used the matrices $\bm R_k$ to find our coefficients $f_{k, i} \in \mathbb{C}$ via \ref{eq:r_to_f}. Finally, for each pair of nonzero coefficients $f_{k, i}, f_{q, j}$ we can assemble a circuit and measure its average to obtain $\bm M_{kq}$ gates used in, for example, circuit \ref{fig:circuit}.
+We then used the matrices $\bm R_k$ to find our coefficients $f_{k, i} \in \mathbb{C}$ via \ref{eq:r_to_f}. Finally, for each pair of nonzero coefficients $f_{k, i}, f_{q, j}$ we can assemble a circuit and measure its average to obtain the elements $M_{kq}$ using, for example, the circuit in Fig. \ref{fig:circuit}.
 
 %-------------------------------------------------------------------------------------
 
 \section {\textbf{Circuit for 1-electron model}}
 
-The 1-electron case is somewhat simpler than the 2-electron counterpart. We follow through the same steps, however. We must get an expression for $\ket \Psi$, use it to obtain a matrix $\bm R$, decompose it into a product of single-variable matrices $\bm R_k$ and use these to find our $f$ coefficients. Then we must find the Hamiltonian $\hat H$ and use it to find the $h$ coefficients. Using the $f$ and $h$ coefficients, we can assemble a circuit.
+The 1-electron case is somewhat simpler than the 2-electron counterpart.
+This corresponds to the $\text{H}_2^+$ ion molecule that we will describe with the STO-3G basis set and at the equilibrium bond distance of the previous $\text{H}_2$ molecule for direct comparison.
+We follow through the same steps, however. We must get an expression for $\ket \Psi$, use it to obtain a matrix $\bm R$, decompose it into a product of single-variable matrices $\bm R_k$ and use these to find our $f$ coefficients. Then we must find the Hamiltonian $\hat H$ and use it to find the $h$ coefficients. Using the $f$ and $h$ coefficients, we can assemble a circuit.
 %
 \subsection {\textbf{Dynamics}}
 %
-We take somewhat similar steps to before in solving the Lagrangian. Taking a look at our previous decomposition of $\bm u$ through \ref{eq:udecomposition} and \ref{eq:urotation}:
+We take somewhat similar steps to before in solving the Lagrangian. Taking a look at our previous decomposition of $\bm u$ through Eqs. \ref{eq:udecomposition} and \ref{eq:urotation}:
 \begin{equation*}
 \begin{split}
 	\ket\Psi 
@@ -3713,7 +3726,7 @@ We take somewhat similar steps to before in solving the Lagrangian. Taking a loo
 \end{split}
 \end{equation*}
 %
-Meaning we have two variables $\omega$ and $\rho$. Let $\omega$ be $\lambda_1$ and $\rho$ be $\lambda_2$. Therefore, we have:
+where we have two variables $\omega$ and $\rho$. Let $\omega$ be $\lambda_1$ and $\rho$ be $\lambda_2$. Therefore, we have:
 %
 \begin{equation*}
 	\begin{split}
@@ -3725,7 +3738,7 @@ Meaning we have two variables $\omega$ and $\rho$. Let $\omega$ be $\lambda_1$ a
 	\end{split}
 \end{equation*}
 %
-Taking the derivative of $L$ with regards to $\lambda_k$ for $k \in \{1, 2\}$:
+Taking the derivative of $L$ with regards to $\lambda_k$ for $k \in \{1, 2\}$, we obtain:
 %
 \begin{equation*}
 	\begin{split}
@@ -3738,7 +3751,7 @@ Taking the derivative of $L$ with regards to $\lambda_k$ for $k \in \{1, 2\}$:
 	\end{split}
 \end{equation*}
 %
-Taking the derivative of $L$ with regards to $\dot{\lambda_k}$ for $k \in \{1, 2\}$:
+Taking the derivative of $L$ with regards to $\dot{\lambda_k}$ for $k \in \{1, 2\}$, we obtain:
 %
 \begin{equation*}
 	\begin{split}
@@ -3748,7 +3761,7 @@ Taking the derivative of $L$ with regards to $\dot{\lambda_k}$ for $k \in \{1, 2
 	\end{split}
 \end{equation*}
 %
-Taking the derivative of the expression above with regards to time:
+Taking the derivative of the expression above with respect to time, we obtain:
 %
 \begin{equation*}
 	\begin{split}
@@ -3760,7 +3773,7 @@ Taking the derivative of the expression above with regards to time:
 	\end{split}
 \end{equation*}
 %
-Now, since the Euler-Lagrange equation gives us $\pd{\lambda_k} L = \ddt \pd{\dot {\lambda_k}} L$, the only terms that do not cancel out are as follows:
+Now, since the Euler-Lagrange equations gives us $\pd{\lambda_k} L = \ddt \pd{\dot {\lambda_k}} L$, the only terms that do not cancel out are as follows:
 %
 \begin{equation*}
 	\begin{split}
@@ -3798,7 +3811,7 @@ This can be written in matrix notation:
 	\end{split}
 \end{equation*}
 %
-Where:
+where:
 \begin{equation*}
 	\begin{split}
 	M_{kq} 
@@ -3913,7 +3926,7 @@ And we have the values for the $\bm M$ matrix:
 \end{equation*}
 %
 \subsection {\textbf{Wavefunction decomposition}}
-Now we need to write $\ket \Psi = \bm R \ket 0 = \prod_{k=N_v}^1 \bm R_k(\lambda_k) \ket 0$ for some integer $N_v$. That is, we need to find a product of matrices of a single variable that, when applied to the ground state, gives us our wavefunction.
+Now we need to write $\ket \Psi = \bm R \ket 0 = \prod_{k=N_v}^1 \bm R_k(\lambda_k) \ket 0$ for some integer $N_v$. That is, we need to find a product of single-variable matrices that, when applied to the ground state, gives us our wavefunction.
 For our case where $\elec = 1$ and $\orb = 2$, we have:
 %
 \begin{equation*}
@@ -3987,7 +4000,7 @@ Now that we have each matrix $\bm R_k$, we obtain the decomposition of their der
 \end{split}
 \end{equation}
 %
-Where $\bm \sigma_{k, i} = i \in \{\bm I, \bm X, \bm Y, \bm Z\}$ are Pauli matrices.
+where $\bm \sigma_{k, i} = i \in \{\bm I, \bm X, \bm Y, \bm Z\}$ are Pauli matrices.
 Now we need to determine the coefficients $f_{k, i}$ for every $k \in \{1, 2, 3\}$ and $i \in \{\bm I, \bm X, \bm Y, \bm Z\}$. We accomplish this task by taking a look at \ref{eq:r_to_f1e} for each $k$:
 %
 \begin{enumerate}
@@ -4034,7 +4047,7 @@ Li \shortcite{benjamin} states that:
 	\label{eq:rki1e}
 	\fpd {\ket \Psi} {\lambda_k} &= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}}f_{k, \bm A}\bm R_{k, \bm A}\ket 0
 	%
-	\intertext{\text{Where}}
+	\noindent\intertext{\text{where}}
 	%
 	\bm R_{k,\bm A} &= \bm R_{N_v} \ldots \bm R_k \cdot \bm A \cdot \bm R_{k - 1} \ldots \bm R_1
 \end{split}
@@ -4092,7 +4105,7 @@ $$
 	\end{bmatrix}
 	\neq \fpd{\ket\Psi}{\omega}
 $$
-This happens since our variables aren't unique. In this case, $\lambda_1 = \lambda_5$, and we'll see later that Li's \shortcite{benjamin} Eq. \ref{eq:rki1e} needs to be corrected in our approach to include terms that use the same variable:
+This happens since our variables are interrelated through constraints. In this case, $\lambda_1 = \lambda_3$, and we'll see later that Li's \shortcite{benjamin} Eq. \ref{eq:rki1e} needs to be corrected in our approach to include terms that use the same variable:
 %
 \begin{equation}
 	\begin{split}
@@ -4196,7 +4209,7 @@ $$
 	= \fpd{\ket\Psi}{\omega}
 $$
 %
-As expected, since our $\lambda_2$ variable is unique in our set of variables.
+As expected, since our $\lambda_2$ variable is the only one not related to the others through a constraint or relationship.
 %
 \item $k = 3$
 %
@@ -4321,7 +4334,7 @@ Which means the only relevant Pauli matrices for this case are:
 	\bm Y, \bm Z
 \end{align*}
 
-\subsection{\textbf{Hamiltonian and potential matrix for 1 electron}}
+\subsection{\textbf{Hamiltonian and potential matrix for 1-electron case}}
 
 Our potential matrix, $V$ is:
 %
@@ -4334,7 +4347,7 @@ Our potential matrix, $V$ is:
 	\end{split}
 \end{equation*}
 %
-To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, since there's only one electron, we can safely disregard the electron interaction:
+To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To calculate the Hamiltonian, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. Fortunately, since there's only one electron, we can genuinely disregard the electron interaction:
 %
 \begin{equation*}
 	\begin{split}
@@ -4365,7 +4378,7 @@ To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To ca
 	\end{split}
 \end{equation*}
 %
-Where:
+where:
 %
 \begin{equation*}
 	\begin{split}
@@ -4385,10 +4398,13 @@ Where:
 	\end{split}
 \end{equation*}
 %
-We also have the values of
+%We also have the values of
+Here,
 $
-h_{\alpha\alpha}, h_{\mu\mu}, h_{\mu\alpha}$
-for a Hydrogen atom. They're tabled values, and under STO-3G basis set (Approximates the Slater type orbitals by the use of three Gaussian curves), these values can be found in \shortcite{szabo}:
+h_{\alpha\alpha}$, $h_{\mu\mu}$ and $h_{\mu\alpha}$
+are the one-electron spin-orbitals of $\text{H}_2^+$ with the STO-3G basis set and at the $\text{H}_2$ equilibrium bond distance $R = 1.4 \text{ a.u.}$ with the same basis sets.
+Therefore, these $\text{H}_2^+$ integrals have the same numerical values of their equivalent $\text{H}_2$ integrals; those values are given in \shortcite{szabo}.
+%for the $\text{H}_2^+$ molecule. They're tabled values, and under STO-3G basis set (Approximates the Slater type orbitals by the use of three Gaussian curves), these values can be found in \shortcite{szabo}:
 \begin{equation*}
 	\begin{split}
 		h_{\alpha\alpha} &= -1.2528 \text{ a.u.} \\
@@ -4509,18 +4525,18 @@ The algorithm calculated the elements $M_{kq}$ and $V_k$ used by the \gls{tdvp} 
 %
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{img/1e.jpg}
-  \caption{Loglog graph of error vs number of shots for a hydrogen atom}
+	\caption{Loglog graph of error vs number of shots for a $\text{H}_2^+$ hydrogen molecule}
   \label{fig:1derrorgraph}
 \end{figure}
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{img/2e-nonint.jpg}
-  \caption{Loglog graph of error vs number of shots for a hydrogen molecule}
+  \caption{Loglog graph of error vs number of shots for a $\text{H}_2$ hydrogen molecule}
   \label{fig:2derrorgraph}
 \end{figure}
 
 We've plotted the average and individual errors when using $2^S$ shots in the circuits, with $S \in \{1, 2, \ldots, 29\}$. That is, we have results for up to half a billion shots. For most of these values of $S$, the averages had 100 individual experiments run, and we didn't include averages when the number of individual experiments were over 10. The $r^2$ value was calculated over the first-order regression of these averages.
-Current results in our simulations of a hydrogen atom as well as a hydrogen molecule suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}. 
+Current results in our simulations of both hydrogen molecules suggest that the error $E$ in the approximation for the elements of both the potential matrix $\bm V$ and the matrix $\bm M$ follow the same relationship with the number of shots $S$ in the circuits, as seen in \ref{fig:2derrorgraph}. 
 %
 \begin{equation*}
 	\begin{split}
