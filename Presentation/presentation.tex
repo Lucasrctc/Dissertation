@@ -295,7 +295,6 @@ i & 0 & 0 & 0 \\
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of Contents}
     \tableofcontents[currentsection]
   \end{frame}
 }
@@ -356,8 +355,21 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
+%\citep{feynman}
+%\citep{quantumsimulation}
+%\citep{shor}
+%\citep{harrow}
+%\citep{ibmblog}
+%\citep{moorequantum}
+%\citep{}
+%\citep{}
+%\citep{}
+%\citep{}
+%\citep{}
+
+
 \subsection{\textbf{Quantum Advantages}}
-\begin{frame}{Quantum advantages}
+\begin{frame}{Quantum Advantages}
 	\begin{itemize}
 		\item Quantum systems cannot be efficiently simulated on classical computers \citep{feynman}, requiring exponential complexity
 		\SubItem{There are quantum algorithms \citep{quantumsimulation} that attain exponential speedups}
@@ -369,34 +381,80 @@ i & 0 & 0 & 0 \\
 
 \subsection{\textbf{Challenges in Quantum Computing}}
 
-\cite{moorequantum}
-\cite{ibmblog}
-\cite{dyanokov}
 \begin{frame}{Challenges in Quantum Computing}
 	\begin{itemize}
-		\item Quantum systems cannot be efficiently simulated on classical computers \citep{feynman}, requiring exponential complexity
-		\SubItem{There are quantum algorithms \citep{quantumsimulation} that attain exponential speedups}
-		\item Other problems for which quantum computing attains exponential speedups are:
-			\SubItem{Factorization \citep{shor}}
-			\SubItem{Solving systems of linears equations \citep{harrow}}
+		\item While quantum algorithms hold promise, current hardware leaves a lot to be desired
+		\item The number of available qubits has been increasing in a similar fashion to Moore's law \citep{moorequantum}
+			\SubItem{However, error rates are in the order of $0.1\%$ per elementary operation \citep{ibmblog}}
+			\SubItem{Error correction is possible, but 1000 qubits are necessary to encode a single qubit with an accuracy of one in a billion \citep{moorequantum}}
 	\end{itemize}
 \end{frame}
 
-\section{\textbf{Background}}
+\begin{frame}{Challenges in Quantum Computing}
+	\begin{itemize}
+		\item {When we attain $10^{-4}$ error rates, 6 million qubits would be needed to attain quantum supremacy on Shor's algorithm \citep{shor}}
+		\item{For contrast, a recent study \citep{meza} has found a single bit error every month for about $2\%$ of data centers monitored}
+	\end{itemize}
+\end{frame}
 
-\begin{frame}{Overview flowchart}
+\subsection{\textbf{Why Use Quantum Computing}}
+
+\begin{frame}{Why Use Quantum Computing}
+	\begin{itemize}
+		\item There's much to be gained, but it relies on advances in quantum hardware
+		\item To find uses in the near future and attract investment, NISQ (Noisy Intermediate Scale Quantum) technology is being developed
+			\SubItem{Hybrid approaches - quantum computers in charge of a subset of the problem}
+			\SubItem{Use shallow circuits, error tolerant quantum algorithms while relying on quantum speedups}
+	\end{itemize}
+\end{frame}
+
+\subsection{\textbf{Overview}}
+
+\begin{frame}{Overview Flowchart}
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{../flowcharts/flowchart2}
 \end{figure}
 \end{frame}
 
-\begin{frame}{TDVP flowchart}
+\begin{frame}{TDVP Flowchart}
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{../img/variation_figure}
 \end{figure}
 \end{frame}
+
+\begin{frame}
+\frametitle{Application}
+
+%Isosurface - points with same value of spin density
+
+%Spin Density - the probability to find an electron on a infinitesimal volume $dV$
+
+%H2+ - electron transfer
+
+%\includemovie[autoplay, externalviewer, text={\includegraphics{posterH2.jpg}}]{}{}{H2.mp4}
+%\includemovie[poster, autoplay, externalviewer, text={\phantom{\includegraphics[width = \textwidth]{posterH2.jpg}}}]{}{}{H2.mp4}
+\begin{columns}[T] % align columns
+\begin{column}{.48\textwidth}
+\color{black}\rule{\linewidth}{4pt}
+
+$\text{H}_2$ molecule
+\includemovie[poster={posterH2.jpg}, autoplay, externalviewer, text={\small(H2.mp4)}]{\textwidth}{6cm}{H2.mp4}
+\end{column}%
+\hfill%
+\begin{column}{.48\textwidth}
+\color{blue}\rule{\linewidth}{4pt}
+
+$\text{H}_2^+$ molecule
+\includemovie[poster={posterH2+.jpg}, autoplay, externalviewer, text={\small(H2+.mp4)}]{\textwidth}{6cm}{H2+.mp4}
+\end{column}%
+\end{columns}
+
+Credit for these animations goes to Juan Dominguez from the Chemistry Department at TTU
+\end{frame}
+
+\section{\textbf{Background}}
 
 \subsection{\textbf{Quantum Chemistry: Second quantization}}
 
@@ -1145,18 +1203,6 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 		\item Use Variational Quantum Eigensolver (VQE)
 		\item Prepare code to submit to a real quantum computer
 	\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Movie Test}
-
-Isosurface - points with same value of spin density
-
-Spin Density - the probability to find an electron on a infinitesimal volume $dV$
-
-H2+ - electron transfer
-
-\includemovie[poster, autoplay, externalviewer, text={\small(Loading bloch.mp4)}]{6cm}{6cm}{H2.mp4}
 \end{frame}
 
 \bibliographystyle{chicago}
