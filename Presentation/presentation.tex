@@ -297,6 +297,9 @@ i & 0 & 0 & 0 \\
   \begin{frame}
     \tableofcontents[currentsection]
   \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 }
 
 
@@ -305,6 +308,9 @@ i & 0 & 0 & 0 \\
 \begin{frame}
 	\titlepage
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 %%%%%%%%%%%%%%%%%%%
 %End of title page%
 %%%%%%%%%%%%%%%%%%%
@@ -312,6 +318,9 @@ i & 0 & 0 & 0 \\
 \begin{frame}
 \tableofcontents	%Leave this here (table will auto-update as you write new sections/subsubsections/appendix)
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \section{\textbf{Introduction}}
 \subsection{\textbf{What is Quantum Computing}}
@@ -327,6 +336,9 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Quantum Computer}
 \begin{figure}[b]
 	\centering
@@ -337,6 +349,9 @@ i & 0 & 0 & 0 \\
 		\item One majorly used model: Circuit model
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \begin{frame}{Quantum Computing}
 	\begin{itemize}
@@ -355,17 +370,11 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
-%\citep{feynman}
-%\citep{quantumsimulation}
-%\citep{shor}
-%\citep{harrow}
-%\citep{ibmblog}
-%\citep{moorequantum}
-%\citep{}
-%\citep{}
-%\citep{}
-%\citep{}
-%\citep{}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+%Commented citations ccite
+%\citep{feynman} \citep{quantumsimulation} \citep{shor} \citep{harrow} \citep{ibmblog} \citep{moorequantum} \citep{fukutome} \citep{} 
 
 
 \subsection{\textbf{Quantum Advantages}}
@@ -379,6 +388,9 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \subsection{\textbf{Challenges in Quantum Computing}}
 
 \begin{frame}{Challenges in Quantum Computing}
@@ -390,12 +402,18 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Challenges in Quantum Computing}
 	\begin{itemize}
 		\item {When we attain $10^{-4}$ error rates, 6 million qubits would be needed to attain quantum supremacy on Shor's algorithm \citep{shor}}
 		\item{For contrast, a recent study \citep{meza} has found a single bit error every month for about $2\%$ of data centers monitored}
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \subsection{\textbf{Why Use Quantum Computing}}
 
@@ -408,6 +426,9 @@ i & 0 & 0 & 0 \\
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \subsection{\textbf{Overview}}
 
 \begin{frame}{Overview Flowchart}
@@ -417,12 +438,18 @@ i & 0 & 0 & 0 \\
 \end{figure}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{TDVP Flowchart}
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{../img/variation_figure}
 \end{figure}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \begin{frame}
 \frametitle{Application}
@@ -454,6 +481,9 @@ $\text{H}_2^+$ molecule
 Credit for these animations goes to Juan Dominguez from the Chemistry Department at TTU
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \section{\textbf{Background}}
 
 \subsection{\textbf{Quantum Chemistry: Second quantization}}
@@ -468,6 +498,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Other considerations}
 	\begin{itemize}
 		\item Nuclei at rest when calculating the electron dynamics
@@ -478,6 +511,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 		\item vacuum state $\vac$
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \begin{frame}{Creation and annihilation operators}
 	\begin{itemize}
@@ -491,6 +527,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 			\SubItem{$\anticom{\creg 0}{\creg 1} = \anticom{\anig 0}{\anig 1} = 0$}
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \begin{frame}
 	\begin{itemize}
@@ -539,6 +578,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \subsection{\textbf{Lie Algebras}}
 
 \begin{frame}{Lie Algebras}
@@ -555,10 +597,16 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \subsection {\textbf{Fukutome Unitary Approach to HF Theory}}
 
 \begin{frame}{Fukutome}
 	\begin{itemize}
+		\item Fukutome proposed a unitary approach to Hartree-Fock (HF) theory \citep{fukutome}
+			\SubItem{Reduces the number of relevant variable to describe the wavefunction}
+			\SubItem{Obtains a unitary representation of the wavefunction}
 		\item $U(\orb) = U(\elec) \oplus_d U(\orb - \elec)$
 			\SubItem{
 			\(
@@ -585,6 +633,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 			}
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \section{\textbf{Methodology}}\label{chap:methodology}
 
@@ -627,6 +678,9 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Decomposition}
 	\begin{itemize}
 		\item	\(\bm u_{\lambda_\ind 0} 
@@ -662,7 +716,10 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 			\end{equation*}
 \end{frame}
 
-\begin{frame}{The wavefunction}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{The Wavefunction}
 \begin{equation*}
 	\begin{split}
 	\ket \Psi 
@@ -677,11 +734,14 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 \end{equation*}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 %-------------------------------------------------------------------------------------
 
 \subsection {\textbf{Dynamics}}
 
-\begin{frame}{Lagrangian equations}
+\begin{frame}{Dynamics: Lagrangian Equations}
 	\begin{itemize}
 		\item Lagrangian:
 		\(
@@ -699,14 +759,17 @@ Credit for these animations goes to Juan Dominguez from the Chemistry Department
 		\(
 				\pd{x} L = \ddt \pd{\dot x} L
 			\)
-		\item combining these two, we get a system of equations:
+		\item Combining these two, we get a system of equations:
 		\SubItem{\(
 			\bm M \dot{\bm \lambda} = \bm V
 		\)}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Dynamics: Lagrangian Equations}
 We can put the system of equations in matrix form:
 \begin{equation*}
 	\begin{split}
@@ -765,15 +828,278 @@ We can put the system of equations in matrix form:
 \end{equation*}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+Our potential matrix, $\bm V$ is:
+%
+\begin{equation*}
+	\begin{split}
+		\bm V = \begin{pmatrix}
+			\pd {\lambda_1} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_2} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_3} \sandwich {\Psi}{\hat H}{\Psi}\\
+			\pd {\lambda_4} \sandwich {\Psi}{\hat H}{\Psi}\\
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+%
+The electrons' Hamiltonian using second quantization is \citep{szabo}:
+%
+\begin{equation*}
+\begin{split}
+	\hat H &= \sum_{\go 0, \go 1}h_{\go 0 \go 1}\creg 0 \anig 1 + 
+	\frac 1 4 \sum_{\go 0, \go 1, \go 2, \go 3} \sandwich{\go 0 \go 1}{}{\go 2 \go 3}\creg 0 \creg 1 \anig 2 \anig 3
+	\\
+	h_{\go 0 \go 1} 
+	&= \sandwich {\go 0} {h} {\go 1} 
+	= \int\psig 0^*(\bx_1)h(\br_1)\psig 1(\bx_1)d\bx_1 \\
+	\sandwich{\go 0 \go 1}{}{\go 2 \go 3}
+	&= \braket{\go 0 \go 1}{\go 2 \go 3} - \braket{\go 0 \go 1}{\go 3 \go 2}\\
+	\braket{\go 0 \go 1}{\go 2 \go 3}
+	&= \iint
+	\psig 0^*(\bx_1)\psig 2(\bx_1) 
+	\frac 1 {r_{12}}
+	\psig 1^*(\bx_2)\psig 3(\bx_2) 
+	d\bx_1 d\bx_2 
+\end{split}
+\end{equation*}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+%
+	Considerations:
+\begin{itemize}
+	\item $\text{H}_2$ molecule under a minimal STO-3G atomic basis set
+		\SubItem{In this basis set, the STOs are fitted to a fixed linear combination (“contraction”) of three primitive Gaussian functions with different orbital exponents}
+	\item  Equilibrium bond distance $R = 1.4 \text{ a.u.} = 7.408478 \times 10^{-11} \text{ m}.$
+	\item No electron interaction
+\end{itemize}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+%
+\begin{equation*}
+	\begin{split}
+	\hat H  &= \sum_{\go 0, \go 1}h_{\go 0 \go 1}\creg 0 \anig 1 \\
+		&= {h_{\alpha\alpha}} \creo 0 \anio 0
+		+ {h_{\mu\mu}} \creu 0 \aniu 0
+		+ h_{\mu\alpha} \creu 0 \anio 0 
+		+ {h_{\beta\beta}} \creo 1 \anio 1
+		+ {h_{\nu\nu}} \creu 1 \aniu 1
+		+ h_{\nu\beta} \creu 1 \anio 1
+%
+		\\
+%
+		&= \frac{h_{\alpha\alpha}}{2} \paren{\hat I + \hat Z} \otimes \hat I
+		+ \frac{h_{\mu\mu}}{2} \paren{\hat I - \hat Z} \otimes \hat I
+		+ h_{\mu\alpha} \hat X \otimes \hat I 
+%
+		\\
+%
+		& \quad
+		+ \frac{h_{\beta\beta}}{2} \hat I \otimes \paren{\hat I + \hat Z} 
+		+ \frac{h_{\nu\nu}}{2} \hat I \otimes \paren{\hat I - \hat Z} 
+		+ h_{\nu\beta} \hat I \otimes \hat X
+%
+	\\
+%
+		&= 	\frac{1}{2} \left[ 
+			\paren{h_{\alpha\alpha} + h_{\beta\beta} + h_{\mu\mu} + h_{\nu\nu}} \hat I \otimes \hat I 
+		+	\paren{h_{\alpha\alpha} - h_{\mu\mu}} \hat Z \otimes \hat I 
+	\right .
+	\\
+		& \quad	\left .
+		+	\paren{h_{\beta\beta} - h_{\nu\nu}} \hat I \otimes \hat Z 
+		+ 	2 \cdot h_{\mu\alpha} \hat X \otimes \hat I 
+		+ 	2 \cdot h_{\nu\beta} \hat I \otimes \hat X
+	\right]
+%
+	\\
+%
+		&=	h_{II} \cdot \hat I \otimes \hat I
+		+	h_{ZI} \cdot \hat Z \otimes \hat I
+		+	h_{IZ} \cdot \hat I \otimes \hat Z
+	\\
+		& \quad 
+		+	h_{XI} \cdot \hat X \otimes \hat I
+		+	h_{IX} \cdot \hat I \otimes \hat X
+	\end{split}
+\end{equation*}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+%
+\begin{equation*}
+	\begin{split}
+			h_{II}
+		&=	\frac{h_{\alpha\alpha} + h_{\beta\beta} + h_{\mu\mu} + h_{\nu\nu}} 2
+%
+	\\
+%
+			h_{ZI}
+		&=	\frac{h_{\alpha\alpha} - h_{\mu\mu}} 2
+%
+	;
+%
+			h_{XI}
+		= 	h_{\mu\alpha}
+%
+	\\
+%
+			h_{IZ}
+		&=	\frac{h_{\beta\beta} - h_{\nu\nu}} 2
+%
+	;
+%
+			h_{IX}
+		=	h_{\nu\beta}
+	\end{split}
+\end{equation*}
+Numerical values of the one-electron spin-orbital integrals of $h_{\go 0 \go 1}$ under our assumptions are given in \citep{szabo}:
+%
+\begin{equation*}
+	\begin{split}
+		h_{\alpha\alpha} &= h_{\beta\beta} = -1.2528 \text{ a.u.} \\
+		h_{\mu\mu} &= h_{\nu\nu} = -0.4756 \text{ a.u.}\\
+		h_{\mu\alpha} &= h_{\nu\beta} = 0 \text{ a.u.}
+	\end{split}
+\end{equation*}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+%
+	Remember:
+%
+\begin{equation*}
+	\begin{split}
+	\hat H 
+		 &=	h_{II} \cdot \hat I \otimes \hat I
+		+	h_{ZI} \cdot \hat Z \otimes \hat I
+		+	h_{IZ} \cdot \hat I \otimes \hat Z
+	\\
+		& \quad 
+		+	h_{XI} \cdot \hat X \otimes \hat I
+		+	h_{IX} \cdot \hat I \otimes \hat X
+%
+%
+	\\
+%
+%
+	\ket \Psi 
+	&= 
+	\co {\lambda_3}\co {\lambda_4}\ket {\psi_{\oo 0}\psi_{\oo 1}}
+	+ e^{i\lambda_1}\s {\lambda_3}\co {\lambda_4}\ket{\psi_{\oo 0} \psi_{\uo 1}} 
+	\\
+	&\phantom{=}
+	+ e^{i\lambda_2}\co {\lambda_3 }\s {\lambda_4}\ket {\psi_{\uo 0}\psi_{\oo 1}} 
+	+ e^{i\lambda_1}e^{i\lambda_2}\s {\lambda_3}\s {\lambda_4}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
+%
+	\\
+%
+	\bra \Psi 
+	&= 
+	\co {\lambda_3}\co {\lambda_4}\bra {\psi_{\oo 0}\psi_{\oo 1}}
+	+ e^{-i\lambda_1}\s {\lambda_3}\co {\lambda_4}\bra{\psi_{\oo 0} \psi_{\uo 1}} 
+	\\
+		+& e^{-i\lambda_2}\co {\lambda_3 }\s {\lambda_4}\bra {\psi_{\uo 0}\psi_{\oo 1}} 
+	+ e^{-i(\lambda_1 +\lambda_2)}\s {\lambda_3}\s {\lambda_4}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	\end{split}
+\end{equation*}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Dynamics: Hamiltonian for Non-Interacting Case}
+Therefore:
+	\begin{align*}
+		\sandwich \Psi {\hat H} \Psi
+		&= \sandwich {\Psi} {
+			\sum_{i, j \in Pauli}
+			h_{ij} i \otimes j
+		} {\Psi}
+%
+	\\ &= \ldots \\
+%
+		&=	h_{II}
+		+	h_{ZI} \cdot \co {2 \lambda_4}
+		+	h_{IZ} \cdot \co {2 \lambda_3}
+%
+	\\
+	&\quad
+%
+		+	h_{XI} \cdot \s  {2 \lambda_4} \co {\lambda_2}
+		+	h_{IX} \cdot \s  {2 \lambda_3} \co {\lambda_1}
+	\end{align*} %Align needed as split doesn't allow page breaks
+%
+Finally, we can take derivatives with respect to each $\lambda_k$ and obtain $\bm V$:
+%
+\begin{equation*}
+	\begin{split}
+		\bm V = \begin{pmatrix}
+		-	h_{IX} \cdot \s  {2 \lambda_3} \s  {\lambda_1}
+%
+	\\
+		-	h_{XI} \cdot \s  {2 \lambda_4} \s  {\lambda_2}
+%
+	\\
+%
+%
+		-	2 h_{IZ} \cdot \s  {2 \lambda_3}
+		+	2 h_{IX} \cdot \co {2 \lambda_3} \co {\lambda_1}
+%
+	\\
+%
+		-	2 h_{ZI} \cdot \s  {2 \lambda_4}
+		+	2 h_{XI} \cdot \co {2 \lambda_4} \co {\lambda_2}
+		\end{pmatrix}
+	\end{split}
+\end{equation*}
+\end{frame}
+
+
 \subsection {\textbf{Circuit}}
 
-\begin{frame}
+\begin{frame}{Goal: The Circuit}
+\begin{figure}[ht!]
+\includegraphics[width=\linewidth]{../circuits/circuit2}
+\caption{Circuit proposed by Li \citep{benjamin} to obtain matrices $\bm M$ and $\bm V$}
+\end{figure}
+	\begin{itemize}
+		\item{$\ket \Psi = R \ket 0 = 
+			R_{N_v}(\lambda_{N_v}) 
+			\ldots
+			R_2(\lambda_2) 
+			R_1(\lambda_1) \ket 0
+		$ }
+	\item{\(
+				\fpd{R_k}{\lambda_k} = \sum_{i \in P} f_{k, i} R_k \sigma_{k, i}
+			\)}
+			\SubItem{
+			$P = \{x \vert x = \bigotimes_{k = 1}^{N} x_k,\ x_k \in Pauli\}, \sigma_{k, i} \in P$}
+		\item $\theta = \arg \paren{if_{k, i}^*f_{q, j}}$
+		\item The average result of measuring the ancilla qubit of circuits like this lets us calculate $\bm M$ and $\bm V$
+	\end{itemize}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Wavefunction Decomposition}
 \begin{overlayarea}{\textwidth}{\textheight}
 	\begin{itemize}
 		\item Decompose $\ket \Psi$ into $N_v\in\mathbb{N}$ single variable factors: 
 			\SubItem{$\ket \Psi = R \ket 0 = 
 			R_{N_v}(\lambda_{N_v}) 
-			R_{N_v - 1}(\lambda_{N_v - 1}) 
+			\ldots
 			R_2(\lambda_2) 
 			R_1(\lambda_1) \ket 0
 		$ }
@@ -839,6 +1165,9 @@ We can put the system of equations in matrix form:
 \end{overlayarea}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Obtain $f_{k, i}$:}
 	\begin{itemize}
 		\item Decompose the derivatives $\fpd{R_k}{\lambda_k}$ into Pauli matrices:
@@ -866,7 +1195,10 @@ We can put the system of equations in matrix form:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Obtain $f_{k, i}$:}
 	\begin{itemize}
 	\item The relevant matrices in $P$ are $\Paulid{ii}, \Paulid{iz}, \Paulid{zi}$ and $\Paulid{zz}$:
 		\SubItem{\(
@@ -891,7 +1223,10 @@ We can put the system of equations in matrix form:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Obtain $f_{k, i}$:}
 	\begin{itemize}
 	\item {The solution to this system is:}
 \begin{equation*}
@@ -922,7 +1257,10 @@ We can put the system of equations in matrix form:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Expressions for $\bm M$ and $\bm V$:}
 Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \begin{equation*}
 \begin{split}
@@ -944,7 +1282,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{equation*}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Expressions for $\bm M$ and $\bm V$:}
 	\begin{itemize}
 		\item We know this since: 
 			\SubItem{$
@@ -980,16 +1321,26 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Expressions for $\bm M$ and $\bm V$:}
 	\begin{itemize}
-		\item Furthermore: 
-			\SubItem{$\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{k, i}^\dagger R_{q, j}} 0 + H.C.} 
-			= a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$}
-			When taking $a = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and $U = {R_{k, i}^\dagger R_{q, j}}$
+		\item Furthermore:
+			\[
+				\paren{if_{k, i}^*f_{q, j}\sandwich 0 {R_{k, i}^\dagger R_{q, j}} 0 + H.C.} 
+				= a\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}
+			\]
+			\SubItem{When taking $a = \abs{if_{k, i}^*f_{q, j}}, \theta = \arg \paren{if_{k, i}^*f_{q, j}}$ and $U = {R_{k, i}^\dagger R_{q, j}}$}
+		\item Measuring the ancilla qubit on the circuit gives us $\operatorname{Re}\paren{e^{i\theta}\sandwich 0 U 0}$
+			\SubItem{We can then obtain $\bm M$ via weighed sums of the average measurements of the circuits}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{Minimal Example Circuit}
 \begin{overlayarea}{\textwidth}{\textheight}
 \only<1-2>
 {
@@ -1040,7 +1391,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{itemize}
 \end{overlayarea}
 \end{frame}
-\begin{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Minimal Example Circuit}
 	\begin{itemize}
 		\item $\ket{\psi_3}
 					= \ket + \frac{U + e^{i\theta}I}{2}\ket 0^{\otimes\elec}
@@ -1066,7 +1420,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{equation*}
 	\end{itemize}
 \end{frame}
-\begin{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Minimal Example Circuit}
 	\begin{itemize}
 		\item Since the eigenvalue of $\ket +$ is 1 and the eigenvalue of $\ket -$ is -1, the average measurement is then:
 			\SubItem{$Avg = P(\ket +) \cdot 1 + P(\ket -) \cdot (-1) = Re\paren{e^{i\theta}\sandwich 0 {U} 0}$}
@@ -1080,7 +1437,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{The Circuit}
 \begin{figure}[ht!]
 \includegraphics[width=\linewidth]{../circuits/circuit2}
 \end{figure}
@@ -1100,7 +1460,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{equation*}
 	\end{itemize}
 \end{frame}
-\begin{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{The Circuit}
 \begin{equation*}
 	\begin{split}
 		\ket\phi = \ket + \otimes \frac{R_{ki} + e^{i\theta}R_{qj}}{2} \ket 0^{\otimes \elec}
@@ -1134,7 +1497,10 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{frame}{The Circuit}
 	\begin{itemize}
 		\item The average measurement of the circuit is:
 			$$Avg = P(\ket +) \cdot 1 + P(\ket -) \cdot (-1) = Re\paren{e^{i\theta}\sandwich 0 {R_{ki}R_{qj}^{\dagger}} 0}$$
@@ -1152,6 +1518,9 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 	\end{itemize}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \section{\textbf{Results and Research Directions}}
 
 \subsection{\textbf{Results}}
@@ -1165,6 +1534,9 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{figure}
 \end{frame}
 
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{frame}{Error Graph - 2 electrons}
 \begin{figure}[b]
 	\centering
@@ -1174,22 +1546,63 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 \end{figure}
 \end{frame}
 
-\subsection{\textbf{Contributions}}
+%--------------------------------------------------------------------------------------------------------------------------------
+
+
+\subsection{\textbf{Conclusion}}
 
 \begin{frame}{Contributions}
 	\begin{itemize}
-		\item United HF method with other approximations to obtain a trial wavefunction for the system
-		\item Decomposed said wavefunction into elementary rotations
+		\item United HF method with other approximations to obtain a unitary representation of a trial wavefunction for the system
 
-		\item Solved the Euler-Lagrange differential equation system for specific cases so we can verify our results
+		\item Decomposed said wavefunction into elementary rotations
 
 		\item Further decomposed the wavefunction into a product of matrices that depend on a single variable
 
-		\item Designed the circuit that calculates the elements of the matrices from the differential equation system
+		\item Solved the Euler-Lagrange differential equation system for specific cases so we can verify our results
+
+		\item Modified Li's circuit \citep{benjamin} that calculates the elements of the matrices $\bm M$ and $\bm V$ from the differential equation system to use in NISQ equipment
 
 		\item Verified the theoretical output of said circuit
 	\end{itemize}
 \end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Applications}
+	\begin{itemize}
+		\item The TDVP \citep{kramer} has been used to simulate many physical systems, such as:
+			\SubItem{Nuclear reactions \citep{tdvp4}}
+			\SubItem{Molecular models \citep{tdvp5,kramer}}
+			\SubItem{Wave packet dynamics in the multi-configuration Hartree method \citep{tdvp7,tdvp8,tdvp9,tdvp10,tdvp11}, which is used to simulate non-adiabatic processes in molecules and molecular reactions.}
+	\end{itemize}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Applications}
+\begin{overlayarea}{\textwidth}{\textheight}
+	\begin{itemize}
+		\item In conjunction to other techniques, such as END \citep{end1,end2,end3}, and its derivatives, SLEND and MCEND:
+		\only<1>{
+			\SubItem{Simulate molecules under intense electromagnetic fields \citep{end12}}
+			\SubItem{Molecule collisions leading to moieties' abstractions and exchanges \citep{end13}}
+			\SubItem{Reactions in organic chemistry \citep{end2}, rotations in triatomic molecules \citep{end14}}
+			\SubItem{Stopping powers and energy losses in penetration processes of ions into material media \citep{end15,end16,end17,end18}}
+		}
+		\only<2>{
+			\SubItem{Proton-molecule reactions of interest in atmospheric chemistry and astrochemistry; $ \text{H}^+$ and the following molecules: $ \text{H}_2$ \citep{end19,end20}, C$ \text{H}_4$ \citep{end21}, $ \text{H}_2$O\citep{end22,end23,end24}, $ \text{N}_2$ \citep{end25}, NO\citep{end26}, CO\citep{end27}, $ \text{C}_2$$ \text{H}_2$ \citep{end29}, $ \text{C}_2$$ \text{H}_4$ \citep{end30}}
+		}
+		\only<3>{
+			\SubItem{Simulate ion cancer therapy reactions, like ion-induced water radiolysis \citep{end2,end24,end31,moraleswater,moralesdna}, ion-induced nucleobase damage \citep{end2,end31,moralesdna,end34} and ion-induced and electron-induced nucleotide damage \citep{moralesdna}}
+			\SubItem{Simulation of time-dependent symmetry breaking during molecular collisions \citep{end24,end35}.}
+		}
+	\end{itemize}
+\end{overlayarea}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
 
 \subsection{\textbf{Research directions}}
 
@@ -1204,6 +1617,36 @@ Now each individual term of $\bm M$ and $\bm V$ can be expressed as:
 		\item Prepare code to submit to a real quantum computer
 	\end{itemize}
 \end{frame}
+
+\begin{frame}{Questions}
+	\begin{center}
+		\Huge Questions?
+	\end{center}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Acknowledgements}
+	\begin{itemize}
+		\item Dr. Ismael Regis de Farias Jr.
+		\item Dr. Bryan A. Norman
+		\item Dr. Jorge Alberto Morales
+		\item Dr. Jorge Alberto Morales' Research Group
+			\SubItem {In particular Juan Dominguez}
+		\item TTU High Performance Computing Center
+		\item Edward E. Whitacre Jr. College of Engineering
+	\end{itemize}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{FIN}
+	\begin{center}
+		\Huge Thank You!
+	\end{center}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------------------------------------------
 
 \bibliographystyle{chicago}
 
