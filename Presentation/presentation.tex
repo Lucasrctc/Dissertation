@@ -12,21 +12,8 @@
   \usefonttheme{serif}  % or try serif, structurebold, ...
   \setbeamertemplate{navigation symbols}{}
   \setbeamertemplate{caption}[numbered]
-  \setbeamertemplate{footline}
-{%
-  \leavevmode%
-  \hbox{
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.1cm plus1fill,rightskip=.1cm plus1fill]{author in head/foot}%
-    \usebeamerfont{author in head/foot} \insertshortauthor
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fill]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle
-  \end{beamercolorbox}}%
-  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.1cm,rightskip=.1cm plus1fill]{author in head/foot}%
-    \usebeamerfont{author in head/foot} \insertframenumber{} / \inserttotalframenumber
-  \end{beamercolorbox}%
-  \vskip0pt%
-}
+  \setbeamertemplate{page number in head/foot}[totalframenumber]
+  \setbeamertemplate{headline}{}
 } 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -52,6 +39,8 @@
 \usepackage{xstring} % conditionals
 \usepackage{xcolor}
 \usepackage{movie15}
+\usepackage{bm}
+\usepackage{natbib}
 
 \title[Dissertation defence]{New quantum computing techniques applied to chemistry dynamics}
 \author{Lucas Ramos Cardoso Tin\^{o}co Cortez}
@@ -302,6 +291,15 @@ i & 0 & 0 & 0 \\
     {\setlength\itemindent{15pt} \item[*] #1}
 }
 
+%Transition for every section
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
 
 \begin{document}
 
@@ -314,6 +312,74 @@ i & 0 & 0 & 0 \\
 
 \begin{frame}
 \tableofcontents	%Leave this here (table will auto-update as you write new sections/subsubsections/appendix)
+\end{frame}
+
+\section{\textbf{Introduction}}
+\subsection{\textbf{What is Quantum Computing}}
+
+\begin{frame}{Classical Computer}
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=0.75\textwidth]{img/classical}
+\end{figure}
+	\begin{itemize}
+		\item $x_i$ and $y_i$ are states of a 2-level classical system \{0, 1\}, bits
+		\item Two equivalent models: Turing machine and circuit model
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quantum Computer}
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=0.75\textwidth]{img/quantum}
+\end{figure}
+	\begin{itemize}
+		\item $\ket 0_i$ are states of a 2-level quantum system $\{\ket 0, \ket 1\}$, qubits
+		\item One majorly used model: Circuit model
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quantum Computing}
+	\begin{itemize}
+		\item States are vectors in a 2-dimensional Hilbert space over $\mathbb{C}$
+		\item Bases of the Hilbert space are orthonormal
+			\SubItem {Most usual is 
+				$\left\{
+					\ket 0 = \begin{bmatrix} 1 \\ 0 \end{bmatrix},
+					\ket 1 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+				\right\}$}
+		\item We write the state of a qubit $\ket \phi$ as $\ket \phi = \alpha_0 \ket 0 + \alpha_1 \ket 1$
+			\SubItem {$\alpha_i \in \mathbb{C}$}
+			\SubItem {$\norm {\alpha_0}^2 + \norm{\alpha_1}^2 = 1 $}
+			\SubItem {Measuring $\ket \phi$ yields $\ket 0$ or $\ket 1$, with probability $\norm{\alpha_i}^2$}
+			\SubItem {Unitary operators are necessary to mantain these properties}
+	\end{itemize}
+\end{frame}
+
+\subsection{\textbf{Quantum Advantages}}
+\begin{frame}{Quantum advantages}
+	\begin{itemize}
+		\item Quantum systems cannot be efficiently simulated on classical computers \citep{feynman}, requiring exponential complexity
+		\SubItem{There are quantum algorithms \citep{quantumsimulation} that attain exponential speedups}
+		\item Other problems for which quantum computers attain exponential speedups are:
+			\SubItem{Factorization \citep{shor}}
+			\SubItem{Solving systems of linears equations \citep{harrow}}
+	\end{itemize}
+\end{frame}
+
+\subsection{\textbf{Challenges in Quantum Computing}}
+
+\cite{moorequantum}
+\cite{ibmblog}
+\cite{dyanokov}
+\begin{frame}{Challenges in Quantum Computing}
+	\begin{itemize}
+		\item Quantum systems cannot be efficiently simulated on classical computers \citep{feynman}, requiring exponential complexity
+		\SubItem{There are quantum algorithms \citep{quantumsimulation} that attain exponential speedups}
+		\item Other problems for which quantum computing attains exponential speedups are:
+			\SubItem{Factorization \citep{shor}}
+			\SubItem{Solving systems of linears equations \citep{harrow}}
+	\end{itemize}
 \end{frame}
 
 \section{\textbf{Background}}
@@ -341,7 +407,6 @@ i & 0 & 0 & 0 \\
 		\item $\{\oo{0}, \oo{1}, \oo{2}, \ldots\}$ index occupied(hole) orbitals
 		\item $\{\uo{0},\uo{1},\uo{2}, \ldots\}$ index unoccupied(particle) orbitals
 		\item $\{\go{0}, \go{1}, \go{2}, \go{3}, \ldots\}$ index orbitals in general.
-		\item $\nuc$ nuclei in our system.
 	\end{itemize}
 \end{frame}
 
@@ -1089,5 +1154,10 @@ Spin Density - the probability to find an electron on a infinitesimal volume $dV
 
 \includemovie[poster, autoplay, externalviewer, text={\small(Loading bloch.mp4)}]{6cm}{6cm}{H2.mp4}
 \end{frame}
+
+\bibliographystyle{chicago}
+
+\section{\textbf{References}}
+\bibliography{refs}
 
 \end{document}
