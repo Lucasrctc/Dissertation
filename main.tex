@@ -10,7 +10,7 @@
 \documentclass{aux/ttuthes2007}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Include any other add-on  packages you need:%
+%Include any other add-on packages you need:%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath,graphicx,bm,mathtools, amssymb}
 \allowdisplaybreaks
@@ -49,7 +49,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Uncomment if the grad school doesn't like the%
-%line under the  running head:                %
+%line under the running head:                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\renewcommand{\headrulewidth}{0pt}
 
@@ -356,7 +356,7 @@ i & 0 & 0 & 0 \\
 \vbox to  \textheight{
 \begin{singlespacing}
 \begin{center}
-New Quantum Computing Techniques Applied To Chemistry Dynamics\\[15pt]  %Edit
+New quantum computing techniques applied to chemistry dynamics\\[15pt]  %edit
 by\\[15pt]
 Lucas Ramos Cardoso Tin\^oco Cortez, B.S.C.E.\\[15pt]   %Edit to put in your name and whatever degrees you already have
 A Dissertation\\[15pt]   % 
@@ -367,12 +367,12 @@ of Texas Tech University in\\
 Partial Fulfillment of\\
 the Requirements for\\
 the Degree of\\[15pt]
-DOCTOR OF PHILOSOPHY IN INDUSTRIAL ENGINEERING\\[30pt]  %Edit (or Master of YYY)
+DOCTOR OF PHILOSOPHY\\[30pt]  %Edit (or Master of YYY)
 Approved\\[15pt]
 Dr. Bryan A. Norman\\
-Chair of Committee\\[15pt] %Edit
+Chair of the Committee\\[15pt] %Edit
 Dr. Jorge Alberto Morales \\ %Edit
-Co-Chair of Committee\\[15pt] %Edit
+Co-Chair of the Committee\\[15pt] %Edit
 Dr. Dongping Du\\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Changxue Xu \\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Mark Sheridan\\ %Edit (look up the info on the Graduate School's website)
@@ -405,7 +405,7 @@ Dean of the Graduate School\\[30pt]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Acknowledgements           %
 %Comment out or delete      %
-%if not  wanted             %
+%if not wanted              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{\textbf{Acknowledgements}}
 %I am thankful that LaTex has made writing my dissertation an easy and painless experience.
@@ -440,7 +440,6 @@ Finally, I acknowledge my incredible fianc\'{e}e, Sarah Marie Moberley, for all 
 \chapter{\textbf{Abstract}}
 
 Simulating quantum systems can be a very hard task. Back in the 80's, Feynman \shortcite{feynman} proved that quantum systems cannot be efficiently simulated in a classical machine and can only be done using methods with exponential complexity. 
-%Lucas, the next sentence is not clear to me.
 This fact has caused researchers to use the problem of simulating quantum systems to demonstrate quantum supremacy \shortcite{arute2019quantum}, the idea that there is a problem for which \gls{qc} can find a solution that classical computers could not arrive in any feasible amount of time.
 
 One of the properties that allow quantum computers to attain exponential speedups such as in the case of factorization \shortcite{shor}, quantum simulation \shortcite{quantumsimulation} and even solving systems of linear equations \shortcite{harrow} is what is called quantum parallelism \shortcite{nielsen}.
@@ -471,9 +470,9 @@ The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gl
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%MAIN PART OF  DOCUMENT%
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%MAIN PART OF DOCUMENT%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 \mainmatter
 
@@ -481,7 +480,6 @@ The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gl
 
 %
 \chapter{\textbf{Introduction}}
-% Lucas, please expand on the introduction so that someone not familiar with the work can understand why you are doing the work. This means that the significance must be clear and a high level overview of what you are doing should be clear. There should be a few pages of that that would be understandable by Lindsey or Stephanie. 
 
 Quantum chemistry \shortcite{szabo,mcweeny} seeks to describe chemical systems in terms of quantum mechanics.
 For time-dependent processes (e.g., chemical reactions), this requires the solution of the time-dependent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
@@ -500,18 +498,19 @@ However, even with these approximations, finding an optimal trial wavefunction c
 Fortunately, \gls{qc} \shortcite{nielsen} can offer more efficient algorithms to solve this problem.
 Once quantum computers achieve a good enough error rate, there are exponential gains to be had \shortcite{quantumsimulation}.
 However, with the current values of error rates, it is not possible to attain these exponential gains.
-Currently, the number of qubits has been increasing in a fashion similar  to Moore's law \shortcite{moorequantum}, but the increase in the number of qubits does not mean the same for quantum computing as it does for classical computers when the error rates fluctuate at about $0.1\%$ on the most advanced qubits \shortcite{ibmblog}.
+Currently, the number of qubits has been increasing in a fashion similar to Moore's law \shortcite{moorequantum}, with the newest hardware carrying in the order of 1000 qubits, but the increase in the number of qubits does not mean the same for quantum computing as it does for classical computers when the error rates fluctuate at about $0.1\%$ on the most advanced qubits \shortcite{ibmblog}.
 
 Shor's algorithm \shortcite{shor}, for example, offers such an exponential speedup for factoring when compared to its classical counterparts.
 Unfortunately, the number of qubits needed to efficiently simulate a logical qubit is huge, and it is estimated that when we attain error rates of $10^{-4}$ we'd still need around 6 million qubits to attain quantum supremacy on Shor's algorithm \cite{shor}. 
-% Lucas, how many qubits to Quantum computers currently have?
-That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range interactions between the qubits.
-% Lucas, in the previous sentence, what do you mean by "long-term interactions"?
+% Lucas, how many qubits to Quantum computers currently have? - added in the previous paragraph
+That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range connectivity between the qubits.
+% Lucas, in the previous sentence, what do you mean by "long-term interactions"? - Long range interactions, as in how qubits are connected
 
 While these and other approaches still don't beat their classical alternatives, they hold the promise of working in the near future using \gls{nisq} technology \cite{nisq}, 
-%Lucas - Not sure what you are trying to say in the end of this sentence.
-as the quantum computer is in charge of a subset of the problem, using shallow circuits and/or getting error tolerant algorithms while relying on quantum speedups. 
-% Lucas, I think here woudl be a good place to note that your proposed method is an error tolerant method and helps address this shortcoming in current quantum computers. 
+%Lucas - Not sure what you are trying to say in the end of this sentence. - Added some more wording to the end of the sentence
+as the quantum computer is in charge of a subset of the problem, using shallow circuits and/or getting error tolerant algorithms while relying on the algorithms quantum speedups when compared to the classical counterparts. 
+% Lucas, I think here would be a good place to note that your proposed method is an error tolerant method and helps address this shortcoming in current quantum computers. - Done
+The algorithm proposed here relies on a shallow and error-tolerant circuit \shortcite{benjamin}, making it a good candidate for use in the \gls{nisq} era.
 
 As is known, \gls{qc} ultimately expresses all its operations in terms of unitary matrices, such as those of the Pauli gates \shortcite{nielsen}.
 In contrast, standard formulations of TDVP and Hartree-Fock theory \shortcite{szabo,mcweeny} avoid a unitary representation.
@@ -547,7 +546,7 @@ Let
 $\{\oo{0}, \oo{1}, \oo{2}, \ldots\}$
 index our $\elec$ occupied orbitals (also known as hole orbitals), 
 $\{\uo{0},\uo{1},\uo{2}, \ldots\}$ 
-index  our $\orb - \elec$ unoccupied orbitals (also called particle orbitals) and 
+index our $\orb - \elec$ unoccupied orbitals (also called particle orbitals) and 
 $\{\go{0}, \go{1}, \go{2}, \go{3}, \ldots\}$
 index our $\orb$ orbitals in general.
 Let $\nuc$ be the number of nuclei in our system.
@@ -670,9 +669,7 @@ discriminating between pair operators that do not change the state of the system
 %separating the operators that act on the system into operators that ultimately don't affect the state of the system (operators that only exchange electrons between occupied orbitals) and operators that do affect the state of the system into different subalgebras.
 
 
-%Lucas, Chapter 2 is also very dense. Please add more verbiage explaining what it is your are doing and why. 
 
-% Lucas, Chapter 3 is the shortest literature review I have ever seen in a dissertation. Is there only enough literature to require 2 pages?
 \chapter{\textbf{Literature Review}}\label{chap:literature}
 
 \section{\textbf{Background}}
@@ -1027,7 +1024,7 @@ We propose the use of a quantum circuit similar to Li's \cite{benjamin} and Eker
 \section{\textbf{Time Dependent Variational Principle (TDVP)}}\label{sec:tdvp}
 %\shortcite{broeckhove} \cite{kramer}
 First, we must obtain an approximation of the wavefunction for our simulation. That is done by applying a unitary transformation $\hat U$ to an initial state $\ket 0$.
-We find the \gls {hf} approximation by following through Fukutome's method \shortcite{fukutome}, as well as our own approximations. These relate to the first three boxes (`\gls{hf}', `Other Approximations' and `Wavefunction Approximation', after `Start') in the flowchart in Fig. \ref{fig:flowchart1}. After doing so, we need to derive the dynamics of our system.
+We find the \gls {hf} approximation by following through Fukutome's method \shortcite{fukutome}, as well as our own approximations. These relate to the first three (`\gls{hf}', `Other Approximations' and `Wavefunction Approximation', after `Start') portions of the flowchart in Fig. \ref{fig:flowchart1}. After doing so, we need to derive the dynamics of our system.
 
 \subsection{\textbf{Wavefunction Approximation}}
 
@@ -1418,7 +1415,7 @@ where:
 	\end{split}
 \end{equation*}
 %
-These steps relate to the `Euler-Lagrange Equations' portion of Fig. \ref{fig:flowchart1}. The following steps relate to the `Quantum-Classical Hybrid Algorithm' box in the flowchart.
+These steps relate to the `Euler-Lagrange Equations' portion of Fig. \ref{fig:flowchart1}. The following steps relate to the `Quantum-Classical Hybrid Algorithm' portion of the flowchart.
 We can now turn back to the previous expression of $\ket{\Psi}$ in terms of the variational parameters to calculate the elements of $\bm M$. First we calculate the values of the derivatives of $\ket \Psi$ with respect to $\rho_\ind 0 ,\omega_\ind 0$ and $\rho_\ind 1 , \omega_\ind 1$.
 %
 \begin{align*}
@@ -4174,7 +4171,7 @@ So we have:
 %
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_1} &= \fpd {\ket\Psi}{\omega} = \left[ 
-		i \s \rho \co \omega\bm  X + i \s \rho \s \omega\bm  Y
+		i \s \rho \co \omega\bm X + i \s \rho \s \omega\bm Y
 	\right ] \ket 0 \\
 	&= \left( 
 		i \s \rho \co \omega \X + i \s \rho \s \omega \Y
@@ -4365,7 +4362,7 @@ Looking at Li's \shortcite{benjamin} Eq. \ref{eq:rki} again, we have:
 %
 \begin{align*}
 	\fpd {\ket\Psi}{\lambda_3} &= \fpd {\ket\Psi}{\omega} = \left[ 
-		i \s \rho \co \omega\bm  X + i \s \rho \s \omega\bm  Y
+		i \s \rho \co \omega\bm X + i \s \rho \s \omega\bm Y
 	\right ] \ket 0 \\
 	&= \left( 
 		i \s \rho \co \omega \X + i \s \rho \s \omega \Y
@@ -4605,9 +4602,6 @@ Each term in \ref{eq:benjamin} can be written as $a\operatorname{Re}\paren{e^{i\
 %-------------------------------------------------------------------------------------
 %
 
-% Lucas, why is it only initial results? This makes it seem like this is a proposal not a dissertation. 
-% Chapter 5 seems much too brief. 
-% You also need to clearly and succinctly note your key contributions, I am not seeing that anywhere. 
 
 \chapter{\textbf{Computational Results}}\label{chap:compresults}
 
@@ -4691,38 +4685,38 @@ Through some further assumptions and approximations, we've managed to simplify t
 Thus, we are able to find approximations of matrices $\bm M$ and $\bm V$ that arise from the Euler-Lagrange Eqs. \ref{eq:matrixderiv}.
 This approach has netted us a result that requires a number of shots scaling quadratically with the required precision, making it possible to run this quantum circuit as a \gls{nisq} coprocessor to an iterative algorithm, such as the \gls{tdvp}, as expressed in Fig. \ref{fig:TDVP}.
 The quantum algorithm calculates matrices $\bm M$ and $\bm V$ and, using this data, a classical computer can solve the differential equations 
-% I am confused by your use of "to evolve" in the next line, please clarify that. 
-to evolve the system a small time step and supply the quantum computer with a new trial wavefunction via the parameter list $\bm \lambda$, until the time evolution is completed.
+% I am confused by your use of "to evolve" in the next line, please clarify that. - Added parentheses with clarification
+to evolve (i.e. calculate the effect of time on the state of the system) the system a small time step and supply the quantum computer with a new trial wavefunction via the parameter list $\bm \lambda$, until the time evolution is completed.
 
 \section{\textbf{Key Contributions}}
 
 The usual approach when dealing with quantum chemical systems is to use a non-unitary approach to obtain a wavefunction from \gls{hf} theory.
 This leads to more efficient implementations of methods like \gls{end} and \gls{slend} \shortcite{end1,end2}, but we need a unitary representation to be able to run quantum algorithms.
-% Lucas, see how i reworded the next sentence and confirm that I have not changed your intent. 
+% Lucas, see how i reworded the next sentence and confirm that I have not changed your intent. - Intent is the same
 Therefore, we have combined Fukutome's \shortcite{fukutome} work with other assumptions of our own to obtain the 
-% Lucas, what do you mean by "simple trial wavefunction"?
-simple trial wavefunction described in Eq. \ref{eq:udecomposition}.
+% Lucas, what do you mean by "simple trial wavefunction"? - Added a parentheses with clarification
+simple (i.e. can be decomposed into a tensor product) trial wavefunction described in Eq. \ref{eq:udecomposition}.
 
 Once we had our wavefunction, we needed to decompose it into a product of single-variable matrices.
 However, since each part $\bm u_{\lambda_\ind 0}$ of our wavefunction can be written as a product of three rotation matrices of a single variable, as seen in Eq. \ref{eq:urotation}, we can use it as 
-% Lucas, what does " basis to out decomposition" mean?
-a basis to out decomposition.
+% Lucas, what does " basis to out decomposition" mean? - Typo, "our"
+a basis to our decomposition.
 In the 1-electron case, that was sufficient, as seen in \ref{eq:rdecomposition1e}.
 However, in the 2-electron case, we had to decompose the tensor product in Eq. \ref{eq:urotation}.
 Looking at \ref{eq:rdecomposition}, although it was not a straightforward decomposition into rotation matrices, it was similar.
 
-% Lucas, see my changes in the next line. And then review the wording differneces through the rest of this paragraph. 
+% Lucas, see my changes in the next line. And then review the wording differences through the rest of this paragraph. 
 The next step was to find derivative coefficients in order to be able to implement our circuit.
 A problem now arises in the fact that Li's \shortcite{benjamin} Eq. \ref{eq:rki} for the derivatives of our wavefunction using our coefficients assumes no relationship between the variables obtained in the wavefunction decomposition 
 $\ket \Psi = \prod_{k=1}^{N_v} R_k(\lambda_k) \ket 0$,
 and some of our rotations share variables.
-Thus, we had to obtain our own equations for these derivatives, becuase if these equations are not satisfied, we can not calculate $\bm M$ and $\bm V$.
+Thus, we had to obtain our own equations for these derivatives, because if these equations are not satisfied, we can not calculate $\bm M$ and $\bm V$.
 Then, using our new Eqs. \ref{eq:correctedli2e} and \ref{eq:correctedli1e}, we were able to find new expressions for the matrix elements of $\bm M$ and $\bm V$ in Eq. \ref{eq:benjamin}.
 Once this was complete, we were able to simulate the circuits and obtain the computational results for our simulation. 
 
 Some 
-% use "promising" rather than "highlighted"?
-highlighted applications of this work are in improving the \gls{tdvp}, which can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications. For a more extensive list of applications, refer back to section \ref{sec:applications}.
+% use "promising" rather than "highlighted"? - Done
+promising applications of this work are in improving the \gls{tdvp}, which can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications. For a more extensive list of applications, refer back to section \ref{sec:applications}.
 
 \section{\textbf{Future Work}}
 
