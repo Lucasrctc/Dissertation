@@ -486,7 +486,7 @@ Quantum chemistry \shortcite{szabo,mcweeny} seeks to describe chemical systems i
 For time-dependent processes (e.g., chemical reactions), this requires the solution of the time-dependent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
 Once the wavefunction is found, all the physical and chemical properties of a system can be directly calculated from it \shortcite{szabo,mcweeny}.
 
-Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size.
+Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size \shortcite{buluta,feynman}.
 Therefore, different approximations must be introduced.
 One approach is to adopt the \gls{tdvp} \shortcite{kramer};
 %there, a trial wavefunction is optimized with respect to time-dependent parameters with the aim of obtaining a stationary action \shortcite{kramer}. A visualization is provided in figure \ref{fig:TDVP}.
@@ -496,7 +496,16 @@ The simplest type of trial wavefunction is a \gls{hf} one \shortcite{szabo,mcwee
 a single Slater determinant of molecular orbitals (one per electron) that satisfies the Pauli exclusion principle.
 However, even with these approximations, finding an optimal trial wavefunction can be exacting on classical (standard) computers.
 
-Fortunately, \gls{qc} \shortcite{nielsen} can offer more efficient algorithms and computers to solve this problem.
+Fortunately, \gls{qc} \shortcite{nielsen} can offer more efficient algorithms to solve this problem.
+Once quantum computers achieve a good enough error rate, there's exponential gains to be had \shortcite{quantumsimulation}.
+However, with error rates as they are, these exponential gains fall short.
+Currently, the number of qubits has been increasing in a similar fashion to Moore's law \shortcite{moorequantum}, but the increase in the number of qubits does not mean the same for quantum computing as it does for classical computers when the error rates fluctuate at about $0.1\%$ on the most advanced qubits \shortcite{ibmblog}.
+
+Shor's algorithm \shortcite{shor}, for example, offers such an exponential speedup to factoring when compared to the classical counterparts.
+Unfortunately, the number of qubits needed to efficiently simulate a logical qubit is huge, and it is estimated that when we attain error rates of $10^{-4}$ we'd still need around 6 million qubits to attain quantum supremacy on Shor's algorithm \cite{shor}. That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range interactions between the qubits.
+
+While these and other approaches still don't beat their classical alternatives, they hold a promise of working in the near future using \gls{nisq} technology \cite{nisq}, as the quantum computer is in charge of a subset of the problem, using shallow circuits and/or getting error tolerant algorithms while relying on quantum speedups. 
+
 As is known, \gls{qc} ultimately expresses all its operations in terms of unitary matrices, such as those of the Pauli gates \shortcite{nielsen}.
 In contrast, standard formulations of TDVP and Hartree-Fock theory \shortcite{szabo,mcweeny} avoid a unitary representation.
 Years before \gls{qc}, Fukutome \shortcite{fukutome} formulated the time-independent Hartree-Fock theory in terms of unitary Lie groups \shortcite{wybourne} in a purely mathematical context.
@@ -511,7 +520,7 @@ Some of its applications are in understanding and optimizing the reactions that 
 In this dissertation, we extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
 This dissertation is divided into 4 more chapters: In chapter \ref{chap:background} there is an exposition of necessary mathematical and chemical foundations for the work in this dissertation.
 Then, in chapter \ref{chap:literature}, some prior work in the area has been highlighted with a brief explanation of how they're relevant to this work.
-Also, some book recommendations for further study or from which some formulas and theorems were used in this paper.
+Also, some book recommendations for further study or from which some formulas and theorems were used in this paper, as well as some applications that could benefit from this work.
 
 Chapter \ref{chap:methodology} is where our work is introduced and explained, followed by chapter \ref{chap:compresults} where we discuss the simulation and the equipment used for it. 
 Finally, chapter \ref{chap:conclusion} highlights the importance of this work and suggests some directions for further study.
@@ -999,7 +1008,6 @@ To solve these differential equations we use the \gls{tdvp}, which is an iterati
 Then, we use these matrices to evolve $\bm \lambda(0)$ for a small amount of time into $\bm \lambda(\delta_t)$.
 The process is repeated until the goal time $n\cdot\delta_t = T$ is reached.
 We propose the use of a quantum circuit similar to Li's \cite{benjamin} and Ekert's \shortcite{ekert} to calculate the elements of the matrices $\bm M$ and $\bm V$ for each system of differential equations in each step of the iteration.
-Figure \ref{fig:TDVP} illustrates this process, while figure \ref{fig:flowchart1} shows a broad view of the algorithm.
 
 \begin{figure}[hb!]
 	\centering
@@ -1011,7 +1019,7 @@ Figure \ref{fig:TDVP} illustrates this process, while figure \ref{fig:flowchart1
 \section{\textbf{Time Dependent Variational Principle (TDVP)}}\label{sec:tdvp}
 %\shortcite{broeckhove} \cite{kramer}
 First, we must obtain an approximation of the wavefunction for our simulation. That is done by applying a unitary transformation $\hat U$ to a initial state $\ket 0$.
-We find the \gls {hf} approximation by following through Fukutome's method \shortcite{fukutome}. After doing so, we need to derive the dynamics of our system.
+We find the \gls {hf} approximation by following through Fukutome's method \shortcite{fukutome}, as well as our own approximations. These relate to the first three boxes (`\gls{hf}', `Other Approximations' and `Wavefunction Approximation', after `Start') in our flowchart from Fig. \ref{fig:flowchart1}. After doing so, we need to derive the dynamics of our system.
 
 \subsection{\textbf{Wavefunction Approximation}}
 
@@ -1390,6 +1398,7 @@ where:
 	\end{split}
 \end{equation*}
 %
+These steps relate to the box `Euler-Lagrange Equations' in Fig. \ref{fig:flowchart1}. The following steps relate to the `Quantum-Classical Hybrid Algorithm' box in the flowchart.
 We can now turn back to the previous expression of $\ket{\Psi}$ in terms of the variational parameters to calculate the elements of $\bm M$. First we calculate the values of the derivatives of $\ket \Psi$ with respect to $\rho_\ind 0 ,\omega_\ind 0$ and $\rho_\ind 1 , \omega_\ind 1$.
 %
 \begin{align*}
@@ -4519,7 +4528,7 @@ Using Fukutome's \shortcite{fukutome} unitary approach to the \gls{hf} method, w
 
 We've then added on Fukutome's work by applying some approximations to obtain a wavefunction with operators that act on single electrons, described by \ref{eq:udecomposition}. These were instrumental in obtaining a simpler wavefunction that fit our generalization of Li's circuit \shortcite{benjamin}.
 
-Next, we've solved the Euler-Lagrange differential equation system related to that wavefunction to get an algebraic result for the matrices in our system.
+Next, we've solved the Euler-Lagrange differential equation system related to that wavefunction as applies to $\text{H}_2$ and $\text{H}_2^+$ to get an algebraic result for the matrices in our system.
 We've then decomposed $\hat U$ into a product of matrices that depend on a single variable $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$, a step necessary to build our \gls{qc}.
 
 We've then adapted the construction of the circuit from Li \shortcite{benjamin} to cater to our reduced set of variables and developed circuits to calculate each of the elements of the matrices $\bm M$ and $\bm V$ at each step of the \gls{tdvp} so we could solve the differential equations $\sum_{\lambda_l = \lambda_k} \sum_q \bm M_{l,q}\dot{\lambda}_q = V_k$ and simulate the state of our system. One such circuit built using qiskit in python is the one on figure \ref{fig:circuit}. 
@@ -4530,7 +4539,10 @@ We've then adapted the construction of the circuit from Li \shortcite{benjamin} 
   \label{fig:circuit}
 \end{figure}
 
-With equations for the wavefunction in hand, a circuit can be built to obtain matrices $\bm M$ and $\bm V$ needed to solve the system of Euler-Lagrange equations and accelerate the \gls{tdvp}.
+With equations for the wavefunction in hand, a circuit can be built to obtain matrices $\bm M$ and $\bm V$ needed to solve the system of Euler-Lagrange equations and accelerate the \gls{tdvp}. 
+
+We note here that it would be possible to apply this to bigger molecules.
+Systems with more than two electrons, however, would necessarily have electrons sharing a spin value, so Eq. \ref{eq:udecomposition} wouldn't be as simple, making the required decomposition of the wavefunction into products of single-variable matrices $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$ wouldn't be as straightforward as seen in Eq. \ref{eq:rdecomposition} for the 2-electron case.
 
 \section{\textbf{Simulation}}
 
