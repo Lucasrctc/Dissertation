@@ -21,7 +21,7 @@
 \def\fileversion{1.2}
 \def\filedate{2007/6/23} 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ttuthes2007}[\filedate\space\fileversion\space%
+\ProvidesClass{aux/ttuthes2007}[\filedate\space\fileversion\space%
        LaTeX document class.]
 
 \LoadClass[oneside,openany,12pt]{book}
