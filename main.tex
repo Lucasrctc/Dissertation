@@ -44,7 +44,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %EDIT  (Running head--  REQUIRED)%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\rhead{\small Texas Tech University, \textit{Lucas Ramos Cardoso Tin\^{o}co Cortez}, \monthyeardate\today}	%update your name and graduation date-year here
+\newdate{graddate}{15}{12}{2023} 	%graduation month and year here. Day is irrelevant to this document
+\rhead{\small Texas Tech University, \textit{Lucas Ramos Cardoso Tin\^{o}co Cortez}, \monthyeardate\displaydate{graddate}}	%update your name 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Uncomment if the grad school doesn't like the%
@@ -339,7 +340,7 @@ i & 0 & 0 & 0 \\
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \newdateformat{monthyeardate}{%
-  \monthname[\THEMONTH], \THEYEAR}
+  \monthname[\THEMONTH] \THEYEAR}
 
 
 
@@ -355,7 +356,7 @@ i & 0 & 0 & 0 \\
 \vbox to  \textheight{
 \begin{singlespacing}
 \begin{center}
-New quantum computing techniques applied to chemistry dynamics\\[15pt]  %Edit
+New Quantum Computing Techniques Applied To Chemistry Dynamics\\[15pt]  %Edit
 by\\[15pt]
 Lucas Ramos Cardoso Tin\^oco Cortez, B.S.C.E.\\[15pt]   %Edit to put in your name and whatever degrees you already have
 A Dissertation\\[15pt]   % 
@@ -366,8 +367,8 @@ of Texas Tech University in\\
 Partial Fulfillment of\\
 the Requirements for\\
 the Degree of\\[15pt]
-Doctor of Philosophy in Industrial Engineering\\[30pt]  %Edit (or Master of YYY)
-%Approved\\[15pt]
+DOCTOR OF PHILOSOPHY IN INDUSTRIAL ENGINEERING\\[30pt]  %Edit (or Master of YYY)
+Approved\\[15pt]
 Dr. Bryan A. Norman\\
 Chair of Committee\\[15pt] %Edit
 Dr. Jorge Alberto Morales \\ %Edit
@@ -376,7 +377,7 @@ Dr. Dongping Du\\[15pt] %Edit (add/remove names if you have more or fewer commit
 Dr. Changxue Xu \\[15pt] %Edit (add/remove names if you have more or fewer committee members)
 Dr. Mark Sheridan\\ %Edit (look up the info on the Graduate School's website)
 Dean of the Graduate School\\[30pt]
-\today      %Edit
+\monthyeardate\displaydate{graddate}      %Edit
 \end{center}
 \end{singlespacing}
 \vfill}
@@ -389,7 +390,7 @@ Dean of the Graduate School\\[30pt]
 %Copyright page -- delete or comment out if not needed%
 %usage: \copyrightpage{year of appearance}{Name}      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\copyrightpage{2021}{Lucas Ramos Cardoso Tin\^oco Cortez} %Name should be same as on title page
+\copyrightpage{2023}{Lucas Ramos Cardoso Tin\^oco Cortez} %Name should be same as on title page
 %%%%%%%%%%%%%%%%%%%%%%%%
 %\end of copyright page%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1251,7 +1252,9 @@ At this point, we will concentrate on a system with $\elec = 2 \implies \orb = 4
 	\end{split}
 \end{equation}
 %
-Note here that our wavefunction $\ket \Psi$ is a function of four real variables $\omega_\ind 0, \omega_\ind 1, \rho_\ind 0, \rho_\ind 1$. It can also be written as a tensor product of two single-qubit operators, where $\bm u_{\lambda_{\ind 0}}$ acts on $\uparrow$ spin orbitals and $\bm u_{\lambda_{\ind 1}}$ acts on $\downarrow$ spin orbitals.
+Note here that our wavefunction $\ket \Psi$ is a function of four real variables 
+$\omega_\ind 0$, $\omega_\ind 1$, $\rho_\ind 0$, $\rho_\ind 1$.
+It can also be written as a tensor product of two single-qubit operators, where $\bm u_{\lambda_{\ind 0}}$ acts on $\uparrow$ spin orbitals and $\bm u_{\lambda_{\ind 1}}$ acts on $\downarrow$ spin orbitals.
 
 %-------------------------------------------------------------------------------------
 
@@ -1344,29 +1347,39 @@ These equations can be put into matrix form:
 		=	\left[\pd{\lambda_k}\sandwich{\Psi}{\hat H}{\Psi}\right]_k 
 	\\% -----------------------Second Equation Line---------------------------------------
 		\span i
-		\begin{pmatrix}
+		\left(
+		\begin{matrix}
 			0 
 			&  \bpp{\lambda_1} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_1} 
 			&  \bpp{\lambda_1} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_1} 
-			&  \bpp{\lambda_1} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_1} 
 		\\% --------------------------Second Matrix Line------------------------------
 			 \bpp{\lambda_2} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_2} 
 			& 0
 			& \bpp{\lambda_2} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_2} 
-			& \bpp{\lambda_2} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_2} 
 		\\% --------------------------Third  Matrix Line------------------------------
 			 \bpp{\lambda_3} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_3} 
 			& \bpp{\lambda_3} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_3} 
 			& 0
-			& \bpp{\lambda_3} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_3} 
 		\\% --------------------------Fourth Matrix Line------------------------------
 			 \bpp{\lambda_4} \kpp{\lambda_1} -  \bpp{\lambda_1} \kpp{\lambda_4} 
 			& \bpp{\lambda_4} \kpp{\lambda_2} -  \bpp{\lambda_2} \kpp{\lambda_4} 
 			& \bpp{\lambda_4} \kpp{\lambda_3} -  \bpp{\lambda_3} \kpp{\lambda_4} 
-			& 0
-		\end{pmatrix} 
+		\end{matrix} 
+		\right.
 	\\
-		&\times
+		&\qquad \qquad
+	\left .
+		\begin{matrix}
+			&  \bpp{\lambda_1} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_1} 
+		\\% --------------------------Second Matrix Line------------------------------
+			& \bpp{\lambda_2} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_2} 
+		\\% --------------------------Third  Matrix Line------------------------------
+			& \bpp{\lambda_3} \kpp{\lambda_4} -  \bpp{\lambda_4} \kpp{\lambda_3} 
+		\\% --------------------------Fourth Matrix Line------------------------------
+			& 0
+		\end{matrix}
+	\right )
+		\times
 		\begin{pmatrix}
 			\dot \lambda_1 \\
 			\dot \lambda_2 \\
@@ -1404,32 +1417,32 @@ We can now turn back to the previous expression of $\ket{\Psi}$ in terms of the 
 \begin{align*}
 	\ket \Psi 
 	&= \co {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
-	+ e^{i\omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
+	{} + e^{i\omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
 	&\quad + e^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ e^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\rho_\ind 0 } \ket \Psi 
+	\kpp {\rho_\ind 0 } 
 	&= -\s {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	- e^{i\omega_\ind 1}\s {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
-	&\quad + e^{i\omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+	&\quad {} + e^{i\omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ e^{i\omega_\ind 0}e^{i\omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\omega_\ind 0} \ket \Psi 
+	\kpp {\omega_\ind 0} 
 	&= \co {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	+ e^{i\omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
-	&\quad + ie^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+	&\quad {} + ie^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ ie^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\rho_\ind 1 } \ket \Psi 
+	\kpp {\rho_\ind 1 } 
 	&= -\co {\rho_\ind 0}\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	+ e^{i\omega_\ind 1}\co {\rho_\ind 0 }\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
-	&\quad - e^{i\omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+	&\quad {} - e^{i\omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ e^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\omega_\ind 1} \ket \Psi 
+	\kpp {\omega_\ind 1} 
 	&= \co {\rho_\ind 0}\co {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\oo 1}}
 	+ ie^{i\omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\ket {\psi_{\oo 0}\psi_{\uo 1}} \\
-	&\quad + e^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
+	&\quad {} + e^{i\omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\oo 1}} 
 	+ ie^{i\omega_\ind 0}e^{i\omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\ket{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
 %
@@ -1453,27 +1466,27 @@ Now we need to find the partial derivatives of $\ket\Psi$, but to do that we nee
 And take the derivatives of \ref{eq:dualpsirw}:
 %
 \begin{align*}
-	\pd {\rho_\ind 0 } \bra \Psi 
+	\bpp {\rho_\ind 0 } 
 	&= -\s {\rho_\ind 0}\co {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\oo 1}}
 	- e^{ -i \omega_\ind 1}\s {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}} \\
 	&\quad + e^{ -i \omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
-	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	+ e^{ -i \omega_\ind 0 - i \omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\omega_\ind 0} \bra \Psi 
+	\bpp {\omega_\ind 0} 
 	&=
 	-i e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
-	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	-i e^{ -i \omega_\ind 0 - i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\rho_\ind 1 } \bra \Psi 
+	\bpp {\rho_\ind 1 } 
 	&= -\co {\rho_\ind 0}\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\oo 1}}
 	+ e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\co {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}} \\
 	&\quad - e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
-	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	+ e^{ -i \omega_\ind 0 - i \omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\\
-	\pd {\omega_\ind 1} \bra \Psi 
+	\bpp {\omega_\ind 1} 
 	&= 
 	-i e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
-	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	-i e^{ -i \omega_\ind 0 - i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 \end{align*}
 %
 Finally, we have all the information needed to calculate the elements of the $\bm M$ matrix in \ref{eq:matrixderiv}. First, we notice that the metric matrix $\bm M$ is in this case with real variational parameters skew-symmetric (i.e., real anti-Hermitian: $\bm M = - \bm M^T$), since:
@@ -1500,11 +1513,17 @@ We now calculate each element of the matrix $\bm M$:
 \begin{align*}
 	&\left (
 	-\s {\rho_\ind 0}\co {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\oo 1}}
+	\right .
+	\\
+	&\left .\quad 
 	- e^{ -i \omega_\ind 1}\s {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
 	\right .
 	\\
-	&\left .
-	\quad + e^{ -i \omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	&\left .\quad 
+	+ e^{ -i \omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left .\quad 
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1515,7 +1534,10 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&- \left (
 	-i e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
-	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
+	\right .
+	\\
+	&\left .\quad 
+		{}-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
 	&\times\left (
@@ -1554,6 +1576,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&\left .
 	\quad + e^{ -i \omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left .\quad 
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1574,6 +1599,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&\left .
 	\quad - e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left .\quad 
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1589,15 +1617,19 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	%Second Term---------------------------------------------------------------------
 	&= \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
 	- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
-	\\
-	&- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
+	- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
 	+ \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
-	\\
-	&- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
+	- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
 	+ \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
-	\\
-	&+ \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
+	+ \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+      	\\& \quad
 	- \s {\rho_\ind 0}\co {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
 	\\
 	&= 0
@@ -1615,6 +1647,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&\quad \left .
 	+ e^{ -i \omega_\ind 0}\co {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\quad \left .
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\co {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1625,6 +1660,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	& -\left (
 	-i e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
+	\right .
+	\\
+	&\left . \quad
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1642,8 +1680,7 @@ We now calculate each element of the matrix $\bm M$:
 	&=
 	- i\s {\rho_\ind 0}\co {\rho_\ind 0}\ssq {\rho_\ind 1}
 	+ i\s {\rho_\ind 0}\co {\rho_\ind 0}\ssq {\rho_\ind 1}
-	\\
-	& 
+	\\ & \quad
 	-i \s {\rho_\ind 0}\co {\rho_\ind 0}\ssq {\rho_\ind 1}
 	+i \s {\rho_\ind 0}\co {\rho_\ind 0}\ssq {\rho_\ind 1}
 	\\
@@ -1663,6 +1700,9 @@ We now calculate each element of the matrix $\bm M$:
 \begin{align*}
 	&\left (
 	-i e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left . \quad
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1683,6 +1723,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&\left .
 	\quad - e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left . \quad
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1692,7 +1735,7 @@ We now calculate each element of the matrix $\bm M$:
 	\right )
 	\\
 	% Second Term---------------------------------------------------------------------------
-	&= +i \ssq {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
+	&= i \ssq {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
 	   -i \ssq {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
 	\\
 	&\quad+i \ssq {\rho_\ind 0}\s {\rho_\ind 1}\co {\rho_\ind 1}
@@ -1708,6 +1751,9 @@ We now calculate each element of the matrix $\bm M$:
 \begin{align*}
 	&\left (
 	-i e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left . \quad
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1718,6 +1764,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&-\left (
 	-i e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
+	\right .
+	\\
+	&\left . \quad
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1757,6 +1806,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&\left .
 	\quad - e^{ -i \omega_\ind 0}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\oo 1}} 
+	\right .
+	\\
+	&\left . \quad
 	+ e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\co {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -1767,6 +1819,9 @@ We now calculate each element of the matrix $\bm M$:
 	\\
 	&-\left (
 	-i e^{ -i \omega_\ind 1}\co {\rho_\ind 0 }\s {\rho_\ind 1}\bra {\psi_{\oo 0}\psi_{\uo 1}}
+	\right .
+	\\
+	&\left . \quad
 	-i e^{ -i \omega_\ind 0}e^{ -i \omega_\ind 1}\s {\rho_\ind 0}\s {\rho_\ind 1}\bra{\psi_{\uo 0} \psi_{\uo 1}} 
 	\right )
 	\\
@@ -2031,6 +2086,8 @@ Now we need to determine the coefficients $f_{k, i}$ for every $k \in \{1, \ldot
 	&= f_{1, \paulid{ii}} \bm R_1 \paulid{ii}
 	+ f_{1, \paulid{iz}} \bm R_1 \paulid{iz}
 	+ f_{1, \paulid{zi}} \bm R_1 \paulid{zi}
+	\\
+	& \quad
 	+ f_{1, \paulid{zz}} \bm R_1 \paulid{zz}
 	\\
 	&= f_{1, \paulid{ii}}
@@ -2077,7 +2134,7 @@ where:
 So we have:
 %
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_1} &= \fpd {\ket\Psi}{\omega_\ind 1} \\
+	&\fpd {\ket\Psi}{\lambda_1} = \fpd {\ket\Psi}{\omega_\ind 1} \\
 				   &=\fpd {}{\omega_\ind 1}\left[
 	\begin{matrix}
 		\co {\rho_\ind 0} 
@@ -2107,7 +2164,7 @@ So we have:
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		-e^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -2161,7 +2218,7 @@ So we have:
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		0
@@ -2244,6 +2301,7 @@ This happens because some of our variables are not independent since they satisf
 	&= f_{2, \paulid{ii}} \bm R_2 \paren{\paulid{ii}} 
 	+ f_{2, \paulid{iz}} \bm R_2 \paren{\paulid{iz}} 
 	+ f_{2, \paulid{zi}} \bm R_2 \paren{\paulid{zi}} 
+     	\\ & \quad
 	+ f_{2, \paulid{zz}} \bm R_2 \paren{\paulid{zz}} 
 	\\
 	&= f_{2, \paulid{ii}}
@@ -2274,9 +2332,10 @@ This happens because some of our variables are not independent since they satisf
 Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result:
 %
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_2} 
-	&= \fpd {\ket\Psi}{\omega_\ind 0}
-	= \fpd {}{\omega_\ind 0}\left[
+	&\fpd {\ket\Psi}{\lambda_2} 
+	= \fpd {\ket\Psi}{\omega_\ind 0}
+	\\
+	&= \fpd {}{\omega_\ind 0}\left[
 	\begin{matrix}
 		\co {\rho_\ind 0} 
 		\co {\rho_\ind 1} 
@@ -2305,7 +2364,7 @@ Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		-e^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -2359,7 +2418,7 @@ Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		ie^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -2411,8 +2470,8 @@ That is, once again we need to apply our new Eq. \ref{eq:correctedli2e} instead 
 
 \item $k = 3$
 \begin{align*}
-	\frac {d\bm R_3}{d\lambda_3} 
-	&= \frac {d\bm R_3}{d\rho_\ind 1} 
+	&\frac {d\bm R_3}{d\lambda_3} 
+	= \frac {d\bm R_3}{d\rho_\ind 1} 
 	=
 	\begin{bmatrix}
 		-\s{\rho_\ind 1} & -\co{\rho_\ind 1} & 0 & 0 
@@ -2439,9 +2498,11 @@ That is, once again we need to apply our new Eq. \ref{eq:correctedli2e} instead 
 	\\
 	&= -i \bm R_3 \paren{\paulid{iy}}
 \end{align*}
+%
 Looking at Li's \shortcite{benjamin} Eq. \ref{eq:rki} again, we have:
+%
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_3} &= \fpd {\ket\Psi}{\rho_\ind 1}  \\
+	&\fpd {\ket\Psi}{\lambda_3} = \fpd {\ket\Psi}{\rho_\ind 1}  \\
 	&= \fpd {}{\rho_\ind 1}\left[
 	\begin{matrix}
 		\co {\rho_\ind 0} 
@@ -2546,7 +2607,7 @@ Looking at Li's \shortcite{benjamin} Eq. \ref{eq:rki} again, we have:
 with Eq. \ref{eq:rki}:
 %
 \begin{align*}
-	f_{3, \paulid{iy}} \cdot \bm R_{3, \paulid{iy}} &= -i \bm R_6 \bm R_5 \bm R_4 \bm R_3 \paren{\paulid{iy}} \bm R_2 \bm R_1
+	f_{3, \paulid{iy}} &\cdot \bm R_{3, \paulid{iy}} = -i \bm R_6 \bm R_5 \bm R_4 \bm R_3 \paren{\paulid{iy}} \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2590,7 +2651,9 @@ with Eq. \ref{eq:rki}:
 	\end{matrix}
 \right ]
 \end{align*}
+%
 and we can see
+%
 $$
 	\sum_{\bm A \in P_\elec} f_{3, \bm A} \bm R_{3, \bm A} \ket 0 
 	= \fpd{\ket\Psi}{\rho_\ind 1}
@@ -2599,8 +2662,8 @@ The results coincide here as $\lambda_3$ is truly independent in our set of vari
 
 \item $k = 4$
 \begin{align*}
-	\frac {d\bm R_4}{d\lambda_4} 
-	&= \frac {d\bm R_4}{d\rho_\ind 0} 
+	&\frac {d\bm R_4}{d\lambda_4} 
+	= \frac {d\bm R_4}{d\rho_\ind 0} 
 	=
 	\begin{bmatrix}
 		-\s{\rho_\ind 0} & 0 & \co{\rho_\ind 0} & 0 
@@ -2630,9 +2693,11 @@ The results coincide here as $\lambda_3$ is truly independent in our set of vari
 	\\
 	&= i \bm R_4 \paren{\paulid{yz}}
 \end{align*}
+%
 Looking at Li's \shortcite{benjamin} equations \ref{eq:rki} again, we have:
+%
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_4} &= \fpd {\ket\Psi}{\rho_\ind 0} 
+	&\fpd {\ket\Psi}{\lambda_4} = \fpd {\ket\Psi}{\rho_\ind 0} 
 	\\
 	&= \fpd {}{\rho_\ind 1}\left[
 	\begin{matrix}
@@ -2738,7 +2803,7 @@ Looking at Li's \shortcite{benjamin} equations \ref{eq:rki} again, we have:
 with Eq. \ref{eq:rki}:
 %
 \begin{align*}
-	f_{4, \paulid{yz}} \cdot \bm R_{4, \paulid{yz}} &= i \bm R_6 \bm R_5 \bm R_4 \paren{\paulid{yz}} \bm R_3 \bm R_2 \bm R_1
+	&f_{4, \paulid{yz}} \cdot \bm R_{4, \paulid{yz}} = i \bm R_6 \bm R_5 \bm R_4 \paren{\paulid{yz}} \bm R_3 \bm R_2 \bm R_1
 	\\
 	&=
 	\left [
@@ -2807,6 +2872,7 @@ $$
 	&= f_{5, \paulid{ii}} \bm R_5 \paren{\paulid{ii}}
 	+ f_{5, \paulid{iz}} \bm R_5 \paren{\paulid{iz}}
 	+ f_{5, \paulid{zi}} \bm R_5 \paren{\paulid{zi}}
+	\\ & \quad
 	+ f_{5, \paulid{zz}} \bm R_5 \paren{\paulid{zz}}
 	\\
 	&= f_{5, \paulid{ii}}
@@ -2837,7 +2903,8 @@ $$
 Li's \shortcite{benjamin} Eq. \ref{eq:rki} once again is not satisfied, as we have:
 %
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_5} &= \fpd {\ket\Psi}{\omega_\ind 1} = 
+	&\fpd {\ket\Psi}{\lambda_5} = \fpd {\ket\Psi}{\omega_\ind 1} 
+      	\\ &= 
 	\fpd {}{\omega_\ind 1}\left[
 	\begin{matrix}
 		\co {\rho_\ind 0} 
@@ -2867,7 +2934,7 @@ Li's \shortcite{benjamin} Eq. \ref{eq:rki} once again is not satisfied, as we ha
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		-e^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -2921,7 +2988,7 @@ Li's \shortcite{benjamin} Eq. \ref{eq:rki} once again is not satisfied, as we ha
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		0
@@ -3002,6 +3069,7 @@ As expected since $\lambda_5 = \lambda_1$.
 	&= f_{6, \paulid{ii}} \bm R_6 \paren{\paulid{ii}} 
 	+ f_{6, \paulid{iz}} \bm R_6 \paren{\paulid{iz}} 
 	+ f_{6, \paulid{zi}} \bm R_6 \paren{\paulid{zi}} 
+	\\ &\quad
 	+ f_{6, \paulid{zz}} \bm R_6 \paren{\paulid{zz}} 
 	\\
 	&= f_{6, \paulid{ii}}
@@ -3033,9 +3101,10 @@ As expected since $\lambda_5 = \lambda_1$.
 Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result at first:
 %
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_6} 
-	&= \fpd {\ket\Psi}{\omega_\ind 0}
-	= \fpd {}{\omega_\ind 0}\left[
+	&\fpd {\ket\Psi}{\lambda_6} 
+	= \fpd {\ket\Psi}{\omega_\ind 0}
+	\\
+	&= \fpd {}{\omega_\ind 0}\left[
 	\begin{matrix}
 		\co {\rho_\ind 0} 
 		\co {\rho_\ind 1} 
@@ -3064,7 +3133,7 @@ Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		-e^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -3118,7 +3187,7 @@ Again, Li's \shortcite{benjamin} Eq. \ref{eq:rki} is not satisfied by our result
 	\end{matrix}
 	\right .
 	\\
-	&\qquad\qquad
+	&\qquad
 	\left .
 	\begin{matrix}
 		ie^{-i\omega_\ind 0}\s {\rho_\ind 0} 
@@ -3193,7 +3262,7 @@ Which means the only relevant elements of $P_\elec$ for this case are:
 	\paulid{iz}, \paulid{zi}, \paulid{iy}, \paulid{yz}
 \end{align*}
 
-\subsection{\textbf{Hamiltonian and Potential Matrix for Non-Interacting Case}}
+\subsection[\textbf{Hamiltonian and Potential Matrix for \texorpdfstring{\\}{} Non-Interacting Case}]{\textbf{Hamiltonian and Potential Matrix for Non-Interacting Case}}
 
 Our potential matrix, $V$ is:
 %
@@ -3209,9 +3278,8 @@ Our potential matrix, $V$ is:
 \end{equation*}
 %
 To calculate that, we first need our Hamiltonian $\hat H$ and $\ket \Psi$. To set up the Hamiltonian of a given system, we refer back to equations \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. 
-%Fortunately, if we disregard the electron interaction, we need worry only about the single-electron part of those equations, which lead to our Hamiltonian:
 
-We will now consider a two-electron $\text{H}_2$ molecule described with a minimal STO-3G Slater-type-orbital/contracted-Gaussian-function (STO/CGF) atomic basis set \shortcite{szabo} and at the corresponding equilibrium bond distance $R = 1.4 \text{ a.u.} = 7.408478 \times 10^{-11} \text{ m}.$
+We now consider a two-electron Hydrogen $\text{H}_2$ molecule described with a minimal STO-3G Slater-type-orbital/contracted-Gaussian-function (STO/CGF) atomic basis set \shortcite{szabo} and at the corresponding equilibrium bond distance $R = 1.4 \text{ a.u.} = 7.408478 \times 10^{-11} \text{ m}.$
 In this basis set, the STOs are fitted to a fixed linear combination (“contraction”) of three primitive Gaussian functions with different orbital exponents. 
 This description leads to two occupied spin-orbitals $\psi_{\oo 0}$ and $\psi_{\oo 1}$ with spins up and down, respectively, and to two unoccupied spin-orbitals $\psi_{\uo 0}$ and $\psi_{\uo 1}$ also with spins up and down, respectively.
 We will first consider a case with two non-interacting electrons so that the molecular Hamiltonian only contains the one-electron part of the general Hamiltonian in Eqs. \ref{eq:electronhamiltonian} and \ref{eq:electronhamiltonianaux}. The Hamiltonian for this case is:
@@ -3336,12 +3404,15 @@ We now need to calculate $\sandwich{\Psi}{\hat H}{\Psi}$ and for that we shall u
 
 Therefore:
 	\begin{align*}
-		\sandwich \Psi {\hat H} \Psi
-		&= \bra \Psi \left[
+		&\sandwich \Psi {\hat H} \Psi
+		= \bra \Psi \left[
 			h_{II} \cdot \hat I \otimes \hat I
 		+	h_{ZI} \cdot \hat Z \otimes \hat I
 		+	h_{IZ} \cdot \hat I \otimes \hat Z
 		+	h_{XI} \cdot \hat X \otimes \hat I
+		\right .
+		\\
+		&\qquad \qquad \qquad \left . 
 		+	h_{IX} \cdot \hat I \otimes \hat X \right ] \ket \Psi
 %
 	\\
@@ -3569,16 +3640,16 @@ Now each individual term of $\bm M$ and $\bm V$ can be rewritten in terms of our
 \begin{equation}\label{eq:benjamin}
 \begin{split}
 	M_{k, q} 
-	= \sum_{m:\lambda_m=\lambda_k} \sum_{n:\lambda_n=\lambda_q} \sum_{\bm l, \bm j \in P_\elec}
+	&= \sum_{m:\lambda_m=\lambda_k} \sum_{n:\lambda_n=\lambda_q} \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-	\paren{if_{m, \bm l}^*f_{n, \bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm R_{n, \bm j}} 0}
-	+\paren{if_{m, \bm l}^*f_{n, \bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm R_{n, \bm j}} 0}^*
+		if_{m, \bm l}^*f_{n, \bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm R_{n, \bm j}} 0
+		+ H.C.
 	\right]\\
 	V_{k} 
-	= \sum_{m:\lambda_m=\lambda_k} \sum_{\bm l, \bm j \in P_\elec}
+	&= \sum_{m:\lambda_m=\lambda_k} \sum_{\bm l, \bm j \in P_\elec}
 	\left[
-		\paren{if_{m, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}
-		+\paren{if_{m, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0}^*
+		if_{m, \bm l}^*h_{\bm j}\sandwich 0 {\bm R_{m, \bm l}^\dagger \bm \sigma_{\bm j} \bm R} 0
+		+ H.C.
 	\right]
 \end{split}
 \end{equation}
@@ -3648,7 +3719,7 @@ The probability of measuring $\ket +$ on the first qubit is:
 %
 A more involved circuit related to our purposes and that uses the above principles comes from Li's paper \shortcite{benjamin}, as shown in figure \ref{fig:circuitbenjamin}.
 %
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{circuits/circuit2.pdf}
   \caption[Li's circuit]{Li's circuit to measure $a \cdot Re\paren{e^{i\theta}\sandwich 0 {\bm U} 0}$, which is then used to calculate $\bm M_{kq}$ for the \gls{tdvp}. The circuit that calculates $\bm V_k$ is similar, as it simply takes $q = N_v + 1$.}
   \label{fig:circuitbenjamin}
@@ -3664,8 +3735,9 @@ The first (topmost) qubit in this circuit evolves into the state:
 		\span\text{We can now use \ref{eq:rki} to simplify our expression:}\\
 		&= \frac{\ket 0}{\sqrt 2} \otimes \bm R_{ki} \ket 0^{\otimes \elec}
 		+ \frac{e^{i\theta}\ket 1}{\sqrt 2} \bm R_{qj}\ket 0^{\otimes \elec}\\
-		\span\text{We can now change basis in our first qubit to
-		$\ket + = \frac{\ket 0 + \ket 1}{\sqrt 2}$
+		\span\text{We can now change basis in our first qubit to the eigenvectors of $\bm X$,}
+		\\
+		\span\text{$\ket + = \frac{\ket 0 + \ket 1}{\sqrt 2}$
 		and
 		$\ket - = \frac{\ket 0 - \ket 1}{\sqrt 2}$:}\\
 		&= \frac{\ket + + \ket -}{2} \otimes \bm R_{ki} \ket 0^{\otimes \elec}
@@ -3754,11 +3826,12 @@ We take somewhat similar steps to before in solving the Lagrangian. Taking a loo
 \begin{equation*}
 \begin{split}
 	\ket\Psi 
-	= \bigotimes_{\ind 0} 
+	&= \bigotimes_{\ind 0} 
 		\bm u_{\lambda_{\ind 0}} \ket 0
 	= \bigotimes_{\ind 0} 
 		\bm R_z(\omega_{\ind 0}) \bm R_y(2\rho_\ind 0) \bm R_z(-\omega_\ind 0) \ket 0
-	= \bm R_z(\omega) \bm R_y(2\rho) \bm R_z(-\omega) \ket 0
+		\\
+	&= \bm R_z(\omega) \bm R_y(2\rho) \bm R_z(-\omega) \ket 0
 \end{split}
 \end{equation*}
 %
@@ -4078,16 +4151,17 @@ Now we need to determine the coefficients $f_{k, i}$ for every $k \in \{1, 2, 3\
 \end{align*}
 %
 Li \shortcite{benjamin} states that:
+%
 \begin{equation}
-	\begin{split}
 	\label{eq:rki1e}
-	\fpd {\ket \Psi} {\lambda_k} &= \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}}f_{k, \bm A}\bm R_{k, \bm A}\ket 0
-	%
-	\noindent\intertext{\text{where}}
-	%
-	\bm R_{k,\bm A} &= \bm R_{N_v} \ldots \bm R_k \cdot \bm A \cdot \bm R_{k - 1} \ldots \bm R_1
-\end{split}
+	\fpd {\ket \Psi} {\lambda_k} = \sum_{\bm A \in \{\bm I, \bm X, \bm Y, \bm Z\}}f_{k, \bm A}\bm R_{k, \bm A}\ket 0
 \end{equation}
+%
+where:
+%
+\begin{equation*}
+	\bm R_{k,\bm A} = \bm R_{N_v} \ldots \bm R_k \cdot \bm A \cdot \bm R_{k - 1} \ldots \bm R_1
+\end{equation*}
 %
 So we have:
 %
@@ -4191,8 +4265,8 @@ This happens since our variables are interrelated through constraints. In this c
 This time, Li's \shortcite{benjamin} Eq. \ref{eq:rki1e} is satisfied by our result:
 %
 \begin{align*}
-	\fpd {\ket\Psi}{\lambda_2} 
-	&= \fpd {\ket\Psi}{\rho}
+	&\fpd {\ket\Psi}{\lambda_2} 
+	= \fpd {\ket\Psi}{\rho}
 	= 
 	\left[ 
 		- \s \rho \bm I + i \co \rho \s \omega \bm X - i \co \rho \co \omega\bm Y
@@ -4465,6 +4539,7 @@ We now need to calculate $\sandwich{\Psi}{\hat H}{\Psi}$ and for that we shall u
 \end{equation*}
 %
 Therefore:
+herehere
 %
 \begin{equation*}
 	\begin{split}
@@ -4474,19 +4549,28 @@ Therefore:
 		& \quad + h_{\mu\mu} (\hat I - \hat Z) \paren{\co \rho \ket 0 + \s \rho e^{i\omega} \ket 1} \\
 		&\left. \quad + 2 h_{\mu\alpha} \hat X \paren{\co \rho \ket 0 + \s \rho e^{i\omega} \ket 1}
 		\right] \\
-		&= \bra \Psi \frac 1 2 \left(
+		&= \bra \Psi \frac 1 2 \left[
 			2h_{\alpha\alpha} \co \rho \ket 0 + 2h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+		\right .
+		\\
+		&\quad \left .
 			+ 2h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
-		\right) \\
-		&= \bra \Psi \left(
+		\right] \\
+		&= \bra \Psi \left[
 			h_{\alpha\alpha} \co \rho \ket 0 + h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+		\right .
+		\\
+		&\quad \left .
 			+ h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
-		\right) \\
-		&= \paren{\bra 0 \co \rho  + \bra 1 e^{-i \omega} \s \rho } \\
-		& \quad \times \left (
+		\right] \\
+		&= \paren{\bra 0 \co \rho  + \bra 1 e^{-i \omega} \s \rho } 
+		\times \left [
 			h_{\alpha\alpha} \co \rho \ket 0 + h_{\mu\mu} \s \rho e^{i\omega} \ket 1
+		\right .
+		\\
+		&\quad \left .
 			+ h_{\mu\alpha} \paren{\co \rho \ket 1 + \s \rho e^{i\omega} \ket 0}
-		\right) \\
+		\right] \\
 		&= \braket 0 0 \co \rho h_{\alpha\alpha} \co \rho 
 		+ \braket 1 1 e^{-i \omega} \s \rho h_{\mu\mu} \s \rho e^{i\omega} \\
 		&\quad + h_{\mu\alpha} \paren{\co \rho e^{-i \omega} \s \rho \braket 1 1 + \s \rho e^{i\omega} \co \rho \braket 0 0} \\
