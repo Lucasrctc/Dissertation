@@ -488,7 +488,6 @@ Once the wavefunction is found, all the physical and chemical properties of a sy
 Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size \shortcite{buluta,feynman}.
 Therefore, different approximations must be introduced.
 One approach is to adopt the \gls{tdvp} \shortcite{kramer};
-%there, a trial wavefunction is optimized with respect to time-dependent parameters with the aim of obtaining a stationary action \shortcite{kramer}. A visualization is provided in figure \ref{fig:TDVP}.
 There, a trial wavefunction $\ket {\Psi(t)} = \Psi\left[\bm r; \lambda_1(t), \ldots \lambda_k(t), \ldots \lambda_n(t) \right ]$ is optimized with respect to $n$ time-dependent parameters $\{\lambda_k(t)\}$ with the aim of obtaining a stationary quantum action $A \left[ \Psi(t), \Psi^*(t) \right ] $, i.e., $\delta A = 0$.
 
 The simplest type of trial wavefunction is a \gls{hf} one \shortcite{szabo,mcweeny}:
@@ -502,14 +501,17 @@ Currently, the number of qubits has been increasing in a fashion similar to Moor
 
 Shor's algorithm \shortcite{shor}, for example, offers such an exponential speedup for factoring when compared to its classical counterparts.
 Unfortunately, the number of qubits needed to efficiently simulate a logical qubit is huge, and it is estimated that when we attain error rates of $10^{-4}$ we'd still need around 6 million qubits to attain quantum supremacy on Shor's algorithm \cite{shor}. 
-% Lucas, how many qubits to Quantum computers currently have? - added in the previous paragraph  BN-OK, can remove comment
-That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range connectivity between the qubits.
+That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range connectivity between the qubits (qubits on a quantum computer are not all connected - which limits what you can do on quantum algorithms, since not every pair of qubits may interact).
 % Lucas, in the previous sentence, what do you mean by "long-term interactions"? - Long range interactions, as in how qubits are connected.  BN-I still do not understand what you mean. Please revised the wording. 
+% LRCTC - Added parentheses to clarify what connectivity means here
 
-While these and other approaches still don't beat their classical alternatives, they hold the promise of working in the near future using \gls{nisq} technology \cite{nisq}, 
+While these and other approaches still don't beat their classical alternatives, they hold the promise of working in the near future using \gls{nisq} technology \cite{nisq}.
 %Lucas - Not sure what you are trying to say in the end of this sentence. - Added some more wording to the end of the sentence.  BN - the addtiional wording helps, but it still is not a complete thought. Please revise further. 
-as the quantum computer is in charge of a subset of the problem, using shallow circuits and/or getting error tolerant algorithms while relying on the algorithms quantum speedups when compared to the classical counterparts. 
-% Lucas, I think here would be a good place to note that your proposed method is an error tolerant method and helps address this shortcoming in current quantum computers. - Done  BN-Did you add the next sentence? It looks good. 
+% LRCTC - Restructure the thought. Hopefully it is clearer
+The \gls{nisq} approach has the quantum computer in charge of a subset of the problem, reducing the amount of qubits needed and/or the length of the circuit of the quantum algorithm, which makes them more reliable.
+It also requires the use of error tolerant algorithms to make up for the quality of current day qubits.
+Finally, the quantum computers rely on algorithms that possess quantum speedups when compared to the classical counterparts.
+In summary, the quantum computer is left with a role similar to the ones fulfilled by GPUs in classical computing: It deals with the part of the problem it could speed up the most, while leaving the classical processors to harness its output to solve the rest of the problem.
 The algorithm proposed here relies on a shallow and error-tolerant circuit \shortcite{benjamin}, making it a good candidate for use in the \gls{nisq} era.
 
 As is known, \gls{qc} ultimately expresses all its operations in terms of unitary matrices, such as those of the Pauli gates \shortcite{nielsen}.
@@ -520,7 +522,6 @@ By using this unitary representation of the \gls{hf} theory along with some furt
 Further, we adapt Li's circuit \shortcite{benjamin} in order to use it with our simplified wavefunction. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices.
 We can then lessen the burden of solving the differential equations and finding a description of the system on classical computers by carrying out some of the calculations using the modified circuit.
 This is useful, for example, in the \gls{end} method \shortcite{end1,end2,end3}, which can be used for computer simulations of chemical reactions.
-%TODO: add references to other reactions
 Some of its applications are in understanding and optimizing the reactions that take place in ion cancer therapy \shortcite{moralesdna,moraleswater}, as well as other reactions \shortcite{ulusoy2012multi,longo1993h++}.
 
 In this dissertation, we extend Fukutome’s unitary group approach to the \gls{hf} theory to the \gls{tdvp} framework and develop with it new \gls{qc} algorithms to simulate chemical reactions.
@@ -4692,20 +4693,17 @@ to evolve (i.e. calculate the effect of time on the state of the system) the sys
 
 The usual approach when dealing with quantum chemical systems is to use a non-unitary approach to obtain a wavefunction from \gls{hf} theory.
 This leads to more efficient implementations of methods like \gls{end} and \gls{slend} \shortcite{end1,end2}, but we need a unitary representation to be able to run quantum algorithms.
-% Lucas, see how i reworded the next sentence and confirm that I have not changed your intent. - Intent is the same   BN - then this is okay, remove comment.
 Therefore, we have combined Fukutome's \shortcite{fukutome} work with other assumptions of our own to obtain the 
-% Lucas, what do you mean by "simple trial wavefunction"? - Added a parentheses with clarification  BN-OK, remove comment
 simple (i.e., can be decomposed into a tensor product) trial wavefunction described in Eq. \ref{eq:udecomposition}.
 
 Once we had our wavefunction, we needed to decompose it into a product of single-variable matrices.
-However, since each part $\bm u_{\lambda_\ind 0}$ of our wavefunction can be written as a product of three rotation matrices of a single variable, as seen in Eq. \ref{eq:urotation}, we can use it as 
-% Lucas, what does " basis to out decomposition" mean? - Typo, "our"  BN-OK, remove comment
-a basis to our decomposition.
+However, since each part $\bm u_{\lambda_\ind 0}$ of our wavefunction can be written as a product of three rotation matrices of a single variable, as seen in Eq. \ref{eq:urotation}, we can use it as a basis to our decomposition.
 In the 1-electron case, that was sufficient, as seen in \ref{eq:rdecomposition1e}.
 However, in the 2-electron case, we had to decompose the tensor product in Eq. \ref{eq:urotation}.
 Looking at \ref{eq:rdecomposition}, although it was not a straightforward decomposition into rotation matrices, it was similar.
 
 % Lucas, see my changes in the next line. And then review the wording differences through the rest of this paragraph.   BN - so you were okay with my changes? Please confirm. 
+% LRCTC - Yes, ok with changes
 The next step was to find derivative coefficients in order to be able to implement our circuit.
 A problem now arises in the fact that Li's \shortcite{benjamin} Eq. \ref{eq:rki} for the derivatives of our wavefunction using our coefficients assumes no relationship between the variables obtained in the wavefunction decomposition 
 $\ket \Psi = \prod_{k=1}^{N_v} R_k(\lambda_k) \ket 0$,
@@ -4714,9 +4712,7 @@ Thus, we had to obtain our own equations for these derivatives, because if these
 Then, using our new Eqs. \ref{eq:correctedli2e} and \ref{eq:correctedli1e}, we were able to find new expressions for the matrix elements of $\bm M$ and $\bm V$ in Eq. \ref{eq:benjamin}.
 Once this was complete, we were able to simulate the circuits and obtain the computational results for our simulation. 
 
-Some 
-% use "promising" rather than "highlighted"? - Done  BN- Okay, can remove this comment. 
-promising applications of this work are in improving the \gls{tdvp}, which can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications. For a more extensive list of applications, refer back to section \ref{sec:applications}.
+Some promising applications of this work are in improving the \gls{tdvp}, which can then be used in several techniques such as \gls{end}, \gls{slend} or \gls{mcend} to simulate several chemical reactions important in cancer treatment \shortcite{moraleswater,moralesdna,end24,end31,end34}, atmospheric reactions \shortcite{end22,end25,end26,end27,end30,end35} and other applications. For a more extensive list of applications, refer back to section \ref{sec:applications}.
 
 \section{\textbf{Future Work}}
 
