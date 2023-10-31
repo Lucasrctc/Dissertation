@@ -1005,7 +1005,7 @@ Fig. \ref{fig:flowchart1} presents an abbreviated flowchart of the algorithms fo
 \begin{figure}
 	\centering
   \includegraphics[width=\linewidth]{img/variation_figure.pdf}
-  \caption{Visualization of the variational algorithm.}
+  \caption{Visualization of the quantum/classical time-depentent variational algorithm.}
   \label{fig:TDVP}
 \end{figure}
 %
@@ -4627,7 +4627,7 @@ We've then adapted the construction of the circuit from Li \shortcite{benjamin} 
 With equations for the wavefunction in hand, a circuit can be built to obtain matrices $\bm M$ and $\bm V$ needed to solve the system of Euler-Lagrange equations and accelerate the \gls{tdvp}. 
 
 We note here that it would be possible to apply this approach to bigger molecules.
-Systems with more than two electrons, however, would necessarily have electrons sharing a spin value, so Eq. \ref{eq:udecomposition} wouldn't be as simple, and making the required decomposition of the wavefunction into products of single-variable matrices $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$ wouldn't be as straightforward as seen in Eq. \ref{eq:rdecomposition} for the 2-electron case.
+Systems with more than two electrons, however, would necessarily have electrons with paired spins (restricted-spin closed-shell singlet state), so Eq. \ref{eq:udecomposition} wouldn't be as simple, and making the required decomposition of the wavefunction into products of single-variable matrices $\hat U = \prod_{\ind 0} \bm R(\lambda_{\ind 0})$ wouldn't be as straightforward as seen in Eq. \ref{eq:rdecomposition} for the 2-electron case.
 
 \section{\textbf{Simulation}}
 
@@ -4683,7 +4683,7 @@ In this chapter we summarize the research, emphasize our contributions on this w
 
 We have proposed the use of Fukutome's \shortcite{fukutome} unitary approach to \gls{hf} theory as a means to obtain an unitary representation for a trial wavefunction, which is necessary for \gls{qc}.
 Through some further assumptions and approximations, we've managed to simplify the trial wavefunction so as to be able to use it on a modified circuit inspired by Li's \shortcite{benjamin} work. The circuit remains shallow and error-resistant, allowing its application using today's \gls{nisq} devices.
-Thus, we are able to find approximations of matrices $\bm M$ and $\bm V$ that arise from the Euler-Lagrange Eqs. \ref{eq:matrixderiv}.
+Thus, we are able to compute the matrices $\bm M$ and $\bm V$ that arise from the Euler-Lagrange Eqs. \ref{eq:matrixderiv}.
 This approach has netted us a result that requires a number of shots scaling quadratically with the required precision, making it possible to run this quantum circuit as a \gls{nisq} coprocessor to an iterative algorithm, such as the \gls{tdvp}, as expressed in Fig. \ref{fig:TDVP}.
 The quantum algorithm calculates matrices $\bm M$ and $\bm V$ and, using this data, a classical computer can solve the differential equations 
 % I am confused by your use of "to evolve" in the next line, please clarify that. - Added parentheses with clarification
