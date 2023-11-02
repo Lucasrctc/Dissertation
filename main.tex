@@ -501,13 +501,14 @@ Currently, the number of qubits has been increasing in a fashion similar to Moor
 
 Shor's algorithm \shortcite{shor}, for example, offers such an exponential speedup for factoring when compared to its classical counterparts.
 Unfortunately, the number of qubits needed to efficiently simulate a logical qubit is huge, and it is estimated that when we attain error rates of $10^{-4}$ we'd still need around 6 million qubits to attain quantum supremacy on Shor's algorithm \cite{shor}. 
-That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements of long-range connectivity between the qubits (qubits on a quantum computer are not all connected - which limits what you can do on quantum algorithms, since not every pair of qubits may interact).
+That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements in long-range connectivity between the qubits (not all qubits on a quantum computer are connected - which limits what you can do in quantum algorithms since not every pair of qubits can interact).
 % Lucas, in the previous sentence, what do you mean by "long-term interactions"? - Long range interactions, as in how qubits are connected.  BN-I still do not understand what you mean. Please revised the wording. 
-% LRCTC - Added parentheses to clarify what connectivity means here
+% LRCTC - Added parentheses to clarify what connectivity means here     BN - Okay, I modified the wording some but I think it is good now. 
 
 While these and other approaches still don't beat their classical alternatives, they hold the promise of working in the near future using \gls{nisq} technology \cite{nisq}.
 %Lucas - Not sure what you are trying to say in the end of this sentence. - Added some more wording to the end of the sentence.  BN - the addtiional wording helps, but it still is not a complete thought. Please revise further. 
 % LRCTC - Restructure the thought. Hopefully it is clearer
+% BN  What is the "them" at the end of the setnence? Is it the quantum algoirthms or the qubits? I think it is the algorithms. If it is, then change "them" to "the quantum algorithms".
 The \gls{nisq} approach has the quantum computer in charge of a subset of the problem, reducing the amount of qubits needed and/or the length of the circuit of the quantum algorithm, which makes them more reliable.
 It also requires the use of error tolerant algorithms to make up for the quality of current day qubits.
 Finally, the quantum computers rely on algorithms that possess quantum speedups when compared to the classical counterparts.
@@ -4703,7 +4704,7 @@ However, in the 2-electron case, we had to decompose the tensor product in Eq. \
 Looking at \ref{eq:rdecomposition}, although it was not a straightforward decomposition into rotation matrices, it was similar.
 
 % Lucas, see my changes in the next line. And then review the wording differences through the rest of this paragraph.   BN - so you were okay with my changes? Please confirm. 
-% LRCTC - Yes, ok with changes
+% LRCTC - Yes, ok with changes    BN - Okay, delete this comment. 
 The next step was to find derivative coefficients in order to be able to implement our circuit.
 A problem now arises in the fact that Li's \shortcite{benjamin} Eq. \ref{eq:rki} for the derivatives of our wavefunction using our coefficients assumes no relationship between the variables obtained in the wavefunction decomposition 
 $\ket \Psi = \prod_{k=1}^{N_v} R_k(\lambda_k) \ket 0$,
