@@ -7,7 +7,7 @@
 %get these if your TeX distribution     %
 %doesn't have them.                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass{aux/ttuthes2007}
+\documentclass{ttuthes2007}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Include any other add-on packages you need:%
@@ -38,7 +38,7 @@
 \makenoidxglossaries
 \glsnoexpandfields
 
-\loadglsentries{aux/gloss.tex}
+\loadglsentries{gloss.tex}
 %\renewcommand{\glsnamefont}[1]{\textbf{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,9 +49,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Uncomment if the grad school doesn't like the%
-%line under the running head:                 %
+%line under the running head (They don't):    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -342,9 +342,14 @@ i & 0 & 0 & 0 \\
 \newdateformat{monthyeardate}{%
   \monthname[\THEMONTH] \THEYEAR}
 
-
-
-
+\newlength{\bibitemsep}\setlength{\bibitemsep}{1\baselineskip}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\oldthebibliography\thebibliography
+\renewcommand\thebibliography[1]{%
+  \oldthebibliography{#1}%
+  \setlength{\parskip}{\bibitemsep}%
+  \setlength{\itemsep}{\bibparskip}%
+}
 
 \begin{document}
 
@@ -482,7 +487,7 @@ The \gls{tdvp} has several applications, including \gls{end}, \gls{slend} or \gl
 \chapter{\textbf{Introduction}}
 
 Quantum chemistry \shortcite{szabo,mcweeny} seeks to describe chemical systems in terms of quantum mechanics.
-For time-dependent processes (e.g., chemical reactions), this requires the solution of the time-dependent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
+For time-dependent processes (e.g., chemical reactions), this requires the solution of the time-depen\-dent Schrödinger equation \shortcite{szabo,mcweeny}: a partial linear differential equation, second-order in position $r$ and first-order in time $t$, whose unknown is the time-dependent wavefunction $\ket \Psi = \Psi(\bm r, t)$.
 Once the wavefunction is found, all the physical and chemical properties of a system can be directly calculated from it \shortcite{szabo,mcweeny}.
 
 Unfortunately, the solution of the time-dependent Schrödinger equation for many-electron molecules becomes computationally expensive, at worst with a cost scaling exponentially with the system size \shortcite{buluta,feynman}.
@@ -504,9 +509,6 @@ Unfortunately, the number of qubits needed to efficiently simulate a logical qub
 That's an optimist measure that excludes auxiliary qubits in the computation, typically called ancilla, and also assumes improvements in long-range connectivity between the qubits (not all qubits on a quantum computer are connected - which limits what you can do in quantum algorithms since not every pair of qubits can interact).
 
 While these and other approaches still don't beat their classical alternatives, they hold the promise of working in the near future using \gls{nisq} technology \cite{nisq}.
-%Lucas - Not sure what you are trying to say in the end of this sentence. - Added some more wording to the end of the sentence.  BN - the addtiional wording helps, but it still is not a complete thought. Please revise further. 
-% LRCTC - Restructure the thought. Hopefully it is clearer
-% BN  What is the "them" at the end of the setnence? Is it the quantum algoirthms or the qubits? I think it is the algorithms. If it is, then change "them" to "the quantum algorithms".
 The \gls{nisq} approach has the quantum computer in charge of a subset of the problem, reducing the amount of qubits needed and/or the length of the circuit of the quantum algorithm, which makes the quantum algorithms more reliable.
 It also requires the use of error tolerant algorithms to make up for the quality of current day qubits.
 Finally, the quantum computers rely on algorithms that possess quantum speedups when compared to the classical counterparts.
@@ -4724,9 +4726,17 @@ Other directions of study would be to apply the technique to simulate reactions 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Bibliography:  Use BibTeX 							   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{chicago}
+\makeatletter
+
+\interlinepenalty=10000
+
+\bibliographystyle{chicago}{}
 \addcontentsline{toc}{chapter}{\textbf{References}}
-\bibliography{aux/refs}
+\begin{singlespacing} %
+\bibliography{refs}
+\end{singlespacing} %
+
+\makeatother
 
 \glsaddall
 
